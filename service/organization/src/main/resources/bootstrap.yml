@@ -1,0 +1,24 @@
+server:
+  port: 2097
+
+spring:
+  application:
+    name: @project.artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+        namespace: test
+        group: TEST_GROUP
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        group: ${spring.cloud.nacos.discovery.group}
+        file-extension: yml
+        extension-configs:
+          - data-id: common-${spring.cloud.nacos.discovery.namespace}.${spring.cloud.nacos.config.file-extension}
+            group: SHARED_GROUP
+            refresh: true
+  profiles:
+    active: @profiles.active@
+
