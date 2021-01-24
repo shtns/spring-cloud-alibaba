@@ -1,7 +1,7 @@
 package com.sh.auth.token.service;
 
 import com.sh.api.common.constant.OauthTwoConstant;
-import com.sh.api.common.constant.UserInfoErrorConstants;
+import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.common.vo.Oauth2TokenVo;
 import com.sh.auth.feign.OrganizationService;
@@ -40,7 +40,7 @@ public class CustomGainTokenServiceImpl {
             throws HttpRequestMethodNotSupportedException {
 
         if (! this.userInfoService.userLogin(parameters.get("username"), parameters.get("password")).getData()) {
-            return R.failed(UserInfoErrorConstants.ForegroundPrompt.INCORRECT_ACCOUNT_OR_PASSWORD);
+            return R.failed(UserInfoConstants.ForegroundPrompt.INCORRECT_ACCOUNT_OR_PASSWORD);
         }
 
         OAuth2AccessToken oAuth2AccessToken = this.tokenEndpoint.postAccessToken(principal, parameters).getBody();

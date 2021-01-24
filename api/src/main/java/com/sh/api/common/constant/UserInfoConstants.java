@@ -1,13 +1,13 @@
 package com.sh.api.common.constant;
 
 /**
- * 用户信息错误常量值
+ * 用户信息常量值
  *
  *
  * @author 盛浩
  * @date 2021/1/16 1:54
  */
-public interface UserInfoErrorConstants {
+public interface UserInfoConstants {
 
     /**
      * 前台提示语

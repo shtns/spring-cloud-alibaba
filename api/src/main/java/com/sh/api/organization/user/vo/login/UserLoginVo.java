@@ -1,8 +1,6 @@
 package com.sh.api.organization.user.vo.login;
 
 import com.sh.api.organization.user.entity.UserInfo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +17,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "UserLoginVo", description = "用户登入vo")
 public class UserLoginVo {
 
     /**
@@ -41,6 +38,11 @@ public class UserLoginVo {
      * 密码
      */
     private String password;
+
+    /**
+     * 头像
+     */
+    private String headPortrait;
 
     /**
      * 名称英文
@@ -77,10 +79,10 @@ public class UserLoginVo {
         this.roleId = userInfo.getRoleId();
         this.loginAccount = userInfo.getLoginAccount();
         this.password = userInfo.getPassword();
+        this.headPortrait = userInfo.getHeadPortrait();
         this.status = userInfo.getStatus();
         this.nameEn = userInfo.getNameEn();
         this.nameCn = userInfo.getNameCn();
-        this.password = userInfo.getPassword();
         this.mobile = userInfo.getMobile();
         this.address = userInfo.getAddress();
     }

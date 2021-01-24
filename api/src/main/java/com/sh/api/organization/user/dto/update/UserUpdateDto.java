@@ -1,40 +1,41 @@
-package com.sh.api.organization.user.dto.save;
+package com.sh.api.organization.user.dto.update;
 
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.organization.user.entity.UserInfo;
 import lombok.Getter;
 import lombok.Setter;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * 用户保存dto
+ * 用户修改dto
  *
  *
  * @author 盛浩
- * @date 2021/1/16 2:27
+ * @date 2021/1/24 21:56
  */
 @Getter
 @Setter
-public class UserSaveDto {
+public class UserUpdateDto {
+
+    /**
+     * 用户id
+     */
+    @NotNull(message = UserInfoConstants.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY)
+    private Long userId;
 
     /**
      * 角色id
      */
-    @NotNull(message = UserInfoConstants.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY)
     private Long roleId;
 
     /**
      * 登入账号
      */
-    @NotBlank(message = UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY)
     private String loginAccount;
 
     /**
      * 密码
      */
-    @NotBlank(message = UserInfoConstants.ForegroundPrompt.PASSWORD_CANNOT_BE_EMPTY)
     private String password;
 
     /**
@@ -67,11 +68,10 @@ public class UserSaveDto {
      *
      * @return 用户信息
      */
-    public UserInfo changeSaveUserInfo() {
+    public UserInfo changeUpdateUserInfo() {
         UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(this.userId);
         userInfo.setRoleId(this.roleId);
-        userInfo.setLoginAccount(this.loginAccount);
-        userInfo.setStatus(StringPool.ZERO);
         userInfo.setNameCn(this.nameCn);
         userInfo.setNameEn(this.nameEn);
         userInfo.setMobile(this.mobile);

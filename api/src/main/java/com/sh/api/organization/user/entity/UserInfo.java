@@ -45,6 +45,11 @@ public class UserInfo extends Model<UserInfo> {
     private String status;
 
     /**
+     * 头像
+     */
+    private String headPortrait;
+
+    /**
      * 名称中文
      */
     private String nameCn;

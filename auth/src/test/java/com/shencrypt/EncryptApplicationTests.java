@@ -1,5 +1,10 @@
 package com.shencrypt;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.sh.api.common.constant.DigitalConstants;
+import com.sh.api.common.constant.ResourceConstants;
+import com.sh.auth.AuthApplication;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,13 +20,13 @@ import java.time.ZonedDateTime;
  * @author 盛浩
  * @date 2021/1/19 18:06
  */
-@SpringBootTest
+@SpringBootTest(classes = AuthApplication.class)
 public class EncryptApplicationTests {
 
     @Resource
     private StringEncryptor stringEncryptor;
 
-    private final PasswordEncoder ENCODE = new BCryptPasswordEncoder();
+    private final PasswordEncoder encrypt = new BCryptPasswordEncoder();
 
     @Test
     public void jasyptEncryptTest() {
@@ -30,11 +35,19 @@ public class EncryptApplicationTests {
 
     @Test
     public void encodeEncryptTest() {
-        System.out.println("encodePwd："+ ENCODE.encode("123456"));
+        System.out.println("encodePwd："+ this.encrypt.encode("123456"));
     }
 
     @Test
     public void zonedTest() {
         System.out.println(ZonedDateTime.now());
+    }
+
+    @Test
+    public void pathTest() {
+        String filePath = ResourceConstants.Url.MINIO_ADD_UPLOAD_TEST;
+        String fileName = StrUtil.sub(filePath, filePath.lastIndexOf(StringPool.BACK_SLASH), filePath.length());
+        System.out.println("filePath："+ filePath);
+        System.out.println("fileName：" + fileName.substring(DigitalConstants.ONE));
     }
 }

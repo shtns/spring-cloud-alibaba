@@ -106,6 +106,13 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </exclude>
+                    </excludes>
+                    <includeSystemScope>true</includeSystemScope>
                     <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>

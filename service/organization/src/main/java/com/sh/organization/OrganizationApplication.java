@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan(basePackages = {"com.sh.organization.user.mapper","com.sh.organization.menu.mapper","com.sh.organization.role.mapper"
         ,"com.sh.organization.rolemenu.mapper","com.sh.organization.city.mapper","com.sh.organization.country.mapper"
-        ,"com.sh.organization.tms.mapper"})
+        ,"com.sh.organization.tms.mapper","com.sh.organization.notable.mapper"})
 public class OrganizationApplication {
     public static void main(String[] args) {
         SpringApplication.run(OrganizationApplication.class, args);

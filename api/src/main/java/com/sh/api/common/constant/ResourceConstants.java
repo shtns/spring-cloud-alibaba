@@ -28,5 +28,15 @@ public interface ResourceConstants {
          * sentinel测试接
          */
         String SENTINEL_TEST = "/user/sentinel_test/*";
+
+        /**
+         * minio新增上传测试
+         */
+        String MINIO_ADD_UPLOAD_TEST = "C:\\Users\\e\\Desktop\\add.jpg";
+
+        /**
+         * minio修改上传测试
+         */
+        String MINIO_UPDATE_UPLOAD_TEST = "C:\\Users\\e\\Desktop\\update.jpg";
     }
 }
