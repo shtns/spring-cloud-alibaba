@@ -1,5 +1,6 @@
 package com.sh.api.organization.user.dto.update;
 
+import com.sh.api.common.constant.ResourceConstants;
 import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.organization.user.entity.UserInfo;
 import lombok.Getter;
@@ -7,7 +8,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 
 /**
- * 用户修改dto
+ * 用户更新dto
  *
  *
  * @author 盛浩
@@ -72,6 +73,9 @@ public class UserUpdateDto {
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(this.userId);
         userInfo.setRoleId(this.roleId);
+        userInfo.setLoginAccount(this.loginAccount);
+        userInfo.setPassword(this.password);
+        userInfo.setHeadPortrait(ResourceConstants.Url.MINIO_UPDATE_UPLOAD_TEST);
         userInfo.setNameCn(this.nameCn);
         userInfo.setNameEn(this.nameEn);
         userInfo.setMobile(this.mobile);

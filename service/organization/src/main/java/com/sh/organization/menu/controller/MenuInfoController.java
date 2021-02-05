@@ -1,14 +1,18 @@
 package com.sh.organization.menu.controller;
 
-import com.sh.api.common.constant.MenuInfoConstants;
+import com.sh.api.common.dto.PageReqDto;
 import com.sh.api.common.util.R;
+import com.sh.api.common.vo.PageRespVo;
+import com.sh.api.organization.menu.dto.page.MenuPageDto;
+import com.sh.api.organization.menu.dto.save.MenuSaveDto;
+import com.sh.api.organization.menu.dto.update.MenuUpdateDto;
+import com.sh.api.organization.menu.entity.MenuInfo;
+import com.sh.api.organization.menu.vo.details.MenuDetailsVo;
+import com.sh.api.organization.menu.vo.query.MenuQueryVo;
 import com.sh.organization.menu.service.MenuInfoServiceImpl;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 /**
  * 菜单信息管理
@@ -25,92 +29,70 @@ public class MenuInfoController {
     private final MenuInfoServiceImpl menuInfoService;
 
     /**
-     * 首页
+     * 新增菜单信息
      *
-     * @return 前台提示语：首页
+     * @param menuSaveDto 菜单新增dto
+     * @return 是否新增成功
      */
-    @GetMapping(value = "/home_page")
-    public R<String> homePage() {return R.ok(MenuInfoConstants.ForegroundPrompt.HOME_PAGE);}
+    @PostMapping
+    public R<Boolean> saveMenuInfo(@RequestBody @Valid MenuSaveDto menuSaveDto) {
+        return R.ok(this.menuInfoService.save(menuSaveDto.changeSaveMenuInfo()));
+    }
 
     /**
-     * 行程预定
+     * 删除菜单信息
      *
-     * @return 前台提示语：行程预定
+     * @param menuId 菜单id
+     * @return 是否删除成功
      */
-    @GetMapping(value = "/travel_booking")
-    public R<String> travelBooking() {return R.ok(MenuInfoConstants.ForegroundPrompt.TRAVEL_BOOKING);}
+    @DeleteMapping(value = "/{menuId}")
+    public R<Boolean> removeMenuInfo(@PathVariable Long menuId) {
+        return R.ok(this.menuInfoService.removeMenuInfo(menuId));
+    }
 
     /**
-     * 国内机票
+     * 更新菜单信息
      *
-     * @return 前台提示语：国内机票
+     * @param menuUpdateDto 菜单更新dto
+     * @return 是否更新成功
      */
-    @GetMapping(value = "/domestic_air_tickets")
-    public R<String> domesticAirTickets() {return R.ok(MenuInfoConstants.ForegroundPrompt.DOMESTIC_AIR_TICKETS);}
+    @PutMapping
+    public R<Boolean> updateMenuInfo(@RequestBody @Valid MenuUpdateDto menuUpdateDto) {
+        return R.ok(this.menuInfoService.updateById(menuUpdateDto.changeUpdateMenuInfo()));
+    }
 
     /**
-     * 国际机票
+     * 查询菜单信息
      *
-     * @return 前台提示语：国际机票
+     * @param menuId 菜单id
+     * @return 菜单查询vo
      */
-    @GetMapping(value = "/international_air_ticket")
-    public R<String> internationalAirTicket() {return R.ok(MenuInfoConstants.ForegroundPrompt.INTERNATIONAL_AIR_TICKET);}
+    @GetMapping(value = "/{menuId}")
+    public R<MenuQueryVo> queryMenuInfo(@PathVariable Long menuId) {
+        return R.ok(this.menuInfoService.queryMenuInfo(menuId));
+    }
 
     /**
-     * 酒店预订
+     * 分页查询菜单信息
      *
-     * @return 前台提示语：酒店预订
+     * @param pageReqDto 分页插件
+     * @param menuPageDto 菜单分页dto
+     * @return 菜单查询分页vo
      */
-    @GetMapping(value = "/hotel_reservation")
-    public R<String> hotelReservation() {return R.ok(MenuInfoConstants.ForegroundPrompt.HOTEL_RESERVATION);}
+    @GetMapping(value = "/page")
+    public R<PageRespVo<MenuQueryVo>> pageQueryMenuInfo(PageReqDto<MenuInfo> pageReqDto, MenuPageDto menuPageDto) {
+        return R.ok(this.menuInfoService.pageQueryMenuInfo(pageReqDto.toPlusPage(), menuPageDto));
+    }
 
     /**
-     * 火车票
+     * 分页查询菜单详情
      *
-     * @return 前台提示语：火车票
+     * @param pageReqDto 分页插件
+     * @param menuPageDto 菜单分页dto
+     * @return 菜单详情分页vo
      */
-    @GetMapping(value = "/train_ticket")
-    public R<String> trainTicket() { return R.ok(MenuInfoConstants.ForegroundPrompt.TRAIN_TICKET); }
-
-    /**
-     * 我的申请
-     *
-     * @return 前台提示语：我的申请
-     */
-    @GetMapping(value = "/my_application")
-    public R<String> myApplication() { return R.ok(MenuInfoConstants.ForegroundPrompt.MY_APPLICATION); }
-
-    /**
-     * 我的审批
-     *
-     * @return 前台提示语：我的审批
-     */
-    @GetMapping(value = "/my_approval")
-    public R<String> myApproval() { return R.ok(MenuInfoConstants.ForegroundPrompt.MY_APPROVAL); }
-
-    /**
-     * 我的订单
-     *
-     * @return 前台提示语：我的订单
-     */
-    @GetMapping(value = "/my_order")
-    public R<String> myOrder() { return R.ok(MenuInfoConstants.ForegroundPrompt.MY_ORDER); }
-
-    /**
-     * 我的行程
-     *
-     * @return 前台提示语：我的行程
-     */
-    @GetMapping(value = "/my_itinerary")
-    public R<String> myItinerary() { return R.ok(MenuInfoConstants.ForegroundPrompt.MY_ITINERARY); }
-
-    /**
-     * 查询所有菜单访问路径
-     *
-     * @return 访问路径列表
-     */
-    @GetMapping(value = "/access_paths")
-    public R<List<String>> queryAccessPaths() {
-        return R.ok(this.menuInfoService.queryAccessPaths());
+    @GetMapping(value = "/details")
+    public R<PageRespVo<MenuDetailsVo>> pageQueryMenuDetails(PageReqDto<MenuInfo> pageReqDto, MenuPageDto menuPageDto) {
+        return R.ok(this.menuInfoService.pageQueryMenuDetails(pageReqDto.toPlusPage(), menuPageDto));
     }
 }

@@ -24,7 +24,7 @@ public class SendInterMsgService {
     private final RabbitTemplate rabbitTemplate;
 
     /**
-     * 发送消息
+     * 五秒发送一次消息
      *
      */
     @Scheduled(cron = "*/5 * * * * ?")

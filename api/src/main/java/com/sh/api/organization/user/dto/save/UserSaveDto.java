@@ -1,6 +1,7 @@
 package com.sh.api.organization.user.dto.save;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.sh.api.common.constant.ResourceConstants;
 import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.organization.user.entity.UserInfo;
 import lombok.Getter;
@@ -71,6 +72,7 @@ public class UserSaveDto {
         UserInfo userInfo = new UserInfo();
         userInfo.setRoleId(this.roleId);
         userInfo.setLoginAccount(this.loginAccount);
+        userInfo.setHeadPortrait(ResourceConstants.Url.MINIO_SAVE_UPLOAD_TEST);
         userInfo.setStatus(StringPool.ZERO);
         userInfo.setNameCn(this.nameCn);
         userInfo.setNameEn(this.nameEn);

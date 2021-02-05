@@ -20,34 +20,16 @@ import lombok.*;
 public class Oauth2TokenVo {
 
         /**
-         * 名称英文
+         * 访问令牌
          */
-        @ApiModelProperty(value = "名称英文")
-        private String nameEn;
-
-        /**
-         * 范围
-         */
-        @ApiModelProperty(value = "范围")
-        private String scope;
-
-        /**
-         * jti
-         */
-        @ApiModelProperty(value = "jti")
-        private String jti;
+        @ApiModelProperty(value = "访问令牌")
+        private String accessToken;
 
         /**
          * 令牌类型
          */
         @ApiModelProperty(value = "令牌类型")
         private String tokenType;
-
-        /**
-         * 访问令牌
-         */
-        @ApiModelProperty(value = "访问令牌")
-        private String accessToken;
 
         /**
          * 刷新令牌
@@ -60,4 +42,22 @@ public class Oauth2TokenVo {
          */
         @ApiModelProperty(value = "有效时间（秒）")
         private int expiresIn;
+
+        /**
+         * 范围
+         */
+        @ApiModelProperty(value = "范围")
+        private String scope;
+
+        /**
+         * 当前登入的用户名称英文
+         */
+        @ApiModelProperty(value = "当前登入的用户名称英文")
+        private String nameEn;
+
+        /**
+         * jti
+         */
+        @ApiModelProperty(value = "jti")
+        private String jti;
 }

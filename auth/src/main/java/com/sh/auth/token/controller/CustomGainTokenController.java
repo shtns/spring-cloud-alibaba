@@ -1,14 +1,13 @@
 package com.sh.auth.token.controller;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.common.vo.Oauth2TokenVo;
 import com.sh.auth.token.service.CustomGainTokenServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.Map;
 
@@ -37,6 +36,22 @@ public class CustomGainTokenController {
     @PostMapping(value = "/token")
     public R<Oauth2TokenVo> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
             throws HttpRequestMethodNotSupportedException {
-        return R.ok(this.customGainTokenService.postAccessToken(principal, parameters).getData());
+        Oauth2TokenVo oauth2TokenVo = this.customGainTokenService.postAccessToken(principal, parameters);
+        if (ObjectUtil.isNotNull(oauth2TokenVo)) {
+            return R.ok(oauth2TokenVo);
+        } else {
+            return R.failed(UserInfoConstants.ForegroundPrompt.INCORRECT_ACCOUNT_OR_PASSWORD);
+        }
+    }
+
+    /**
+     * sentinel测试
+     *
+     * @param id id
+     * @return 端口+id
+     */
+    @GetMapping(value = "/sentinel_test/{id}")
+    public R<String> sentinelTest(@PathVariable Long id) {
+        return this.customGainTokenService.sentinelTest(id);
     }
 }

@@ -134,17 +134,17 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
                 <excludes>
                     <exclude>**/*.xml</exclude>
                 </excludes>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>false</filtering>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
+                <filtering>false</filtering>
             </resource>
         </resources>
         <plugins>

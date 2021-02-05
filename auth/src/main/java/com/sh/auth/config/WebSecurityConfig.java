@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
-                .antMatchers(ResourceConstants.Url.GAIN_RSA, ResourceConstants.Url.SENTINEL_TEST).permitAll()
+                .antMatchers(ResourceConstants.Url.GAIN_RSA).permitAll()
                 .anyRequest().authenticated();
     }
 }

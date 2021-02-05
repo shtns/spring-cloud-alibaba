@@ -1,7 +1,7 @@
 package com.sh.order.controller;
 
 import com.sh.api.common.util.R;
-import com.sh.api.seata.order.dto.add.OrderSaveDto;
+import com.sh.api.seata.order.dto.save.OrderSaveDto;
 import com.sh.api.seata.order.dto.details.OrderDetailsDto;
 import com.sh.api.seata.order.vo.OrderDetailsVo;
 import com.sh.order.service.OrderInfoServiceImpl;
@@ -31,7 +31,7 @@ public class OrderInfoController {
      */
     @PostMapping
     public R<Boolean> saveOrderInfo(@RequestBody @Valid OrderSaveDto orderSaveDto) {
-        return R.ok(this.orderInfoService.addOrder(orderSaveDto));
+        return R.ok(this.orderInfoService.saveOrderInfo(orderSaveDto));
     }
 
     /**

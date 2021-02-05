@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * 国家信息明细vo
+ * 国家详情vo
  *
  *
  * @author 盛浩
@@ -22,12 +22,12 @@ import java.util.List;
 public class CountryDetailsVo {
 
     /**
-     * 国家信息列表
+     * 国家查询vo列表
      */
-    private List<CountryQueryVo> countryInfos;
+    private List<CountryQueryVo> countryQueryVos;
 
     /**
-     * 城市信息列表
+     * 城市查询vo列表
      */
-    private List<CityQueryVo> cityInfos;
+    private List<CityQueryVo> cityQueryVos;
 }

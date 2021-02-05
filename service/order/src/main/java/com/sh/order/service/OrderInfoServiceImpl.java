@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sh.api.common.constant.DigitalConstants;
 import com.sh.api.seata.account.dto.reduce.AccountReduceDto;
-import com.sh.api.seata.order.dto.add.OrderSaveDto;
+import com.sh.api.seata.order.dto.save.OrderSaveDto;
 import com.sh.api.seata.order.dto.details.OrderDetailsDto;
 import com.sh.api.seata.order.entity.OrderInfo;
 import com.sh.api.seata.order.vo.OrderDetailsVo;
@@ -41,7 +41,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
      * @return 是否新增成功
      */
     @GlobalTransactional(name = "create_order", rollbackFor = Exception.class)
-    public Boolean addOrder(OrderSaveDto orderSaveDto) {
+    public Boolean saveOrderInfo(OrderSaveDto orderSaveDto) {
 
         log.info("------>开始新建订单");
         OrderInfo orderInfo = orderSaveDto.toOrder();

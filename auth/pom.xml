@@ -115,12 +115,6 @@
             <artifactId>nimbus-jose-jwt</artifactId>
         </dependency>
 
-        <!-- redis 2 3.2.RELEASE -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
         <!-- api 1.0.SNAPSHOT -->
         <dependency>
             <groupId>com.sh</groupId>
@@ -133,19 +127,19 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
                 <excludes>
                     <exclude>**/*.jks</exclude>
-                    <exclude>**/*.xml</exclude>
+                    <exclude>logback-spring.xml</exclude>
                 </excludes>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>false</filtering>
                 <includes>
                     <include>**/*.jks</include>
-                    <include>**/*.xml</include>
+                    <include>logback-spring.xml</include>
                 </includes>
+                <filtering>false</filtering>
             </resource>
         </resources>
         <plugins>

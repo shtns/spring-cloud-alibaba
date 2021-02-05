@@ -3,7 +3,7 @@ package com.sh.auth.feign;
 import com.sh.api.common.constant.MicroServiceNameConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.organization.user.vo.login.UserLoginVo;
-import com.sh.auth.user.service.UserInfoFallbackImpl;
+import com.sh.auth.token.service.UserInfoFallbackImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

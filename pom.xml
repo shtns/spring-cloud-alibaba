@@ -44,6 +44,7 @@
         <javax.el-version>2.2.6</javax.el-version>
         <mp-version>3.4.1</mp-version>
         <minio-version>6.0.2</minio-version>
+        <net-sf-json-version>2.4</net-sf-json-version>
     </properties>
 
     <!-- 继承此工程的后自动导入依赖 -->
@@ -237,6 +238,14 @@
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>${minio-version}</version>
+            </dependency>
+
+            <!-- net.sf.json 2.4 -->
+            <dependency>
+                <groupId>net.sf.json-lib</groupId>
+                <artifactId>json-lib</artifactId>
+                <version>${net-sf-json-version}</version>
+                <classifier>jdk15</classifier>
             </dependency>
 
         </dependencies>

@@ -2,6 +2,7 @@ package com.sh.api.organization.role.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,6 +43,7 @@ public class RoleInfo extends Model<RoleInfo> {
     /**
      * 删除标志（0未删 1已删）
      */
+    @TableLogic
     private String delFlag;
 
     /**

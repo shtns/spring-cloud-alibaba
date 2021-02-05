@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class ReceiveGlobalMsgService {
 
     /**
-     * 接收路由key为tms的消息
+     * 接收国内消息
      *
      * @param message 消息
      */
@@ -35,7 +35,7 @@ public class ReceiveGlobalMsgService {
     }
 
     /**
-     * 接收路由key为city的消息
+     * 接收国际消息
      *
      * @param message 消息
      */

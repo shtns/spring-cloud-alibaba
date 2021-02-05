@@ -3,7 +3,7 @@ package com.sh.organization.country.controller;
 import com.sh.api.common.dto.PageReqDto;
 import com.sh.api.common.util.R;
 import com.sh.api.common.vo.PageRespVo;
-import com.sh.api.organization.country.dto.page.CountryPageQueryDto;
+import com.sh.api.organization.country.dto.page.CountryPageDto;
 import com.sh.api.organization.country.dto.save.CountrySaveDto;
 import com.sh.api.organization.country.dto.update.CountryUpdateDto;
 import com.sh.api.organization.country.entity.CountryInfo;
@@ -30,54 +30,6 @@ public class CountryInfoController {
     private final CountryInfoServiceImpl countryInfoService;
 
     /**
-     * 查询国家信息
-     *
-     * @param countryId 国家id
-     * @return 国家信息vo
-     */
-    @GetMapping(value = "/{countryId}")
-    public R<CountryQueryVo> queryCountryInfo(@PathVariable Long countryId) {
-        return R.ok(this.countryInfoService.queryCountryInfo(countryId));
-    }
-
-    /**
-     * 查询国家下的城市信息
-     *
-     * @param countryId 国家id
-     * @return 国家下的城市信息vo
-     */
-    @GetMapping(value = "/city/{countryId}")
-    public R<CountryCityQueryVo> queryCountryCityInfo(@PathVariable Long countryId) {
-        return R.ok(this.countryInfoService.queryCountryCityInfo(countryId));
-    }
-
-    /**
-     * 分页查询国家信息
-     *
-     * @param pageReqDto 分页插件
-     * @param countryPageQueryDto 查询条件
-     * @return 国家信息分页数据vo
-     */
-    @GetMapping(value = "/page")
-    public R<PageRespVo<CountryQueryVo>> pageQueryCountryInfo(PageReqDto<CountryInfo> pageReqDto,
-                                                              CountryPageQueryDto countryPageQueryDto) {
-        return R.ok(this.countryInfoService.pageQueryCountryInfo(pageReqDto.toPlusPage(), countryPageQueryDto));
-    }
-
-    /**
-     * 分页查询国家城市信息
-     *
-     * @param pageReqDto 分页插件
-     * @param countryPageQueryDto 查询条件
-     * @return 国家城市信息分页数据vo
-     */
-    @GetMapping(value = "/all")
-    public R<PageRespVo<CountryDetailsVo>> queryCountryDetails(PageReqDto<CountryInfo> pageReqDto,
-                                                               CountryPageQueryDto countryPageQueryDto) {
-        return R.ok(this.countryInfoService.queryCountryDetails(pageReqDto.toPlusPage(), countryPageQueryDto));
-    }
-
-    /**
      * 保存国家信息
      *
      * @param countrySaveDto 国家保存dto
@@ -89,24 +41,72 @@ public class CountryInfoController {
     }
 
     /**
-     * 修改国家信息
-     *
-     * @param countryUpdateDto 国家修改dto
-     * @return R<Boolean>
-     */
-    @PutMapping
-    public R<Boolean> modifyCountryInfo(@RequestBody @Valid CountryUpdateDto countryUpdateDto) {
-        return R.ok(this.countryInfoService.modifyCountryInfo(countryUpdateDto));
-    }
-
-    /**
      * 删除国家信息
      *
      * @param countryId 国家id
-     * @return R<Boolean>
+     * @return 是否删除成功
      */
     @DeleteMapping(value = "/{countryId}")
-    public R<Boolean> delCountryInfo(@PathVariable Long countryId) {
-        return R.ok(this.countryInfoService.delCountryInfo(countryId));
+    public R<Boolean> removeCountryInfo(@PathVariable Long countryId) {
+        return R.ok(this.countryInfoService.removeCountryInfo(countryId));
+    }
+
+    /**
+     * 更新国家信息
+     *
+     * @param countryUpdateDto 国家更新dto
+     * @return 是否更新成功
+     */
+    @PutMapping
+    public R<Boolean> updateCountryInfo(@RequestBody @Valid CountryUpdateDto countryUpdateDto) {
+        return R.ok(this.countryInfoService.updateCountryInfo(countryUpdateDto));
+    }
+
+    /**
+     * 查询国家信息
+     *
+     * @param countryId 国家id
+     * @return 国家查询vo
+     */
+    @GetMapping(value = "/{countryId}")
+    public R<CountryQueryVo> queryCountryInfo(@PathVariable Long countryId) {
+        return R.ok(this.countryInfoService.queryCountryInfo(countryId));
+    }
+
+    /**
+     * 查询国家城市信息
+     *
+     * @param countryId 国家id
+     * @return 国家城市查询vo
+     */
+    @GetMapping(value = "/city/{countryId}")
+    public R<CountryCityQueryVo> queryCountryCityInfo(@PathVariable Long countryId) {
+        return R.ok(this.countryInfoService.queryCountryCityInfo(countryId));
+    }
+
+    /**
+     * 分页查询国家信息
+     *
+     * @param pageReqDto 分页插件
+     * @param countryPageDto 国家分页dto
+     * @return 国家查询分页vo
+     */
+    @GetMapping(value = "/page")
+    public R<PageRespVo<CountryQueryVo>> pageQueryCountryInfo(PageReqDto<CountryInfo> pageReqDto,
+                                                              CountryPageDto countryPageDto) {
+        return R.ok(this.countryInfoService.pageQueryCountryInfo(pageReqDto.toPlusPage(), countryPageDto));
+    }
+
+    /**
+     * 分页查询国家详情
+     *
+     * @param pageReqDto 分页插件
+     * @param countryPageDto 国家分页查询dto
+     * @return 国家详情分页vo
+     */
+    @GetMapping(value = "/details")
+    public R<PageRespVo<CountryDetailsVo>> queryCountryDetails(PageReqDto<CountryInfo> pageReqDto,
+                                                               CountryPageDto countryPageDto) {
+        return R.ok(this.countryInfoService.queryCountryDetails(pageReqDto.toPlusPage(), countryPageDto));
     }
 }

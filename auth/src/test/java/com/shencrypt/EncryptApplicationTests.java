@@ -45,7 +45,7 @@ public class EncryptApplicationTests {
 
     @Test
     public void pathTest() {
-        String filePath = ResourceConstants.Url.MINIO_ADD_UPLOAD_TEST;
+        String filePath = ResourceConstants.Url.MINIO_SAVE_UPLOAD_TEST;
         String fileName = StrUtil.sub(filePath, filePath.lastIndexOf(StringPool.BACK_SLASH), filePath.length());
         System.out.println("filePath："+ filePath);
         System.out.println("fileName：" + fileName.substring(DigitalConstants.ONE));

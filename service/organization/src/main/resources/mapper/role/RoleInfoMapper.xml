@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sh.organization.role.mapper.RoleInfoMapper">
+
+    <resultMap id="rolePageDetailsMap" type="com.sh.api.organization.role.vo.details.RoleDetailsVo">
+        <collection property="roleQueryVos" ofType="com.sh.api.organization.role.vo.query.RoleQueryVo">
+            <id property="roleId" column="role_id" />
+            <result property="roleName" column="role_name"/>
+            <result property="roleNameEn" column="role_name_en"/>
+            <result property="remark" column="remark"/>
+        </collection>
+        <collection property="menuQueryVos" ofType="com.sh.api.organization.menu.vo.query.MenuQueryVo">
+            <id property="menuId" column="menu_id"/>
+            <result property="parentId" column="parent_id"/>
+            <result property="menuName" column="menu_name"/>
+            <result property="accessPath" column="access_path"/>
+            <result property="sort" column="sort"/>
+        </collection>
+    </resultMap>
+
+    <select id="pageQueryRoleDetails"  resultMap="rolePageDetailsMap">
+        select role.role_id,role.role_name,role.role_name_en,role.remark,
+                   menu.menu_id,menu.parent_id,menu.menu_name,menu.access_path,menu.sort
+         from role_info role
+           join role_menu_info rm
+             on role.role_id = rm.role_id
+          join menu_info menu
+            on menu.menu_id = rm.menu_id
+        <where>
+            role.del_flag = '0'
+            and menu.del_flag = '0'
+            <if test="query.roleName != null and query.roleName != ''">
+                and role_name like concat('%',#{query.roleName},'%')
+            </if>
+            <if test="query.roleNameEn != null and query.roleNameEn != ''">
+                and role_name_en like concat('%',#{query.roleNameEn},'%')
+            </if>
+            <if test="query.remark != null and query.remark != ''">
+                and remark like concat('%',#{query.remark},'%')
+            </if>
+        </where>
+        order by role.create_time desc
+    </select>
+
+</mapper>

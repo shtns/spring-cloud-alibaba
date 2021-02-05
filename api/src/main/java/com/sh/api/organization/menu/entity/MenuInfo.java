@@ -2,6 +2,7 @@ package com.sh.api.organization.menu.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,17 +43,18 @@ public class MenuInfo extends Model<MenuInfo> {
     /**
      * 排序值（默认为1）
      */
-    private String sort;
+    private Integer sort;
 
     /**
      * 删除标志（0未删 1已删）
      */
+    @TableLogic
     private String delFlag;
 
     /**
      * 创建时间（由数据库控制）
      */
-    private LocalDateTime creationTime;
+    private LocalDateTime createTime;
 
     /**
      * 最后修改时间（由数据库控制）

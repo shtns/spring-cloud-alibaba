@@ -68,5 +68,31 @@ public interface OauthTwoConstant {
          * 认证信息Http请求头
          */
         String AUTHORIZATION = "Authorization";
+
+        /**
+         * 授权类型
+         */
+        String GRANT_TYPE = "grant_type";
+
+        /**
+         * 刷新token
+         */
+        String REFRESH_TOKEN = "refresh_token";
+    }
+
+    /**
+     * 用户
+     */
+    interface User {
+
+        /**
+         * 用户名
+         */
+        String USERNAME = "username";
+
+        /**
+         * 密码
+         */
+        String PASSWORD = "password";
     }
 }

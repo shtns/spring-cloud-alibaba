@@ -50,23 +50,26 @@ public class R<T> {
                 ResponseInfoBodyConstants.ForegroundPrompt.MSG_SUCCESS);
     }
 
-    public static <T> R<T> ok(String msg, T data) { return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_SUCCESS, data, msg); }
+    public static <T> R<T> ok(String msg, T data) {
+        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_SUCCESS, data, msg);
+    }
 
-    public static <T> R<T> failed() { return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, null, null); }
+    public static <T> R<T> failed() {
+        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, null,
+                ResponseInfoBodyConstants.ForegroundPrompt.MSG_FAILURE);
+    }
 
-    public static <T> R<T> failed(String msg) { return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL,null, msg); }
+    public static <T> R<T> failed(String msg) {
+        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL,null, msg);
+    }
 
-    public static <T> R<T> failed(T data) { return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, data, null); }
-
-    public static <T> R<T> failed(T data, String msg) { return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, data, msg); }
-
-    public static <T> R<T> forbidden(T data) {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.NOT_CERTIFICATION, data,
+    public static <T> R<T> forbidden() {
+        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.NOT_CERTIFICATION, null,
                 ResponseInfoBodyConstants.ForegroundPrompt.NO_LOGIN_OR_TOKEN_HAS_EXPIRED);
     }
 
-    public static <T> R<T> unauthorized(T data) {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.NOT_AUTHORIZATION, data,
+    public static <T> R<T> unauthorized() {
+        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.NOT_AUTHORIZATION, null,
                 ResponseInfoBodyConstants.ForegroundPrompt.NO_ACCESS_RIGHTS);
     }
 

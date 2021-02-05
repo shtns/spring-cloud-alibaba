@@ -2,7 +2,7 @@ package com.sh.organization.rolemenu.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sh.api.organization.rolemenu.RoleMenuInfo;
+import com.sh.api.organization.rolemenu.entity.RoleMenuInfo;
 
 /**
  * 角色菜单关系信息映射

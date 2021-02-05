@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * 国家查询信息vo
+ * 国家城市查询vo
  *
  * @author 盛浩
  * @date 2020/12/29 18:15
@@ -20,12 +20,12 @@ import java.util.List;
 public class CountryCityQueryVo {
 
     /**
-     * 国家信息
+     * 国家查询vo列表
      */
-    private CountryQueryVo countryInfo;
+    private CountryQueryVo countryQueryVo;
 
     /**
-     * 城市信息列表
+     * 城市查询vo列表
      */
-    private List<CityQueryVo> cityInfos;
+    private List<CityQueryVo> cityQueryVos;
 }

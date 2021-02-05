@@ -1,16 +1,18 @@
 package com.sh.organization.user.controller;
 
-import com.sh.api.common.constant.MinioConstants;
+import com.sh.api.common.dto.PageReqDto;
 import com.sh.api.common.util.R;
+import com.sh.api.common.vo.PageRespVo;
+import com.sh.api.organization.user.dto.page.UserPageDto;
 import com.sh.api.organization.user.dto.save.UserSaveDto;
 import com.sh.api.organization.user.dto.update.UserUpdateDto;
+import com.sh.api.organization.user.entity.UserInfo;
 import com.sh.api.organization.user.vo.login.UserLoginVo;
-import com.sh.organization.config.MinIoUtils;
+import com.sh.api.organization.user.vo.page.UserPageVo;
 import com.sh.organization.user.service.UserInfoServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * 用户管理
@@ -38,25 +40,25 @@ public class UserInfoController {
     }
 
     /**
-     * 修改用户信息
-     *
-     * @param userUpdateDto 用户修改dto
-     * @return 是否修改成功
-     */
-    @PutMapping
-    public R<Boolean> updateUserInfo(@RequestBody @Valid UserUpdateDto userUpdateDto) {
-        return R.ok(this.userInfoService.updateUserInfo(userUpdateDto));
-    }
-
-    /**
      * 删除用户信息
      *
      * @param userId 用户id
      * @return 是否删除成功
      */
     @DeleteMapping(value = "/{userId}")
-    public R<Boolean> delUserInfo(@PathVariable Long userId) {
-        return R.ok(this.userInfoService.delUserInfo(userId));
+    public R<Boolean> removeUserInfo(@PathVariable Long userId) {
+        return R.ok(this.userInfoService.removeUserInfo(userId));
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param userUpdateDto 用户更新dto
+     * @return 是否修改成功
+     */
+    @PutMapping
+    public R<Boolean> updateUserInfo(@RequestBody @Valid UserUpdateDto userUpdateDto) {
+        return R.ok(this.userInfoService.updateUserInfo(userUpdateDto));
     }
 
     /**
@@ -83,14 +85,15 @@ public class UserInfoController {
     }
 
     /**
-     * 查询用户权限列表
+     * 用户分页查询
      *
-     * @param userId 用户id
-     * @return 用户权限列表
+     * @param pageReqDto 分页插件
+     * @param userPageDto 用户分页dto
+     * @return 用户分页vo
      */
-    @GetMapping(value = "/permissions/{userId}")
-    public R<List<String>> queryUserPermissions(@PathVariable Long userId) {
-        return R.ok(this.userInfoService.queryUserPermissions(userId));
+    @GetMapping(value = "/page")
+    public R<PageRespVo<UserPageVo>> pageQueryUserInfo(PageReqDto<UserInfo> pageReqDto, UserPageDto userPageDto) {
+        return R.ok(this.userInfoService.pageQueryUserInfo(pageReqDto.toPlusPage(), userPageDto));
     }
 
     /**

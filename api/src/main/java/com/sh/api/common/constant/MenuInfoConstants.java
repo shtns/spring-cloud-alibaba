@@ -63,5 +63,35 @@ public interface MenuInfoConstants {
          * 我的行程
          */
         String MY_ITINERARY = "我的行程";
+
+        /**
+         * 菜单id列表不能为空
+         */
+        String MENU_IDS_CANNOT_BE_EMPTY = "菜单id列表不能为空";
+
+        /**
+         * 父菜单id不能为空
+         */
+        String PARENT_ID_CANNOT_BE_EMPTY = "父菜单id不能为空";
+
+        /**
+         * 菜单名称不能为空
+         */
+        String NAME_CANNOT_BE_EMPTY = "菜单名称不能为空";
+
+        /**
+         * 访问路径不能为空
+         */
+        String ACCESS_PATH_CANNOT_BE_EMPTY = "访问路径不能为空";
+
+        /**
+         * 排序值不能为空
+         */
+        String SORT_CANNOT_BE_EMPTY = "排序值不能为空";
+
+        /**
+         * 菜单id不能为空
+         */
+        String MENU_ID_CANNOT_BE_EMPTY = "菜单id不能为空";
     }
 }

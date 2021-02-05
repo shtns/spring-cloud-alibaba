@@ -1,7 +1,7 @@
 package com.sh.gateway.handler;
 
-import cn.hutool.json.JSONUtil;
 import com.sh.api.common.util.R;
+import net.sf.json.JSONObject;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,8 +29,7 @@ public class RestAuthenticationEntryPoint implements ServerAuthenticationEntryPo
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.OK);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        String body= JSONUtil.toJsonStr(R.forbidden(e.getMessage()));
-        DataBuffer buffer =  response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8));
+        DataBuffer buffer =  response.bufferFactory().wrap(JSONObject.fromObject(R.forbidden()).toString().getBytes(StandardCharsets.UTF_8));
         return response.writeWith(Mono.just(buffer));
     }
 }

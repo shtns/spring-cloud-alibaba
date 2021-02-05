@@ -20,22 +20,12 @@ public interface ResourceConstants {
         String GAIN_RSA = "/rsa/public_key";
 
         /**
-         * 菜单访问地址前缀
-         */
-        String MENU_ACCESS_PATH_PREFIX = "/user";
-
-        /**
-         * sentinel测试接
-         */
-        String SENTINEL_TEST = "/user/sentinel_test/*";
-
-        /**
          * minio新增上传测试
          */
-        String MINIO_ADD_UPLOAD_TEST = "C:\\Users\\e\\Desktop\\add.jpg";
+        String MINIO_SAVE_UPLOAD_TEST = "C:\\Users\\e\\Desktop\\save.jpg";
 
         /**
-         * minio修改上传测试
+         * minio更新上传测试
          */
         String MINIO_UPDATE_UPLOAD_TEST = "C:\\Users\\e\\Desktop\\update.jpg";
     }

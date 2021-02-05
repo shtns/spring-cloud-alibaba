@@ -42,7 +42,7 @@ public class ResourceServerConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http.oauth2ResourceServer().jwt()
-                .jwtAuthenticationConverter(jwtAuthenticationConverter());
+                .jwtAuthenticationConverter(this.jwtAuthenticationConverter());
         http.authorizeExchange()
                 .pathMatchers(ArrayUtil.toArray(this.ignoreUrlsConfig.getUrls(), String.class)).permitAll()
                 .anyExchange().access(this.authorizationManager)

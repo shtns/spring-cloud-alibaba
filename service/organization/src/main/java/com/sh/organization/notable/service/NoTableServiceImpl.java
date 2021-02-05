@@ -37,25 +37,29 @@ public class NoTableServiceImpl extends ServiceImpl<NoTableMapper, NoTable> impl
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public String generateOrderNumber(String orderType) {
 
+        //检查订单类型、类型订单号信息是否为空
         if (StrUtil.isBlank(orderType)) {
             throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
                     NoTableConstants.Error.ORDER_TYPE_CANNOT_BE_EMPTY);
         }
-
         NoTable noTable = this.getOne(Wrappers.<NoTable>lambdaQuery().eq(NoTable::getNoType, orderType));
         if (ObjectUtil.isNull(noTable)) {
             throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
                     NoTableConstants.Error.NO_ORDER_NUMBER_OF_THIS_TYPE_WAS_FOUND);
         }
 
+        //当前订单号序列值+1
         int nowValue = noTable.getNoValue() + DigitalConstants.ONE;
+        //通过原始序列值进行修改，失败报错
         if (! this.update(Wrappers.<NoTable>lambdaUpdate()
-                .set(NoTable::getNoValue, nowValue).eq(NoTable::getNoType, orderType)
+                .set(NoTable::getNoValue, nowValue)
+                .eq(NoTable::getNoType, orderType)
                 .eq(NoTable::getNoValue, noTable.getNoValue()))) {
             throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
                     NoTableConstants.Error.ORDER_NUMBER_GENERATION_FAILED);
         }
 
+        //返回唯一订单号
         return StrUtil.concat(Boolean.TRUE, orderType, DateUtil.format(DateUtil.date(), DateTimeFormatConstants.TIME_FORMAT_SHORT),
                 String.format(StringFormattingConstants.FORMATTING_TYPE, nowValue));
     }

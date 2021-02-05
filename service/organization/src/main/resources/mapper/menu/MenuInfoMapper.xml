@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sh.organization.menu.mapper.MenuInfoMapper">
+
+    <resultMap id="menuPageDetailsMap" type="com.sh.api.organization.menu.vo.details.MenuDetailsVo">
+        <collection property="menuQueryVos" ofType="com.sh.api.organization.menu.vo.query.MenuQueryVo">
+            <id property="menuId" column="menu_id" />
+            <result property="parentId" column="parent_id"/>
+            <result property="menuName" column="menu_name"/>
+            <result property="accessPath" column="access_path"/>
+            <result property="sort" column="sort"/>
+        </collection>
+        <collection property="resourceQueryVos" ofType="com.sh.api.organization.resource.vo.query.ResourceQueryVo">
+            <id property="resourceId" column="resource_id"/>
+            <result property="menuId" column="menu_id"/>
+            <result property="resourcePath" column="resource_path"/>
+        </collection>
+    </resultMap>
+
+    <select id="pageQueryMenuDetails"  resultMap="menuPageDetailsMap">
+        select menu.menu_id,menu.parent_id,menu.menu_name,menu.access_path,menu.sort,
+                   resource.resource_id,resource.menu_id,resource.resource_path
+          from menu_info menu
+           join resource_info resource
+             on menu.menu_id = resource.menu_id
+        <where>
+            menu.del_flag = '0'
+            and resource.del_flag = '0'
+            <if test="query.menuName != null and query.menuName != ''">
+                and menu_name like concat('%',#{query.menuName},'%')
+            </if>
+            <if test="query.accessPath != null and query.accessPath != ''">
+                and access_path like concat('%',#{query.accessPath},'%')
+            </if>
+        </where>
+        order by menu.create_time desc
+    </select>
+
+</mapper>
