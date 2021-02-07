@@ -36,9 +36,14 @@ public class MenuInfo extends Model<MenuInfo> {
     private String menuName;
 
     /**
-     * 访问路径
+     * 菜单路径
      */
-    private String accessPath;
+    private String menuPath;
+
+    /**
+     * 菜单图标
+     */
+    private String menuIcon;
 
     /**
      * 排序值（默认为1）

@@ -9,7 +9,8 @@
             <id property="menuId" column="menu_id" />
             <result property="parentId" column="parent_id"/>
             <result property="menuName" column="menu_name"/>
-            <result property="accessPath" column="access_path"/>
+            <result property="menuPath" column="menu_path"/>
+            <result property="menuIcon" column="menu_icon"/>
             <result property="sort" column="sort"/>
         </collection>
         <collection property="resourceQueryVos" ofType="com.sh.api.organization.resource.vo.query.ResourceQueryVo">
@@ -20,7 +21,7 @@
     </resultMap>
 
     <select id="pageQueryMenuDetails"  resultMap="menuPageDetailsMap">
-        select menu.menu_id,menu.parent_id,menu.menu_name,menu.access_path,menu.sort,
+        select menu.menu_id,menu.parent_id,menu.menu_name,menu.menu_path,menu.menu_icon,menu.sort,
                    resource.resource_id,resource.menu_id,resource.resource_path
           from menu_info menu
            join resource_info resource
@@ -37,5 +38,4 @@
         </where>
         order by menu.create_time desc
     </select>
-
 </mapper>

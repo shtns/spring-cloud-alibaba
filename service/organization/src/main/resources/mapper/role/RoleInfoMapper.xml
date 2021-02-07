@@ -15,14 +15,15 @@
             <id property="menuId" column="menu_id"/>
             <result property="parentId" column="parent_id"/>
             <result property="menuName" column="menu_name"/>
-            <result property="accessPath" column="access_path"/>
+            <result property="menuPath" column="menu_path"/>
+            <result property="menuIcon" column="menu_icon"/>
             <result property="sort" column="sort"/>
         </collection>
     </resultMap>
 
     <select id="pageQueryRoleDetails"  resultMap="rolePageDetailsMap">
         select role.role_id,role.role_name,role.role_name_en,role.remark,
-                   menu.menu_id,menu.parent_id,menu.menu_name,menu.access_path,menu.sort
+                   menu.menu_id,menu.parent_id,menu.menu_name,menu.menu_path,menu_icon,menu.sort
          from role_info role
            join role_menu_info rm
              on role.role_id = rm.role_id

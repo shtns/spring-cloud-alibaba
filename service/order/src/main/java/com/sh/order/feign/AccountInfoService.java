@@ -32,6 +32,6 @@ public interface AccountInfoService {
      * @param userId 用户id
      * @return 账户信息
      */
-    @GetMapping(value = "/account/{userId}")
-    R<AccountInfo> queryAccountInfo(@PathVariable(value = "userId") Long userId);
+    @GetMapping(value = "/account")
+    R<AccountInfo> queryAccountInfo(@RequestParam(value = "userId") Long userId);
 }

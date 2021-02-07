@@ -1,9 +1,8 @@
 package com.sh.auth.user.service;
 
 import com.sh.api.organization.user.vo.login.UserLoginVo;
-import com.sh.auth.feign.OrganizationService;
+import com.sh.auth.feign.service.OrganizationService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,10 +17,9 @@ import java.util.List;
  * @author 盛浩
  * @date 2021/1/17 21:54
  */
-@Slf4j
 @Service
 @RequiredArgsConstructor
-public class    UserInfoServiceImpl implements UserDetailsService {
+public class UserInfoServiceImpl implements UserDetailsService {
 
     private final OrganizationService organizationService;
 
@@ -35,9 +33,9 @@ public class    UserInfoServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String loginAccount) throws UsernameNotFoundException {
         UserLoginVo userLoginVo = this.organizationService.queryUserInfo(loginAccount).getData();
-        List<String> permissions = this.organizationService.queryUserPermissions(userLoginVo.getUserId()).getData();
-        String[] permissionArray = new String[permissions.size()];
+        List<String> resourcePaths = this.organizationService.queryResourcePaths(userLoginVo.getRoleId()).getData();
+        String[] resourceArray = new String[resourcePaths.size()];
         return User.withUsername(userLoginVo.getLoginAccount()).password(userLoginVo.getPassword())
-                .authorities(permissions.toArray(permissionArray)).build();
+                .authorities(resourcePaths.toArray(resourceArray)).build();
     }
 }

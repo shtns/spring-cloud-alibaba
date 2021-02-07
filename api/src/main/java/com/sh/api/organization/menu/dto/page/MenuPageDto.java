@@ -20,7 +20,7 @@ public class MenuPageDto {
     private String menuName;
 
     /**
-     * 访问路径
+     * 菜单路径
      */
-    private String accessPath;
+    private String menuPath;
 }

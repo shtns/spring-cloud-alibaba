@@ -22,8 +22,8 @@ import javax.validation.Valid;
  * @date 2021/1/16 1:46
  */
 @RestController
-@RequestMapping(value = "/user")
 @RequiredArgsConstructor
+@RequestMapping(value = "/user")
 public class UserInfoController {
 
     private final UserInfoServiceImpl userInfoService;
@@ -45,8 +45,8 @@ public class UserInfoController {
      * @param userId 用户id
      * @return 是否删除成功
      */
-    @DeleteMapping(value = "/{userId}")
-    public R<Boolean> removeUserInfo(@PathVariable Long userId) {
+    @DeleteMapping
+    public R<Boolean> removeUserInfo(Long userId) {
         return R.ok(this.userInfoService.removeUserInfo(userId));
     }
 
@@ -67,8 +67,8 @@ public class UserInfoController {
      * @param loginAccount 登入账号
      * @return 用户登入信息
      */
-    @GetMapping(value = "/account/{loginAccount}")
-    public R<UserLoginVo> queryUserInfo(@PathVariable String loginAccount) {
+    @GetMapping(value = "/account")
+    public R<UserLoginVo> queryUserInfo(String loginAccount) {
         return R.ok(this.userInfoService.queryUserInfo(loginAccount));
     }
 
@@ -79,8 +79,8 @@ public class UserInfoController {
      * @param password 密码
      * @return 是否登入成功
      */
-    @GetMapping(value = "/login/{loginAccount}/{password}")
-    public R<Boolean> userLogin(@PathVariable String loginAccount, @PathVariable String password) {
+    @GetMapping(value = "/login")
+    public R<Boolean> userLogin(String loginAccount, String password) {
         return R.ok(this.userInfoService.userLogin(loginAccount, password));
     }
 
@@ -102,8 +102,8 @@ public class UserInfoController {
      * @param id id
      * @return 端口+id
      */
-    @GetMapping(value = "/sentinel_test/{id}")
-    public R<String> sentinelTest(@PathVariable Long id) {
+    @GetMapping(value = "/sentinel_test")
+    public R<String> sentinelTest(Long id) {
         return R.ok(this.userInfoService.sentinelTest(id));
     }
 }

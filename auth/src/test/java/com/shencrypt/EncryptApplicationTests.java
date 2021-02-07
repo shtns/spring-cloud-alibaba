@@ -1,5 +1,6 @@
 package com.shencrypt;
 
+import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.sh.api.common.constant.DigitalConstants;
@@ -35,7 +36,7 @@ public class EncryptApplicationTests {
 
     @Test
     public void encodeEncryptTest() {
-        System.out.println("encodePwd："+ this.encrypt.encode("123456"));
+        System.out.println("encodePwd："+ this.encrypt.encode("test"));
     }
 
     @Test
@@ -49,5 +50,31 @@ public class EncryptApplicationTests {
         String fileName = StrUtil.sub(filePath, filePath.lastIndexOf(StringPool.BACK_SLASH), filePath.length());
         System.out.println("filePath："+ filePath);
         System.out.println("fileName：" + fileName.substring(DigitalConstants.ONE));
+    }
+
+    @Test
+    public void test() {
+
+        String requestPath = "/resource/check/path_value/123";
+        System.out.println("原始：".concat(requestPath));
+
+        String queryPath = null;
+        int slashTwoIndex = 0;
+        int start = 0;
+        for (int i = 0; i < requestPath.length(); i++) {
+            char str = requestPath.charAt(i);
+            if (str == CharUtil.SLASH) {
+                start++;
+                slashTwoIndex = i++;
+            }
+            if (start == 2) {
+                break;
+            }
+        }
+        queryPath = StrUtil.sub(requestPath, DigitalConstants.ZERO, slashTwoIndex);
+        System.out.println("1：".concat(queryPath));
+
+        queryPath = StrUtil.sub(requestPath, DigitalConstants.ZERO, requestPath.lastIndexOf(StringPool.SLASH));
+        System.out.println("2：".concat(queryPath));
     }
 }

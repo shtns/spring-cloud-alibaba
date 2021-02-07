@@ -1,9 +1,9 @@
-package com.sh.auth.token.service;
+package com.sh.auth.feign.service.impl;
 
 import com.sh.api.common.constant.CommonConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.organization.user.vo.login.UserLoginVo;
-import com.sh.auth.feign.OrganizationService;
+import com.sh.auth.feign.service.OrganizationService;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2021/1/20 13:54
  */
 @Component
-public class UserInfoFallbackImpl implements OrganizationService {
+public class OrganizationFallbackImpl implements OrganizationService {
 
     @Override
     public R<UserLoginVo> queryUserInfo(String loginAccount) {
@@ -28,12 +28,7 @@ public class UserInfoFallbackImpl implements OrganizationService {
     }
 
     @Override
-    public R<List<String>> queryUserPermissions(Long userId) {
-        return R.failed(CommonConstants.ForegroundPrompt.SERVER_BUSY_PLEASE_TRY_AGAIN_LATER);
-    }
-
-    @Override
-    public R<List<String>> queryAccessPaths() {
+    public R<List<String>> queryResourcePaths(Long roleId) {
         return R.failed(CommonConstants.ForegroundPrompt.SERVER_BUSY_PLEASE_TRY_AGAIN_LATER);
     }
 

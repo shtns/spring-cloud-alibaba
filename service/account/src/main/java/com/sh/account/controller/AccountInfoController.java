@@ -38,6 +38,6 @@ public class AccountInfoController {
      * @param userId 用户id
      * @return 账户信息
      */
-    @GetMapping(value = "/{userId}")
-    public R<AccountInfo> queryAccountInfo(@PathVariable Long userId) { return R.ok(this.accountInfoService.queryAccountInfo(userId)); }
+    @GetMapping
+    public R<AccountInfo> queryAccountInfo(Long userId) { return R.ok(this.accountInfoService.queryAccountInfo(userId)); }
 }

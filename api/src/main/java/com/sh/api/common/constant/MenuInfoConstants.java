@@ -15,56 +15,6 @@ public interface MenuInfoConstants {
     interface ForegroundPrompt {
 
         /**
-         * 首页
-         */
-        String HOME_PAGE = "首页";
-
-        /**
-         * 行程预定
-         */
-        String TRAVEL_BOOKING = "行程预定";
-
-        /**
-         * 国内机票
-         */
-        String DOMESTIC_AIR_TICKETS = "国内机票";
-
-        /**
-         * 国际机票
-         */
-        String INTERNATIONAL_AIR_TICKET = "国际机票";
-
-        /**
-         * 酒店预订
-         */
-        String HOTEL_RESERVATION = "酒店预订";
-
-        /**
-         * 火车票
-         */
-        String TRAIN_TICKET = "火车票";
-
-        /**
-         * 我的申请
-         */
-        String MY_APPLICATION = "我的申请";
-
-        /**
-         * 我的审批
-         */
-        String MY_APPROVAL = "我的审批";
-
-        /**
-         * 我的订单
-         */
-        String MY_ORDER = "我的订单";
-
-        /**
-         * 我的行程
-         */
-        String MY_ITINERARY = "我的行程";
-
-        /**
          * 菜单id列表不能为空
          */
         String MENU_IDS_CANNOT_BE_EMPTY = "菜单id列表不能为空";
@@ -93,5 +43,41 @@ public interface MenuInfoConstants {
          * 菜单id不能为空
          */
         String MENU_ID_CANNOT_BE_EMPTY = "菜单id不能为空";
+    }
+
+    /**
+     * id
+     */
+    interface Id {
+
+        /**
+         * 不存在
+         */
+        Long NONENTITY = -1L;
+
+        /**
+         * 用户信息管理
+         */
+        Long USER = 1L;
+
+        /**
+         * 角色信息管理
+         */
+        Long ROLE = 2L;
+
+        /**
+         * 菜单信息管理
+         */
+        Long MENU = 3L;
+
+        /**
+         * 国家信息管理
+         */
+        Long COUNTRY = 4L;
+
+        /**
+         * 城市信息管理
+         */
+        Long CITY = 5L;
     }
 }

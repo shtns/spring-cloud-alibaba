@@ -7,7 +7,7 @@ import com.sh.api.common.constant.OauthTwoConstant;
 import com.sh.api.common.constant.SentinelConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.common.vo.Oauth2TokenVo;
-import com.sh.auth.feign.OrganizationService;
+import com.sh.auth.feign.service.OrganizationService;
 import com.sh.auth.token.handler.CustomBlockHandler;
 import com.sh.auth.token.handler.CustomFallbackHandler;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ import java.util.Map;
  */
 @Service
 @RequiredArgsConstructor
-public class CustomGainTokenServiceImpl {
+public class CustomTokenServiceImpl {
 
     private final TokenEndpoint tokenEndpoint;
 

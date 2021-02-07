@@ -4,7 +4,6 @@ import com.sh.api.common.constant.MenuInfoConstants;
 import com.sh.api.organization.menu.entity.MenuInfo;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.validation.constraints.NotNull;
 
 /**
@@ -35,9 +34,14 @@ public class MenuUpdateDto {
     private String menuName;
 
     /**
-     * 访问路径
+     * 菜单路径
      */
-    private String accessPath;
+    private String menuPath;
+
+    /**
+     * 菜单图标
+     */
+    private String menuIcon;
 
     /**
      * 排序值（默认为1）
@@ -54,7 +58,8 @@ public class MenuUpdateDto {
         menuInfo.setMenuId(this.menuId);
         menuInfo.setParentId(this.parentId);
         menuInfo.setMenuName(this.menuName);
-        menuInfo.setAccessPath(this.accessPath);
+        menuInfo.setMenuPath(this.menuPath);
+        menuInfo.setMenuIcon(this.menuIcon);
         menuInfo.setSort(this.sort);
         return menuInfo;
     }

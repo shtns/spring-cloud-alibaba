@@ -31,10 +31,15 @@ public class MenuSaveDto {
     private String menuName;
 
     /**
-     * 访问路径
+     * 菜单路径
      */
     @NotNull(message = MenuInfoConstants.ForegroundPrompt.ACCESS_PATH_CANNOT_BE_EMPTY)
-    private String accessPath;
+    private String menuPath;
+
+    /**
+     * 菜单图标
+     */
+    private String menuIcon;
 
     /**
      * 排序值（默认为1）
@@ -51,7 +56,8 @@ public class MenuSaveDto {
         MenuInfo menuInfo = new MenuInfo();
         menuInfo.setParentId(this.parentId);
         menuInfo.setMenuName(this.menuName);
-        menuInfo.setAccessPath(this.accessPath);
+        menuInfo.setMenuPath(this.menuPath);
+        menuInfo.setMenuIcon(this.menuIcon);
         menuInfo.setSort(this.sort);
         return menuInfo;
     }

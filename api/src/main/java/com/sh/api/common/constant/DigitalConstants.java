@@ -63,4 +63,9 @@ public interface DigitalConstants {
      * 十
      */
     Integer TEN = 10;
+
+    /**
+     * 十三
+     */
+    Integer THIRTEEN = 13;
 }

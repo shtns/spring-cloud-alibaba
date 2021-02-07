@@ -20,6 +20,16 @@ public interface ResourceConstants {
         String GAIN_RSA = "/rsa/public_key";
 
         /**
+         * sentinel测试
+         */
+        String SENTINEL_TEST = "/oauth/sentinel_test/*";
+
+        /**
+         * 组织服务转发头
+         */
+        String ORGANIZATION = "/organization";
+
+        /**
          * minio新增上传测试
          */
         String MINIO_SAVE_UPLOAD_TEST = "C:\\Users\\e\\Desktop\\save.jpg";
@@ -28,5 +38,22 @@ public interface ResourceConstants {
          * minio更新上传测试
          */
         String MINIO_UPDATE_UPLOAD_TEST = "C:\\Users\\e\\Desktop\\update.jpg";
+
+        /**
+         * 资源请求路径地址
+         */
+        String RESOURCE_REQUEST_TYPE_PATH = "http://localhost:2097/resource/request_type?requestPath=";
+        String PARAM = "&requestType=";
+    }
+
+    /**
+     * 前台提示语
+     */
+    interface ForegroundPrompt {
+
+        /**
+         * 请求资源不存在
+         */
+        String THE_REQUESTED_RESOURCE_DOES_NOT_EXIST = "请求资源不存在";
     }
 }

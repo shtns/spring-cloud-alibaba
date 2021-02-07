@@ -38,6 +38,6 @@ public class StorageInfoController {
      * @param productId 产品id
      * @return 库存信息
      */
-    @GetMapping(value = "/{productId}")
-    public R<StorageInfo> queryStorageInfo(@PathVariable Long productId) { return R.ok(this.storageInfoService.queryStorageInfo(productId)); }
+    @GetMapping
+    public R<StorageInfo> queryStorageInfo(Long productId) { return R.ok(this.storageInfoService.queryStorageInfo(productId)); }
 }

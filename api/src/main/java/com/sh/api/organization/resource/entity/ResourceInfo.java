@@ -36,6 +36,11 @@ public class ResourceInfo extends Model<ResourceInfo> {
     private String resourcePath;
 
     /**
+     * 请求类型
+     */
+    private String requestType;
+
+    /**
      * 删除标志（0未删 1已删）
      */
     @TableLogic

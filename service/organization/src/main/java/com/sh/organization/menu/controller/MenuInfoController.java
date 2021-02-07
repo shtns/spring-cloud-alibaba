@@ -13,6 +13,7 @@ import com.sh.organization.menu.service.MenuInfoServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 菜单信息管理
@@ -45,8 +46,8 @@ public class MenuInfoController {
      * @param menuId 菜单id
      * @return 是否删除成功
      */
-    @DeleteMapping(value = "/{menuId}")
-    public R<Boolean> removeMenuInfo(@PathVariable Long menuId) {
+    @DeleteMapping
+    public R<Boolean> removeMenuInfo(Long menuId) {
         return R.ok(this.menuInfoService.removeMenuInfo(menuId));
     }
 
@@ -67,9 +68,19 @@ public class MenuInfoController {
      * @param menuId 菜单id
      * @return 菜单查询vo
      */
-    @GetMapping(value = "/{menuId}")
-    public R<MenuQueryVo> queryMenuInfo(@PathVariable Long menuId) {
+    @GetMapping
+    public R<MenuQueryVo> queryMenuInfo(Long menuId) {
         return R.ok(this.menuInfoService.queryMenuInfo(menuId));
+    }
+
+    /**
+     * 查询菜单信息列表
+     *
+     * @return 菜单信息列表
+     */
+    @GetMapping(value = "/all")
+    public R<List<MenuQueryVo>> queryMenuInfos() {
+        return R.ok(this.menuInfoService.queryMenuInfos());
     }
 
     /**

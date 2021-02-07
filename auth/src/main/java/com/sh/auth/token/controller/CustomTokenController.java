@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.common.vo.Oauth2TokenVo;
-import com.sh.auth.token.service.CustomGainTokenServiceImpl;
+import com.sh.auth.token.service.CustomTokenServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +21,9 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/oauth")
-public class CustomGainTokenController {
+public class CustomTokenController {
 
-    private final CustomGainTokenServiceImpl customGainTokenService;
+    private final CustomTokenServiceImpl customGainTokenService;
 
     /**
      * 获取令牌

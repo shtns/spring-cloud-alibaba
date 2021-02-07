@@ -28,6 +28,11 @@ public interface CommonConstants {
          * 服务器正在处理中，请稍后再试
          */
         String THE_SERVER_IS_PROCESSING_PLEASE_TRY_AGAIN_LATER = "服务器正在处理中，请稍后再试";
+
+        /**
+         * 未获取到请求类型
+         */
+        String THE_REQUEST_TYPE_WAS_NOT_OBTAINED = "未获取到请求类型";
     }
 
     /**

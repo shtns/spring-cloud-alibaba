@@ -46,8 +46,8 @@ public class CountryInfoController {
      * @param countryId 国家id
      * @return 是否删除成功
      */
-    @DeleteMapping(value = "/{countryId}")
-    public R<Boolean> removeCountryInfo(@PathVariable Long countryId) {
+    @DeleteMapping
+    public R<Boolean> removeCountryInfo(Long countryId) {
         return R.ok(this.countryInfoService.removeCountryInfo(countryId));
     }
 
@@ -68,8 +68,8 @@ public class CountryInfoController {
      * @param countryId 国家id
      * @return 国家查询vo
      */
-    @GetMapping(value = "/{countryId}")
-    public R<CountryQueryVo> queryCountryInfo(@PathVariable Long countryId) {
+    @GetMapping
+    public R<CountryQueryVo> queryCountryInfo(Long countryId) {
         return R.ok(this.countryInfoService.queryCountryInfo(countryId));
     }
 
@@ -79,8 +79,8 @@ public class CountryInfoController {
      * @param countryId 国家id
      * @return 国家城市查询vo
      */
-    @GetMapping(value = "/city/{countryId}")
-    public R<CountryCityQueryVo> queryCountryCityInfo(@PathVariable Long countryId) {
+    @GetMapping(value = "/city")
+    public R<CountryCityQueryVo> queryCountryCityInfo(Long countryId) {
         return R.ok(this.countryInfoService.queryCountryCityInfo(countryId));
     }
 

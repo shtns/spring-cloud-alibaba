@@ -35,9 +35,14 @@ public class MenuQueryVo {
     private String menuName;
 
     /**
-     * 访问路径
+     * 菜单路径
      */
-    private String accessPath;
+    private String menuPath;
+
+    /**
+     * 菜单图标
+     */
+    private String menuIcon;
 
     /**
      * 排序值（默认为1）
@@ -53,7 +58,8 @@ public class MenuQueryVo {
         this.menuId = menuInfo.getMenuId();
         this.parentId = menuInfo.getParentId();
         this.menuName = menuInfo.getMenuName();
-        this.accessPath = menuInfo.getAccessPath();
+        this.menuPath = menuInfo.getMenuPath();
+        this.menuIcon = menuInfo.getMenuIcon();
         this.sort = menuInfo.getSort();
     }
 }

@@ -73,8 +73,6 @@ public class UserUpdateDto {
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(this.userId);
         userInfo.setRoleId(this.roleId);
-        userInfo.setLoginAccount(this.loginAccount);
-        userInfo.setPassword(this.password);
         userInfo.setHeadPortrait(ResourceConstants.Url.MINIO_UPDATE_UPLOAD_TEST);
         userInfo.setNameCn(this.nameCn);
         userInfo.setNameEn(this.nameEn);

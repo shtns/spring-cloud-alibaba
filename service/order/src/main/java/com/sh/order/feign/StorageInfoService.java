@@ -32,6 +32,6 @@ public interface StorageInfoService {
      * @param productId 产品id
      * @return 库存信息
      */
-    @GetMapping(value = "/storage/{productId}")
-    R<StorageInfo> queryStorageInfo(@PathVariable(value = "productId") Long productId);
+    @GetMapping(value = "/storage")
+    R<StorageInfo> queryStorageInfo(@RequestParam(value = "productId") Long productId);
 }

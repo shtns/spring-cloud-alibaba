@@ -28,4 +28,9 @@ public class ResourceQueryVo {
      * 资源地址
      */
     private String resourcePath;
+
+    /**
+     * 请求类型
+     */
+    private String requestType;
 }

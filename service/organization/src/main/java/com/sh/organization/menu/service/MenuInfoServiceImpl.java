@@ -19,7 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpServerErrorException;
-
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -72,6 +72,15 @@ public class MenuInfoServiceImpl extends ServiceImpl<MenuInfoMapper, MenuInfo> i
     }
 
     /**
+     * 查询全部菜单信息
+     *
+     * @return 菜单信息列表
+     */
+    public List<MenuQueryVo> queryMenuInfos() {
+        return this.list().stream().map(MenuQueryVo::new).collect(Collectors.toList());
+    }
+
+    /**
      * 分页查询菜单信息
      *
      * @param iPage 分页插件
@@ -83,7 +92,7 @@ public class MenuInfoServiceImpl extends ServiceImpl<MenuInfoMapper, MenuInfo> i
         //通过菜单名称、访问路径进行模糊查询
         IPage<MenuInfo> menuPageInfo = this.page(iPage, Wrappers.<MenuInfo>lambdaQuery()
                 .like(StrUtil.isNotBlank(menuPageDto.getMenuName()), MenuInfo::getMenuName, menuPageDto.getMenuName())
-                .like(StrUtil.isNotBlank(menuPageDto.getMenuName()), MenuInfo::getAccessPath, menuPageDto.getAccessPath()));
+                .like(StrUtil.isNotBlank(menuPageDto.getMenuName()), MenuInfo::getMenuPath, menuPageDto.getMenuPath()));
 
         return new PageRespVo<>(menuPageInfo, menuPageInfo.getRecords().stream().map(MenuQueryVo::new).collect(Collectors.toList()));
     }

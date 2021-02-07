@@ -28,7 +28,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpServerErrorException;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,8 +85,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //用户头像存在，删除此用户的头像文件
         UserInfo userInfo = this.getById(userId);
-        if (StrUtil.isNotBlank(userInfo.getHeadPortrait())) {
-            MinIoUtils.delFile(MinioConstants.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait());
+        if (ObjectUtil.isNotNull(userInfo)) {
+            if (StrUtil.isNotBlank(userInfo.getHeadPortrait())) {
+                MinIoUtils.delFile(MinioConstants.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait());
+            }
         }
 
         return this.removeById(userId);

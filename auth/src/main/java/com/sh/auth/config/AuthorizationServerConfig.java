@@ -51,7 +51,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * 客户端服务
      *
      * @param clients 客户端服务
-     * @throws Exception 异常
+     * @throws Exception e
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {

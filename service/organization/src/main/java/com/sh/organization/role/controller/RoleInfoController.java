@@ -45,8 +45,8 @@ public class RoleInfoController {
      * @param roleId 角色id
      * @return 是否删除成功
      */
-    @DeleteMapping(value = "/{roleId}")
-    public R<Boolean> removeRoleInfo(@PathVariable Long roleId) {
+    @DeleteMapping
+    public R<Boolean> removeRoleInfo(Long roleId) {
         return R.ok(this.roleInfoService.removeRoleInfo(roleId));
     }
 
@@ -67,8 +67,8 @@ public class RoleInfoController {
      * @param roleId 角色id
      * @return 角色信息vo
      */
-    @GetMapping(value = "/{roleId}")
-    public R<RoleQueryVo> queryRoleInfo(@PathVariable Long roleId) {
+    @GetMapping
+    public R<RoleQueryVo> queryRoleInfo(Long roleId) {
         return R.ok(this.roleInfoService.queryRoleInfo(roleId));
     }
 

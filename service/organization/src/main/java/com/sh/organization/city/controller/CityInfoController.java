@@ -42,8 +42,8 @@ public class CityInfoController {
      * @param cityId 城市id
      * @return 是否删除成功
      */
-    @DeleteMapping(value = "/{cityId}")
-    public R<Boolean> removeCityInfo(@PathVariable Long cityId) { return R.ok(this.cityInfoService.removeCityInfo(cityId)); }
+    @DeleteMapping
+    public R<Boolean> removeCityInfo(Long cityId) { return R.ok(this.cityInfoService.removeCityInfo(cityId)); }
 
     /**
      * 更新城市信息
@@ -62,8 +62,8 @@ public class CityInfoController {
      * @param cityId 城市id
      * @return 城市查询vo
      */
-    @GetMapping(value = "/{cityId}")
-    public R<CityQueryVo> queryCityInfo(@PathVariable Long cityId) { return R.ok(this.cityInfoService.queryCityInfo(cityId)); }
+    @GetMapping
+    public R<CityQueryVo> queryCityInfo(Long cityId) { return R.ok(this.cityInfoService.queryCityInfo(cityId)); }
 
     /**
      * 分页查询城市信息
