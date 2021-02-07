@@ -4,6 +4,7 @@ import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.sh.api.common.constant.ClassConstants;
 import com.sh.api.common.constant.MenuInfoConstants;
+import com.sh.api.common.constant.ResourceConstants;
 import com.sh.api.organization.resource.dto.ResourceSaveDto;
 import com.sh.api.organization.resource.entity.ResourceInfo;
 import com.sh.organization.city.controller.CityInfoController;
@@ -73,7 +74,9 @@ public class ScanningInterfaceInfo {
             //资源信息保存对象
             ResourceInfo resourceInfo = new ResourceSaveDto(
                     null,
-                    this.removeRedundantSymbol(m.getKey().getPatternsCondition().getPatterns().toString()),
+                    this.removeRedundantSymbol(StrUtil.concat(Boolean.TRUE,
+                            ResourceConstants.Url.ORGANIZATION,
+                            m.getKey().getPatternsCondition().getPatterns().toString())),
                     this.removeRedundantSymbol(m.getKey().getMethodsCondition().getMethods().toString()))
                     .changeSaveResourceInfo();
 

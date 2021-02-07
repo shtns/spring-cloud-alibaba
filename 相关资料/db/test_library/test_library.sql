@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 20/01/2021 00:08:26
+ Date: 07/02/2021 18:12:43
 */
 
 SET NAMES utf8mb4;
@@ -36,16 +36,21 @@ CREATE TABLE `city_info`  (
   `last_modify_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间（由数据库控制）',
   PRIMARY KEY (`city_id`) USING BTREE,
   INDEX `city_3code`(`city_3code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9421 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '城市信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9422 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '城市信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of city_info
 -- ----------------------------
+INSERT INTO `city_info` VALUES (1, 'AHJ', '阿坝州', 'ABaZhou', '1', 'ABaZhou', 'ABZ', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (4, 'AKA', '安康', 'AnKang', NULL, 'AnKang', 'AK', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (5, 'AKU', '阿克苏', 'AKeSu', NULL, 'AKeSu', 'AKS', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
+INSERT INTO `city_info` VALUES (6, 'AnLu', '安陆', 'AnLu', NULL, 'AnLu', 'AL', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (7, 'AAT', '阿勒泰', 'ALeTai', NULL, 'ALeTai', 'ALT', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (8, 'MFM', '澳门', 'AoMen', NULL, 'AoMen', 'AM', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (9, 'AQG', '安庆', 'AnQing', NULL, 'AnQing', 'AQ', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-14 19:58:42');
+INSERT INTO `city_info` VALUES (10, 'AVA', '安顺', 'AnShun', NULL, 'AnShun', 'AS', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
+INSERT INTO `city_info` VALUES (11, 'AOG', '鞍山', 'AnShan', NULL, 'AnShan', 'AS', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
+INSERT INTO `city_info` VALUES (12, 'ATuShen', '阿图什', 'ATuShen', NULL, 'ATuShen', 'ATS', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (13, 'AYN', '安阳', 'AnYang', NULL, 'AnYang', 'AY', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (14, 'BeiAn', '北安', 'BeiAn', NULL, 'BeiAn', 'BA', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
 INSERT INTO `city_info` VALUES (15, 'BFU', '蚌埠', 'BangBu', NULL, 'BangBu', 'BB', '0', 'CN', '0', '2020-04-03 17:01:22', '2020-07-13 16:37:08');
@@ -8509,12 +8514,13 @@ CREATE TABLE `country_info`  (
   `last_modify_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间（由数据库控制）',
   PRIMARY KEY (`country_id`) USING BTREE,
   INDEX `country_2code`(`country_2code`) USING BTREE COMMENT '国家二字码索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 996 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '国家信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '国家信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of country_info
 -- ----------------------------
-INSERT INTO `country_info` VALUES (2, '1', '1', '1', '1', '1', '1', '1 Islands', NULL, NULL, NULL, '0', '2020-02-28 13:49:30', '2021-01-04 13:12:37');
+INSERT INTO `country_info` VALUES (1, 'AF', 'AFG', '4', '阿富汗', '阿富汗', 'the Islamic Republic of Afghanistan', 'Afghanistan', '1', '1', 'A', '0', '2020-02-28 13:49:30', '2020-07-13 12:07:47');
+INSERT INTO `country_info` VALUES (2, 'AX', 'ALA', '248', '奥兰群岛', '奥兰群岛', NULL, 'Aland Islands', NULL, NULL, NULL, '0', '2020-02-28 13:49:30', '2020-02-28 13:49:30');
 INSERT INTO `country_info` VALUES (3, 'AL', 'ALB', '8', '阿尔巴尼亚', '阿尔巴尼亚', 'the Republic of Albania', 'Albania', NULL, NULL, 'A', '0', '2020-02-28 13:49:30', '2020-02-28 16:39:51');
 INSERT INTO `country_info` VALUES (4, 'DZ', 'DZA', '12', '阿尔及利亚', '阿尔及利亚', 'the People\'s Democratic Republic of Algeria', 'Algeria', NULL, NULL, 'AF', '0', '2020-02-28 13:49:30', '2020-02-28 14:41:21');
 INSERT INTO `country_info` VALUES (5, 'AS', 'ASM', '16', '美属萨摩亚', '美属萨摩亚', NULL, 'American Samoa', NULL, NULL, NULL, '0', '2020-02-28 13:49:30', '2020-02-28 13:49:30');
@@ -8768,27 +8774,103 @@ CREATE TABLE `menu_info`  (
   `menu_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜单id',
   `parent_id` bigint NULL DEFAULT NULL COMMENT '父菜单id',
   `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单名称',
-  `access_path` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '访问路径',
-  `sort` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '排序值（默认为1）',
+  `menu_path` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单地址',
+  `menu_icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单图标',
+  `sort` int NULL DEFAULT NULL COMMENT '排序值（默认为1）',
   `del_flag` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志位 0 未删 1 已删',
-  `creation_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（由数据库控制）',
+  `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（由数据库控制）',
   `last_modify_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间（由数据库控制）',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '前台菜单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of menu_info
 -- ----------------------------
-INSERT INTO `menu_info` VALUES (1, -1, '首页', '/menu/home_page', '1', '0', '2020-04-10 17:52:21', '2021-01-18 14:46:26');
-INSERT INTO `menu_info` VALUES (2, -1, '行程预定', '/menu/travel_booking', '2', '0', '2020-04-10 17:53:21', '2021-01-17 23:37:26');
-INSERT INTO `menu_info` VALUES (3, 2, '国内机票', '/menu/domestic_air_tickets', '1', '0', '2020-04-10 17:53:42', '2021-01-17 23:37:28');
-INSERT INTO `menu_info` VALUES (4, 2, '国际机票', '/menu/international_air_ticket', '2', '0', '2020-04-10 17:54:03', '2021-01-17 23:37:29');
-INSERT INTO `menu_info` VALUES (5, 2, '酒店预订', '/menu/hotel_reservation', '3', '0', '2020-04-10 17:54:16', '2021-01-17 23:37:31');
-INSERT INTO `menu_info` VALUES (6, 2, '火车票', '/menu/train_ticket', '4', '0', '2020-04-10 17:54:51', '2021-01-17 23:37:33');
-INSERT INTO `menu_info` VALUES (7, -1, '我的申请', '/menu/my_application', '3', '0', '2020-04-10 17:55:02', '2021-01-17 23:37:35');
-INSERT INTO `menu_info` VALUES (8, -1, '我的审批', '/menu/my_approval', '4', '0', '2020-04-10 17:55:37', '2021-01-17 23:37:37');
-INSERT INTO `menu_info` VALUES (9, -1, '我的订单', '/menu/my_order', '5', '0', '2020-04-10 17:55:43', '2021-01-17 23:37:38');
-INSERT INTO `menu_info` VALUES (10, -1, '我的行程', '/menu/my_itinerary', '6', '0', '2020-07-30 17:20:55', '2021-01-17 23:37:44');
+INSERT INTO `menu_info` VALUES (1, -1, '用户信息管理', '前端页面菜单跳转地址', NULL, 1, '0', '2020-04-10 17:52:21', '2021-02-05 11:08:49');
+INSERT INTO `menu_info` VALUES (2, -1, '角色信息管理', '前端页面菜单跳转地址', NULL, 1, '0', '2020-04-10 17:53:21', '2021-02-05 11:09:11');
+INSERT INTO `menu_info` VALUES (3, 1, '菜单信息管理', '前端页面菜单跳转地址', NULL, 1, '0', '2020-04-10 17:53:42', '2021-02-05 11:09:16');
+INSERT INTO `menu_info` VALUES (4, 1, '国家信息管理', '前端页面菜单跳转地址', NULL, 1, '0', '2020-04-10 17:54:03', '2021-02-05 11:09:39');
+INSERT INTO `menu_info` VALUES (5, 1, '城市信息管理', '前端页面菜单跳转地址', NULL, 1, '0', '2020-04-10 17:54:16', '2021-02-05 11:09:35');
+
+-- ----------------------------
+-- Table structure for no_table
+-- ----------------------------
+DROP TABLE IF EXISTS `no_table`;
+CREATE TABLE `no_table`  (
+  `no_type` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单类型（TR：出差单号  I：国际订单单号 D：国内订单单号 ）',
+  `no_value` int NOT NULL COMMENT '记录是否已经使用',
+  PRIMARY KEY (`no_type`, `no_value`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单号生成信息表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of no_table
+-- ----------------------------
+INSERT INTO `no_table` VALUES ('D', 8);
+INSERT INTO `no_table` VALUES ('DC', 0);
+INSERT INTO `no_table` VALUES ('DR', 0);
+INSERT INTO `no_table` VALUES ('F', 0);
+INSERT INTO `no_table` VALUES ('H', 0);
+INSERT INTO `no_table` VALUES ('HR', 0);
+INSERT INTO `no_table` VALUES ('I', 0);
+INSERT INTO `no_table` VALUES ('IC', 0);
+INSERT INTO `no_table` VALUES ('IR', 0);
+INSERT INTO `no_table` VALUES ('IVS', 0);
+INSERT INTO `no_table` VALUES ('O', 0);
+INSERT INTO `no_table` VALUES ('T', 0);
+INSERT INTO `no_table` VALUES ('TC', 0);
+INSERT INTO `no_table` VALUES ('TR', 0);
+INSERT INTO `no_table` VALUES ('TRO', 0);
+
+-- ----------------------------
+-- Table structure for resource_info
+-- ----------------------------
+DROP TABLE IF EXISTS `resource_info`;
+CREATE TABLE `resource_info`  (
+  `resource_id` bigint NOT NULL AUTO_INCREMENT COMMENT '资源id',
+  `menu_id` bigint NULL DEFAULT NULL COMMENT '菜单id',
+  `resource_path` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '资源路径',
+  `request_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求类型',
+  `del_flag` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志位 0 未删 1 已删',
+  `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（由数据库控制）',
+  `last_modify_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间（由数据库控制）',
+  PRIMARY KEY (`resource_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '资源信息表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of resource_info
+-- ----------------------------
+INSERT INTO `resource_info` VALUES (1, 5, '/organization/city', 'DELETE', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (2, 5, '/organization/city', 'PUT', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (3, 5, '/organization/city', 'GET', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (4, 5, '/organization/city', 'POST', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (5, 5, '/organization/city/page', 'GET', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (6, 4, '/organization/country', 'POST', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (7, 4, '/organization/country', 'GET', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (8, 4, '/organization/country/city', 'GET', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (9, 4, '/organization/country/details', 'GET', '0', '2021-02-07 10:00:27', '2021-02-07 10:00:27');
+INSERT INTO `resource_info` VALUES (10, 4, '/organization/country/page', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (11, 4, '/organization/country', 'PUT', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (12, 4, '/organization/country', 'DELETE', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (13, 3, '/organization/menu', 'POST', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (14, 3, '/organization/menu', 'PUT', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (15, 3, '/organization/menu', 'DELETE', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (16, 3, '/organization/menu/page', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (17, 3, '/organization/menu/details', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (18, 3, '/organization/menu/all', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (19, 3, '/organization/menu', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (20, 2, '/organization/role/details', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (21, 2, '/organization/role/page', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (22, 2, '/organization/role', 'DELETE', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (23, 2, '/organization/role', 'POST', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (24, 2, '/organization/role', 'PUT', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (25, 2, '/organization/role', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (26, 1, '/organization/user/page', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (27, 1, '/organization/user/account', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (28, 1, '/organization/user', 'PUT', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (29, 1, '/organization/user', 'POST', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (30, 1, '/organization/user', 'DELETE', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (31, 1, '/organization/user/login', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
+INSERT INTO `resource_info` VALUES (32, 1, '/organization/user/sentinel_test', 'GET', '0', '2021-02-07 10:00:28', '2021-02-07 10:00:28');
 
 -- ----------------------------
 -- Table structure for role_info
@@ -8800,16 +8882,15 @@ CREATE TABLE `role_info`  (
   `role_name_en` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '角色英文名称',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '角色备注',
   `del_flag` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志位 0 未删 1 已删',
-  `creation_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（由数据库控制）',
+  `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（由数据库控制）',
   `last_modify_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间（由数据库控制）',
   PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '前台角色表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role_info
 -- ----------------------------
-INSERT INTO `role_info` VALUES (1, '管理员', 'admin', NULL, '0', '2021-01-17 12:03:33', '2021-01-17 12:03:33');
-INSERT INTO `role_info` VALUES (2, '测试', 'test', NULL, '0', '2021-01-17 12:04:15', '2021-01-17 12:04:15');
+INSERT INTO `role_info` VALUES (1, '管理员', 'admin', '管理员测试角色', '0', '2021-02-04 08:37:51', '2021-02-07 09:07:48');
 
 -- ----------------------------
 -- Table structure for role_menu_info
@@ -8819,7 +8900,7 @@ CREATE TABLE `role_menu_info`  (
   `role_id` bigint NOT NULL COMMENT '角色id',
   `menu_id` bigint NOT NULL COMMENT '菜单id',
   PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '前台角色菜单关系表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色菜单关系表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role_menu_info
@@ -8829,16 +8910,6 @@ INSERT INTO `role_menu_info` VALUES (1, 2);
 INSERT INTO `role_menu_info` VALUES (1, 3);
 INSERT INTO `role_menu_info` VALUES (1, 4);
 INSERT INTO `role_menu_info` VALUES (1, 5);
-INSERT INTO `role_menu_info` VALUES (1, 6);
-INSERT INTO `role_menu_info` VALUES (1, 7);
-INSERT INTO `role_menu_info` VALUES (1, 8);
-INSERT INTO `role_menu_info` VALUES (1, 9);
-INSERT INTO `role_menu_info` VALUES (1, 10);
-INSERT INTO `role_menu_info` VALUES (2, 2);
-INSERT INTO `role_menu_info` VALUES (2, 3);
-INSERT INTO `role_menu_info` VALUES (2, 4);
-INSERT INTO `role_menu_info` VALUES (2, 5);
-INSERT INTO `role_menu_info` VALUES (2, 6);
 
 -- ----------------------------
 -- Table structure for user_info
@@ -8850,6 +8921,7 @@ CREATE TABLE `user_info`  (
   `login_account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登入账号',
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '密码',
   `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '状态（0 正常 1 锁定）',
+  `head_portrait` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '头像',
   `name_cn` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称中文',
   `name_en` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称英文',
   `mobile` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '电话',
@@ -8858,12 +8930,14 @@ CREATE TABLE `user_info`  (
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（由数据库控制）',
   `last_modify_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间（由数据库控制）',
   PRIMARY KEY (`user_id`, `role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES (1, 1, 'zhangsan', '$2a$10$eDV4qt/FZopPNTvkTxSvyuizXcSXgRAlBrfaChpN1tQnZ9lEEwjYS', '0', '张三', 'zs', '131517252', '广东广州', '0', '2021-01-08 08:38:49', '2021-01-08 08:38:49');
-INSERT INTO `user_info` VALUES (2, 2, 'list', '$2a$10$5EYhjbB/4cyTRodyN7n0neAtci0VTIXlJ1dwoqivevpSu.337WF6a', '0', '李四', 'ls', '131517252', '广东广州', '0', '2021-01-08 09:44:11', '2021-01-08 09:44:11');
+INSERT INTO `user_info` VALUES (1, 1, 'admin', '$2a$10$ajZO9YAu9catcoL8s9qo4ercU7JGS4yMPuBlVAQij4IdQoIFzOcmm', '0', NULL, '管理员', 'admin', NULL, NULL, '0', '2021-02-07 09:10:31', '2021-02-07 09:10:31');
+INSERT INTO `user_info` VALUES (20, 2, 'test', '$2a$10$YCWVWlKYJEO1r3R9nDmVOebiQi2GMkmaY6v07XBhdcoHRB6HFWH7O', '0', 'test:f73538d2-220e-4f88-afd7-a52b0b85d0c3-save.jpg', 'test', 'test', 'test', 'test', '1', '2021-02-07 09:22:49', '2021-02-07 09:23:00');
+INSERT INTO `user_info` VALUES (21, 2, 'test', '123456', '0', 'test:6227e60c-92aa-471b-a361-fff8f3c7cedc-update.jpg', 'test1', 'test1', 'test1', 'test1', '0', '2021-02-07 09:23:08', '2021-02-07 09:23:15');
+INSERT INTO `user_info` VALUES (22, 2, '1', '$2a$10$rHJhhUOlD599JYoQ9hOfDeQuuXbNlh.7ylFiZ6XNszTwzErtDNfIu', '0', '1:9527fdb2-9987-49b0-8a4c-418e2782dcba-update.jpg', 'test1', 'test1', 'test1', 'test1', '0', '2021-02-07 09:24:23', '2021-02-07 09:38:14');
 
 SET FOREIGN_KEY_CHECKS = 1;

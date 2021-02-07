@@ -52,25 +52,17 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         }
 
         //获取访问路径
-        String path = request.getURI().getPath();
-
-        //处理用户服务访问路径
-        if (StrUtil.contains(path, ResourceConstants.Url.ORGANIZATION)) {
-            path = StrUtil.sub(path, DigitalConstants.THIRTEEN, path.length());
-        }
-
-        //获取处理后的路径
-        String requestPath = path;
-
-        //访问路径加上ROLE_前缀
-        String roleResource = StrUtil.concat(Boolean.TRUE, OauthTwoConstant.ROLE_PERMISSIONS_PREFIX, requestPath);
+        String requestPath = request.getURI().getPath();
 
         //正常情况只需要判断路径就可以了，这里不用再校验请求类型，但是请求风格使用的是restful规范，这就导致了比如说用户管理类路径为/user
         //这时候写两个接口，保存、修改、按照restful规范这里不用再写路径名，而是不同接口采用不同类型注解，如：PostMapping、PutMapping
         //前提是项目中不用路径传值，这就导致了一个路径可能出现多个接口的问题，所以需要再判断请求类型确保唯一
         //获取此次访问的请求类型
         String specificRequestType = this.restTemplate.getForObject(ResourceConstants.Url.RESOURCE_REQUEST_TYPE_PATH.concat(requestPath)
-                        .concat(ResourceConstants.Url.PARAM).concat(requestType), String.class);
+                .concat(ResourceConstants.Url.PARAM).concat(requestType), String.class);
+
+        //访问路径加上ROLE_前缀
+        String roleResource = StrUtil.concat(Boolean.TRUE, OauthTwoConstant.ROLE_PERMISSIONS_PREFIX, requestPath);
 
         return mono
                 .filter(Authentication::isAuthenticated)
