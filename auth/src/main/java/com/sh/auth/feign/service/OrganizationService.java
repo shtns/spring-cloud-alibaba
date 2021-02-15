@@ -44,7 +44,7 @@ public interface OrganizationService {
      * @param roleId 角色id
      * @return 资源地址
      */
-    @GetMapping(value = "/resource/all")
+    @GetMapping(value = "/resource/user_all")
     R<List<String>> queryResourcePaths(@RequestParam(value = "roleId") Long roleId);
 
     /**

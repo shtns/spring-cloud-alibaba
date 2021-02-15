@@ -44,6 +44,11 @@ public interface ResourceConstants {
          */
         String RESOURCE_REQUEST_TYPE_PATH = "http://localhost:2097/resource/request_type?requestPath=";
         String PARAM = "&requestType=";
+
+        /**
+         * 资源地址列表
+         */
+        String RESOURCE_PATHS = "http://localhost:2097/resource/all";
     }
 
     /**

@@ -1,8 +1,8 @@
 package com.sh.gateway.config.authorization;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.sh.api.common.constant.CommonConstants;
-import com.sh.api.common.constant.DigitalConstants;
 import com.sh.api.common.constant.OauthTwoConstant;
 import com.sh.api.common.constant.ResourceConstants;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +18,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 鉴权管理器
@@ -53,6 +56,12 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
 
         //获取访问路径
         String requestPath = request.getURI().getPath();
+
+        //当请求地址不在资源地址列表中，报错404
+        if (! Objects.requireNonNull(this.restTemplate.getForObject(ResourceConstants.Url.RESOURCE_PATHS, List.class)).contains(requestPath)) {
+            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    ResourceConstants.ForegroundPrompt.THE_REQUESTED_RESOURCE_DOES_NOT_EXIST);
+        }
 
         //正常情况只需要判断路径就可以了，这里不用再校验请求类型，但是请求风格使用的是restful规范，这就导致了比如说用户管理类路径为/user
         //这时候写两个接口，保存、修改、按照restful规范这里不用再写路径名，而是不同接口采用不同类型注解，如：PostMapping、PutMapping

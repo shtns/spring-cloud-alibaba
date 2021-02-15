@@ -8,6 +8,7 @@ import com.sh.api.organization.resource.entity.ResourceInfo;
 import com.sh.organization.resource.mapper.ResourceInfoMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 资源信息业务
@@ -54,5 +55,16 @@ public class ResourceInfoServiceImpl extends ServiceImpl<ResourceInfoMapper, Res
                 .select(ResourceInfo::getRequestType)
                 .eq(ResourceInfo::getResourcePath, requestPath)
                 .eq(ResourceInfo::getRequestType, requestType)).getRequestType();
+    }
+
+    /**
+     * 查询资源列表
+     *
+     * @return 资源列表
+     */
+    public List<String> queryResources() {
+        return this.list(Wrappers.<ResourceInfo>lambdaQuery()
+                .select(ResourceInfo::getResourcePath))
+                .stream().map(ResourceInfo::getResourcePath).collect(Collectors.toList());
     }
 }
