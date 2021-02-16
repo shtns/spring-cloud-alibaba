@@ -50,7 +50,7 @@ public class ReceiveGlobalMsgService {
     @RabbitListener(
             bindings = {
                     @QueueBinding(value = @Queue(autoDelete = "true"),
-                            exchange = @Exchange(value = RabbitmqConstants.Config.Exchange.Dom.EXCHANGE_NAME),
+                            exchange = @Exchange(value = RabbitmqConstants.Config.Exchange.RESERVATION_NAME),
                             key = RabbitmqConstants.Config.Routing.Dom.KEY_NAME)
             })
     public void receiveMessageTms(MsgDto msgDto) {
@@ -83,7 +83,7 @@ public class ReceiveGlobalMsgService {
      */
     @RabbitListener(bindings = {
             @QueueBinding(value = @Queue(autoDelete = "true"),
-                    exchange = @Exchange(value = RabbitmqConstants.Config.Exchange.Inter.EXCHANGE_NAME),
+                    exchange = @Exchange(value = RabbitmqConstants.Config.Exchange.RESERVATION_NAME),
                     key = RabbitmqConstants.Config.Routing.Inter.KEY_NAME)
     })
     public void receiveMessageCity(MsgDto msgDto) {

@@ -36,7 +36,7 @@ public class SendInterMsgService {
         String departureDate = LocalDate.now().toString();
 
         this.rabbitTemplate.convertAndSend(
-                RabbitmqConstants.Config.Exchange.Inter.EXCHANGE_NAME,
+                RabbitmqConstants.Config.Exchange.RESERVATION_NAME,
                 RabbitmqConstants.Config.Routing.Inter.KEY_NAME,
                 new MsgDto("15555288543", "吉祥航空", "李四",
                         StrUtil.sub(departureDate, departureDate.indexOf("-"), departureDate.length()),

@@ -36,7 +36,7 @@ public class SendDomMsg {
         String departureDate = LocalDate.now().toString();
 
         this.rabbitTemplate.convertAndSend(
-                RabbitmqConstants.Config.Exchange.Dom.EXCHANGE_NAME,
+                RabbitmqConstants.Config.Exchange.RESERVATION_NAME,
                 RabbitmqConstants.Config.Routing.Dom.KEY_NAME,
                 new MsgDto("15555288543", "山东航空", "张三",
                         StrUtil.sub(departureDate, departureDate.indexOf("-"), departureDate.length()),

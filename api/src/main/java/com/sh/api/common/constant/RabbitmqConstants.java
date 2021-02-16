@@ -20,26 +20,9 @@ public interface RabbitmqConstants {
         interface Exchange {
 
             /**
-             * 国内
+             * 名称
              */
-            interface Dom {
-
-                /**
-                 * 国内交换机名称
-                 */
-               String EXCHANGE_NAME = "dom_exchange_name";
-            }
-
-            /**
-             * 国际
-             */
-            interface Inter {
-
-                /**
-                 * 国际交换机名称
-                 */
-                String EXCHANGE_NAME = "inter_exchange_name";
-            }
+           String RESERVATION_NAME = "reservation_success";
         }
 
         /**
