@@ -41,6 +41,6 @@ public class SendInterMsgService {
                 new MsgDto("15555288543", "吉祥航空", "李四",
                         StrUtil.sub(departureDate, departureDate.indexOf("-"), departureDate.length()),
                         "HO1792", 7, 20, "testUrl"));
-        log.info("发送国际预定成功消息");
+        log.info("发送国际预定成功路由key：{}", RabbitmqConstants.Config.Routing.Inter.KEY_NAME);
     }
 }

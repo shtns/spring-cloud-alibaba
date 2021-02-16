@@ -41,6 +41,6 @@ public class SendDomMsg {
                 new MsgDto("15555288543", "山东航空", "张三",
                         StrUtil.sub(departureDate, departureDate.indexOf("-"), departureDate.length()),
                         "9C6659", 7, 0, "testUrl"));
-        log.info("发送国内预定成功消息");
+        log.info("发送国内预定成功路由key：{}", RabbitmqConstants.Config.Routing.Dom.KEY_NAME);
     }
 }

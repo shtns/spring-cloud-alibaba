@@ -66,14 +66,18 @@ public class ReceiveGlobalMsgService {
         this.query.put("tpl_id", "TP1710262");
 
         try {
+
             HttpResponse response = HttpUtil.doPost(RabbitmqConstants.Msg.HOST, RabbitmqConstants.Msg.REQUEST_PATH, HttpMethod.POST,
                     this.header, this.query, this.body);
-            System.out.println(response.toString());
+
+
+            log.info("发送国内消息成功");
+
+
         } catch (Exception e) {
             e.printStackTrace();
+            log.info("发送国内消息失败：{}", e.getMessage());
         }
-
-        log.info("国内消息：");
     }
 
     /**
@@ -98,13 +102,16 @@ public class ReceiveGlobalMsgService {
                 "testUrl:" + msgDto.getTestUrl()));
 
         try {
+
             HttpResponse response = HttpUtil.doPost(RabbitmqConstants.Msg.HOST, RabbitmqConstants.Msg.REQUEST_PATH, HttpMethod.POST,
                     this.header, this.query, this.body);
-            System.out.println(response.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        log.info("国际消息：");
+
+
+            log.info("发送国际消息成功");
+
+        } catch (Exception e) {
+            log.info("发送国际消息失败：{}", e.getMessage());
+        }
     }
 }
