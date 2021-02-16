@@ -77,13 +77,19 @@ public interface RabbitmqConstants {
     interface Msg {
 
         /**
-         *  国内机票预定成功短信
+         * 地址
          */
-        String SEND_DOM_TICKET_RESERVE_SUCCESS_SMS = "国内机票预定成功短信";
+        String HOST = "http://yzx.market.alicloudapi.com";
 
         /**
-         *  国际机票预定成功短信
+         * 请求路径
          */
-        String SEND_INTER_TICKET_RESERVE_SUCCESS_SMS = "国际机票预定成功短信";
+        String REQUEST_PATH = "/yzx/sendSms";
+
+        /**
+         * appCode
+         */
+        String APP_CODE = "c79661f5aaf44799be07a8efb489a823";
+
     }
 }

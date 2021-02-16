@@ -1,6 +1,5 @@
 package com.sh.gateway.config.authorization;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.sh.api.common.constant.CommonConstants;
 import com.sh.api.common.constant.OauthTwoConstant;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import reactor.core.publisher.Mono;
-
 import java.util.List;
 import java.util.Objects;
 
