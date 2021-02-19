@@ -42,14 +42,4 @@ public class ResourceInfoController {
     public String returnRequestType(String requestPath, String requestType) {
         return this.resourceInfoService.returnRequestType(requestPath, requestType);
     }
-
-    /**
-     * 查询资源列表
-     *
-     * @return 资源列表
-     */
-    @GetMapping(value = "/all")
-    public List<String> queryResources() {
-        return this.resourceInfoService.queryResources();
-    }
 }

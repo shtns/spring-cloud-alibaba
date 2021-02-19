@@ -3,9 +3,11 @@ package com.sh.gateway.config.authorization;
 import cn.hutool.core.util.StrUtil;
 import com.sh.api.common.constant.CommonConstants;
 import com.sh.api.common.constant.OauthTwoConstant;
+import com.sh.api.common.constant.RedisConstants;
 import com.sh.api.common.constant.ResourceConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -32,12 +34,15 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
 
+    private final RedisTemplate<String, List<String>> redisTemplate;
+
     private final RestTemplate restTemplate;
 
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> mono, AuthorizationContext authorizationContext) {
 
         ServerHttpRequest request = authorizationContext.getExchange().getRequest();
+        String requestPath = request.getURI().getPath();
 
         //请求类型为空拒绝报错异常
         String requestType = request.getMethodValue();
@@ -46,19 +51,16 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
                     CommonConstants.ForegroundPrompt.THE_REQUEST_TYPE_WAS_NOT_OBTAINED);
         }
 
+        //请求地址不在资源地址列表中，报错404
+        if (! Objects.requireNonNull(this.redisTemplate.opsForValue().get(RedisConstants.ResourceCacheKey.RESOURCE_PATHS)).contains(requestPath)) {
+            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    ResourceConstants.ForegroundPrompt.THE_REQUESTED_RESOURCE_DOES_NOT_EXIST);
+        }
+
         //token为空拒绝访问
         String token = request.getHeaders().getFirst(OauthTwoConstant.Token.AUTHORIZATION);
         if (StrUtil.isBlank(token)) {
             return Mono.just(new AuthorizationDecision(Boolean.FALSE));
-        }
-
-        //获取访问路径
-        String requestPath = request.getURI().getPath();
-
-        //当请求地址不在资源地址列表中，报错404
-        if (! Objects.requireNonNull(this.restTemplate.getForObject(ResourceConstants.Url.RESOURCE_PATHS, List.class)).contains(requestPath)) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    ResourceConstants.ForegroundPrompt.THE_REQUESTED_RESOURCE_DOES_NOT_EXIST);
         }
 
         //正常情况只需要判断路径就可以了，这里不用再校验请求类型，但是请求风格使用的是restful规范，这就导致了比如说用户管理类路径为/user

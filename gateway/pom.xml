@@ -98,6 +98,12 @@
             <classifier>jdk15</classifier>
         </dependency>
 
+        <!-- redis 2.3.2.RELEASE -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

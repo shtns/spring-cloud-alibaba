@@ -2,8 +2,10 @@ package com.sh.organization.config;
 
 import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sh.api.common.constant.ClassConstants;
 import com.sh.api.common.constant.MenuInfoConstants;
+import com.sh.api.common.constant.RedisConstants;
 import com.sh.api.common.constant.ResourceConstants;
 import com.sh.api.organization.resource.dto.ResourceSaveDto;
 import com.sh.api.organization.resource.entity.ResourceInfo;
@@ -17,6 +19,7 @@ import com.sh.organization.user.controller.UserInfoController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -25,6 +28,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import javax.annotation.PostConstruct;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 扫描接口信息
@@ -39,9 +43,11 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ScanningInterfaceInfo {
 
+    private final ResourceInfoMapper resourceInfoMapper;
+
     private final RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-    private final ResourceInfoMapper resourceInfoMapper;
+    private final RedisTemplate<String, List<String>> redisTemplate;
 
     /**
      * 项目启动时执行
@@ -55,7 +61,7 @@ public class ScanningInterfaceInfo {
     /**
      * 项目启动后，延迟一秒执行
      * 获取当前项目中的所有接口，通过一定格式保存到资源信息表中
-     * */
+     */
     @Scheduled(initialDelay = 1000, fixedRate = Long.MAX_VALUE)
     public void addResourceInfo() {
 
@@ -100,6 +106,19 @@ public class ScanningInterfaceInfo {
                 throw new RuntimeException(ClassConstants.SystemRuntime.NO_MATCHING_CLASSPATH_INFORMATION_WAS_FOUND);
             }
         }
+
+        //获取项目中所有访问路径放入redis
+        List<String> resourcePaths = this.resourceInfoMapper.selectList(Wrappers.<ResourceInfo>lambdaQuery()
+                .select(ResourceInfo::getResourcePath))
+                .stream().map(ResourceInfo::getResourcePath).collect(Collectors.toList());
+
+        //key不存在直接把数据放入redis，存在就先删后增
+        if (! this.redisTemplate.hasKey(RedisConstants.ResourceCacheKey.RESOURCE_PATHS)) {
+            this.redisTemplate.opsForValue().set(RedisConstants.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
+        }
+
+        this.redisTemplate.delete(RedisConstants.ResourceCacheKey.RESOURCE_PATHS);
+        this.redisTemplate.opsForValue().set(RedisConstants.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
     }
 
     /**
