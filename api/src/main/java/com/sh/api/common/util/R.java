@@ -64,13 +64,13 @@ public class R<T> {
     }
 
     public static <T> R<T> forbidden() {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.NOT_CERTIFICATION, null,
-                ResponseInfoBodyConstants.ForegroundPrompt.NO_LOGIN_OR_TOKEN_HAS_EXPIRED);
+        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, null,
+                ResponseInfoBodyConstants.ForegroundPrompt.MSG_NO_LOGIN_OR_TOKEN_HAS_EXPIRED);
     }
 
     public static <T> R<T> unauthorized() {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.NOT_AUTHORIZATION, null,
-                ResponseInfoBodyConstants.ForegroundPrompt.NO_ACCESS_RIGHTS);
+        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, null,
+                ResponseInfoBodyConstants.ForegroundPrompt.MSG_NO_ACCESS_RIGHTS);
     }
 
     private static <T> R<T> restResult(Integer code, T data, String msg) {

@@ -60,5 +60,10 @@ public interface ResourceConstants {
          * 请求资源不存在
          */
         String THE_REQUESTED_RESOURCE_DOES_NOT_EXIST = "请求资源不存在";
+
+        /**
+         * 请确认请求类型是否正确
+         */
+        String VERIFY_THAT_THE_REQUEST_TYPE_IS_CORRECT = "请确认请求类型是否正确";
     }
 }

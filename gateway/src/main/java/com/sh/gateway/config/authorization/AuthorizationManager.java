@@ -69,6 +69,10 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         //获取此次访问的请求类型
         String specificRequestType = this.restTemplate.getForObject(ResourceConstants.Url.RESOURCE_REQUEST_TYPE_PATH.concat(requestPath)
                 .concat(ResourceConstants.Url.PARAM).concat(requestType), String.class);
+        if (StrUtil.isBlank(specificRequestType)) {
+            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    ResourceConstants.ForegroundPrompt.VERIFY_THAT_THE_REQUEST_TYPE_IS_CORRECT);
+        }
 
         //访问路径加上ROLE_前缀
         String roleResource = StrUtil.concat(Boolean.TRUE, OauthTwoConstant.ROLE_PERMISSIONS_PREFIX, requestPath);

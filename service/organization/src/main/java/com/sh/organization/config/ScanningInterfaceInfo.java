@@ -68,7 +68,7 @@ public class ScanningInterfaceInfo {
         //遍历扫描到的请求路径
         for (Map.Entry<RequestMappingInfo, HandlerMethod> m : this.requestMappingHandlerMapping.getHandlerMethods().entrySet()) {
 
-            //获取当前类绝对路径，如果为spring自带、资源信息管理、不进行保存
+            //获取当前类绝对路径，如果为spring自带、资源信息管理接口，只在项目中进行调用不对外开放、不进行保存
             String classAbsolutePath = m.getValue().getBeanType().getName();
             if (StrUtil.equals(classAbsolutePath, BasicErrorController.class.getName())) {
                 continue;

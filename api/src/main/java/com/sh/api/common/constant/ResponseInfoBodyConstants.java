@@ -35,23 +35,13 @@ public interface ResponseInfoBodyConstants {
         String MSG_FAILURE = "执行失败";
 
         /**
-         * 未认证
-         */
-        Integer NOT_CERTIFICATION = 401;
-
-        /**
-         * 未授权
-         */
-        Integer NOT_AUTHORIZATION = 403;
-
-        /**
          * 暂未登录或token已过期
          */
-        String NO_LOGIN_OR_TOKEN_HAS_EXPIRED = "暂未登录或token已过期";
+        String MSG_NO_LOGIN_OR_TOKEN_HAS_EXPIRED = "暂未登录或token已过期";
 
         /**
          * 没有访问权限
          */
-        String NO_ACCESS_RIGHTS = "没有访问权限";
+        String MSG_NO_ACCESS_RIGHTS = "没有访问权限";
     }
 }
