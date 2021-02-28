@@ -3,7 +3,6 @@ package com.sh.gateway.config.authorization;
 import cn.hutool.core.util.ArrayUtil;
 import com.sh.api.common.constant.OauthTwoConstant;
 import com.sh.gateway.config.ignore.IgnoreUrlsConfig;
-import com.sh.gateway.handler.RestAuthenticationEntryPoint;
 import com.sh.gateway.handler.RestfulAccessDeniedHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -37,7 +36,7 @@ public class ResourceServerConfig {
 
     private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
 
-    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    //private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
@@ -48,7 +47,7 @@ public class ResourceServerConfig {
                 .anyExchange().access(this.authorizationManager)
                 .and().exceptionHandling()
                 .accessDeniedHandler(this.restfulAccessDeniedHandler)
-                .authenticationEntryPoint(this.restAuthenticationEntryPoint)
+                //.authenticationEntryPoint(this.restAuthenticationEntryPoint)
                 .and().csrf().disable();
         return http.build();
     }
