@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sh.organization.country.mapper.CountryInfoMapper">
+
+    <resultMap id="queryCountryDetails" type="com.sh.api.organization.country.vo.details.CountryDetailsVo">
+        <collection property="countryQueryVos" ofType="com.sh.api.organization.country.vo.query.CountryQueryVo">
+            <id property="countryId" column="country_id" />
+            <result property="country2Code" column="country_2code"/>
+            <result property="country3Code" column="country_3code"/>
+            <result property="countryFigureCode" column="country_figure_code"/>
+            <result property="countryNameCn" column="country_name_cn"/>
+            <result property="countryNameEn" column="country_name_en"/>
+            <result property="countryAbbreviateNameCn" column="country_abbreviate_name_cn"/>
+            <result property="countryAbbreviateNameEn" column="country_abbreviate_name_en"/>
+            <result property="countryMobileAreaNum" column="country_mobile_area_num"/>
+            <result property="countryTimeZone" column="country_time_zone"/>
+            <result property="continent" column="continent"/>
+        </collection>
+        <collection property="cityQueryVos" ofType="com.sh.api.organization.city.vo.query.CityQueryVo">
+            <id property="cityId" column="city_id"/>
+            <result property="city3Code" column="city_3code"/>
+            <result property="cityNameCn" column="city_name_cn"/>
+            <result property="cityNameEn" column="city_name_en"/>
+            <result property="cityTimeZone" column="city_time_zone"/>
+            <result property="cityNameAllSpell" column="city_name_all_spell"/>
+            <result property="cityNameHeadSpell" column="city_name_head_spell"/>
+            <result property="cityPopular" column="city_popular"/>
+            <result property="country2Code" column="country_2code"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryCountryDetails"  resultMap="queryCountryDetails">
+        select country.country_id,country.country_2code,country.country_3code,country.country_figure_code,country.country_name_cn,
+                   country.country_name_en,country.country_mobile_area_num,country.country_time_zone,country.continent,
+                   city.city_id,city.city_3code,city.city_name_cn,city.city_name_en,city.city_time_zone,city.city_name_all_spell,city.city_name_head_spell,
+                   city.city_popular,city.country_2code
+          from country_info country
+            join city_info city
+              on country.country_2code = city.country_2code
+        <where>
+            country.del_flag = 0
+            and city.del_flag = 0
+            <if test="query.countryNameCn != null and query.countryNameCn != ''">
+                and country_name_cn like concat('%',#{query.countryNameCn},'%')
+            </if>
+            <if test="query.countryNameEn != null and query.countryNameEn != ''">
+                and country_name_en like concat('%',#{query.countryNameEn},'%')
+            </if>
+            <if test="query.countryAbbreviateNameCn != null and query.countryAbbreviateNameCn != ''">
+                and country_abbreviate_name_cn like concat('%',#{countryAbbreviateNameCn},'%')
+            </if>
+            <if test="query.countryAbbreviateNameEn != null and query.countryAbbreviateNameEn != ''">
+                and country_abbreviate_name_en like concat('%',#{countryAbbreviateNameEn},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

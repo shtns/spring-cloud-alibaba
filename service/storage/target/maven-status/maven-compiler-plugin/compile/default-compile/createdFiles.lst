@@ -1,0 +1,5 @@
+com\sh\storage\config\DataSourceProxyConf.class
+com\sh\storage\controller\StorageInfoController.class
+com\sh\storage\mapper\StorageInfoMapper.class
+com\sh\storage\service\StorageInfoServiceImpl.class
+com\sh\storage\StorageApplication.class

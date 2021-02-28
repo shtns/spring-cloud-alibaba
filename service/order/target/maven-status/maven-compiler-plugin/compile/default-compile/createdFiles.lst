@@ -1,0 +1,8 @@
+com\sh\order\config\FeignLogConfig.class
+com\sh\order\feign\StorageInfoService.class
+com\sh\order\config\DataSourceProxyConf.class
+com\sh\order\feign\AccountInfoService.class
+com\sh\order\mapper\OrderInfoMapper.class
+com\sh\order\service\OrderInfoServiceImpl.class
+com\sh\order\controller\OrderInfoController.class
+com\sh\order\OrderApplication.class

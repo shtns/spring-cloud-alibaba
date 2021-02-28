@@ -1,0 +1,5 @@
+com\sh\account\config\DataSourceProxyConf.class
+com\sh\account\service\AccountInfoServiceImpl.class
+com\sh\account\AccountApplication.class
+com\sh\account\controller\AccountInfoController.class
+com\sh\account\mapper\AccountInfoMapper.class

@@ -1,0 +1,12 @@
+com\sh\auth\config\AuthorizationServerConfig.class
+com\sh\auth\user\service\UserInfoServiceImpl.class
+com\sh\auth\key\controller\KeyPairController.class
+com\sh\auth\config\WebSecurityConfig.class
+com\sh\auth\token\handler\CustomFallbackHandler.class
+com\sh\auth\token\service\CustomTokenServiceImpl.class
+com\sh\auth\token\controller\CustomTokenController.class
+com\sh\auth\feign\service\OrganizationService.class
+com\sh\auth\token\handler\CustomBlockHandler.class
+com\sh\auth\key\service\KeyPairServiceImpl.class
+com\sh\auth\AuthApplication.class
+com\sh\auth\feign\service\impl\OrganizationFallbackImpl.class

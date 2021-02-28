@@ -1,0 +1,10 @@
+com\sh\gateway\config\cros\CrossDomainConfig.class
+com\sh\gateway\config\rest\RestTemplateConfig.class
+com\sh\gateway\config\authorization\AuthorizationManager.class
+com\sh\gateway\config\authorization\ResourceServerConfig.class
+com\sh\gateway\config\ignore\IgnoreUrlsConfig.class
+com\sh\gateway\handler\RestAuthenticationEntryPoint.class
+com\sh\gateway\GateWayApplication.class
+META-INF\spring-configuration-metadata.json
+com\sh\gateway\config\ignore\IgnoreUrlsRemoveJwtFilter.class
+com\sh\gateway\handler\RestfulAccessDeniedHandler.class

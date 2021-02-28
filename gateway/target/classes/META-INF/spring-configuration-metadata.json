@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "secure.ignore",
+      "type": "com.sh.gateway.config.ignore.IgnoreUrlsConfig",
+      "sourceType": "com.sh.gateway.config.ignore.IgnoreUrlsConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "secure.ignore.urls",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.sh.gateway.config.ignore.IgnoreUrlsConfig"
+    }
+  ],
+  "hints": []
+}

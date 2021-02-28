@@ -1,0 +1,12 @@
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\feign\service\OrganizationService.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\key\service\KeyPairServiceImpl.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\token\handler\CustomFallbackHandler.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\user\service\UserInfoServiceImpl.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\config\AuthorizationServerConfig.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\feign\service\impl\OrganizationFallbackImpl.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\token\service\CustomTokenServiceImpl.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\AuthApplication.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\config\WebSecurityConfig.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\key\controller\KeyPairController.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\token\controller\CustomTokenController.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\auth\src\main\java\com\sh\auth\token\handler\CustomBlockHandler.java

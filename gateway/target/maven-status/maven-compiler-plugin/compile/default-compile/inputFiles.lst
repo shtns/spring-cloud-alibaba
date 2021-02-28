@@ -1,0 +1,9 @@
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\config\authorization\ResourceServerConfig.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\config\ignore\IgnoreUrlsConfig.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\config\rest\RestTemplateConfig.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\config\ignore\IgnoreUrlsRemoveJwtFilter.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\handler\RestfulAccessDeniedHandler.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\config\authorization\AuthorizationManager.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\config\cros\CrossDomainConfig.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\handler\RestAuthenticationEntryPoint.java
+E:\Users\e\IdeaProjects\spring-cloud-alibaba\gateway\src\main\java\com\sh\gateway\GateWayApplication.java

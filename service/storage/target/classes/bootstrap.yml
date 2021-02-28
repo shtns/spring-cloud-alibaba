@@ -1,0 +1,24 @@
+server:
+  port: 2001
+
+spring:
+  application:
+    name: storage
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+        namespace: seata
+        group: SEATA_GROUP
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: test
+        group: TEST_GROUP
+        file-extension: yml
+        extension-configs:
+          - data-id: common-${spring.cloud.nacos.config.namespace}.${spring.cloud.nacos.config.file-extension}
+            group: SHARED_GROUP
+            refresh: true
+  profiles:
+    active: test
+
