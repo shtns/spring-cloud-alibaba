@@ -12,6 +12,8 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 /**
  * 白名单过滤器
  *
@@ -29,7 +31,8 @@ public class IgnoreUrlsRemoveJwtFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         //白名单路径访问时需要移除JWT请求头
-        if (this.ignoreUrlsConfig.getUrls().contains(request.getURI().getPath())) {
+        List<String> urls = this.ignoreUrlsConfig.getUrls();
+        if (urls.contains(request.getURI().getPath())) {
             PathMatcher pathMatcher = new AntPathMatcher();
             for (String ignoreUrl : this.ignoreUrlsConfig.getUrls()) {
                 if (pathMatcher.match(ignoreUrl, request.getURI().getPath())) {

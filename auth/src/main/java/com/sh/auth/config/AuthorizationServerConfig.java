@@ -2,7 +2,7 @@ package com.sh.auth.config;
 
 import cn.hutool.core.collection.CollUtil;
 import com.sh.api.common.constant.OauthTwoConstant;
-import com.sh.auth.user.service.UserInfoServiceImpl;
+import com.sh.auth.token.service.UserInfoServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

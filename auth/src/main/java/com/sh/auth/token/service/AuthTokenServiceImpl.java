@@ -1,23 +1,19 @@
 package com.sh.auth.token.service;
 
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.sh.api.common.constant.DigitalConstants;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
 import com.sh.api.common.constant.OauthTwoConstant;
-import com.sh.api.common.constant.SentinelConstants;
-import com.sh.api.common.util.R;
 import com.sh.api.common.vo.Oauth2TokenVo;
 import com.sh.auth.feign.service.OrganizationService;
-import com.sh.auth.token.handler.CustomBlockHandler;
-import com.sh.auth.token.handler.CustomFallbackHandler;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.stereotype.Service;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.client.HttpServerErrorException;
+import java.security.KeyPair;
 import java.security.Principal;
+import java.security.interfaces.RSAPublicKey;
 import java.util.Map;
 
 /**
@@ -29,11 +25,13 @@ import java.util.Map;
  */
 @Service
 @RequiredArgsConstructor
-public class CustomTokenServiceImpl {
+public class AuthTokenServiceImpl {
 
     private final TokenEndpoint tokenEndpoint;
 
     private final OrganizationService organizationService;
+
+    private final KeyPair keyPair;
 
     /**
      * 获取令牌
@@ -71,22 +69,12 @@ public class CustomTokenServiceImpl {
     }
 
     /**
-     * sentinel测试
+     * 获取公钥检查token是否合法
      *
-     * @param id id
-     * @return 端口+id
+     * @return 公钥
      */
-    @SentinelResource(value = "sentinelTest",
-            blockHandlerClass = CustomBlockHandler.class, blockHandler = SentinelConstants.BlockHandler.SPECIFIC_TREATMENT_METHOD,
-            fallbackClass = CustomFallbackHandler.class, fallback = SentinelConstants.Fallback.SPECIFIC_TREATMENT_METHOD)
-    public R<String> sentinelTest(Long id) {
-
-        if (id == null) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, SentinelConstants.ForegroundPrompt.ID_CANNOT_BE_EMPTY);
-        }
-        if (id.equals(Long.valueOf(DigitalConstants.ZERO))) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, SentinelConstants.ForegroundPrompt.ID_CANNOT_BE_ZERO);
-        }
-        return this.organizationService.sentinelTest(id);
+    public Map<String, Object> getKey() {
+        RSAPublicKey publicKey = (RSAPublicKey) this.keyPair.getPublic();
+        return new JWKSet(new RSAKey.Builder(publicKey).build()).toJSONObject();
     }
 }

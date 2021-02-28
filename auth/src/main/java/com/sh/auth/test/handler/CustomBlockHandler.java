@@ -1,4 +1,4 @@
-package com.sh.auth.token.handler;
+package com.sh.auth.test.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.sh.api.common.constant.CommonConstants;

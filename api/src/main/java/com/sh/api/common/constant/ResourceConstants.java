@@ -17,12 +17,12 @@ public interface ResourceConstants {
         /**
          * 获取公钥
          */
-        String GAIN_RSA = "/rsa/public_key";
+        String RSA_KEY = "/oauth/rsa_key";
 
         /**
          * sentinel测试
          */
-        String SENTINEL_TEST = "/oauth/sentinel_test/*";
+        String SENTINEL_TEST = "/sentinel/test";
 
         /**
          * 组织服务转发头

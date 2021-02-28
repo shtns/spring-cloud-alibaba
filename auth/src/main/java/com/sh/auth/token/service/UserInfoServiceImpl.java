@@ -1,4 +1,4 @@
-package com.sh.auth.user.service;
+package com.sh.auth.token.service;
 
 import com.sh.api.organization.user.vo.login.UserLoginVo;
 import com.sh.auth.feign.service.OrganizationService;

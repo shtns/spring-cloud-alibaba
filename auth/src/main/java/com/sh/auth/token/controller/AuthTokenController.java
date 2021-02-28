@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.common.vo.Oauth2TokenVo;
-import com.sh.auth.token.service.CustomTokenServiceImpl;
+import com.sh.auth.token.service.AuthTokenServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +21,9 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/oauth")
-public class CustomTokenController {
+public class AuthTokenController {
 
-    private final CustomTokenServiceImpl customGainTokenService;
+    private final AuthTokenServiceImpl authTokenService;
 
     /**
      * 获取令牌
@@ -36,7 +36,8 @@ public class CustomTokenController {
     @PostMapping(value = "/token")
     public R<Oauth2TokenVo> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
             throws HttpRequestMethodNotSupportedException {
-        Oauth2TokenVo oauth2TokenVo = this.customGainTokenService.postAccessToken(principal, parameters);
+
+        Oauth2TokenVo oauth2TokenVo = this.authTokenService.postAccessToken(principal, parameters);
         if (ObjectUtil.isNotNull(oauth2TokenVo)) {
             return R.ok(oauth2TokenVo);
         } else {
@@ -45,13 +46,12 @@ public class CustomTokenController {
     }
 
     /**
-     * sentinel测试
+     * 获取公钥检查token是否合法
      *
-     * @param id id
-     * @return 端口+id
+     * @return 公钥
      */
-    @GetMapping(value = "/sentinel_test/{id}")
-    public R<String> sentinelTest(@PathVariable Long id) {
-        return this.customGainTokenService.sentinelTest(id);
+    @GetMapping("/rsa_key")
+    public Map<String, Object> getKey() {
+        return this.authTokenService.getKey();
     }
 }

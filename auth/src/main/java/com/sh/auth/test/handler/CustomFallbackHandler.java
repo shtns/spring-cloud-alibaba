@@ -1,4 +1,4 @@
-package com.sh.auth.token.handler;
+package com.sh.auth.test.handler;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
