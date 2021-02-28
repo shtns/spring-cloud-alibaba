@@ -6,17 +6,16 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sh.api.common.config.ServerErrorException;
+import com.sh.api.common.constant.DateTimeFormatConstants;
 import com.sh.api.common.constant.DigitalConstants;
 import com.sh.api.common.constant.NoTableConstants;
 import com.sh.api.common.constant.StringFormattingConstants;
-import com.sh.api.common.constant.DateTimeFormatConstants;
 import com.sh.api.organization.notable.entity.NoTable;
 import com.sh.organization.notable.mapper.NoTableMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpServerErrorException;
 
 /**
  * 订单号自动生成业务
@@ -39,13 +38,11 @@ public class NoTableServiceImpl extends ServiceImpl<NoTableMapper, NoTable> impl
 
         //检查订单类型、类型订单号信息是否为空
         if (StrUtil.isBlank(orderType)) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    NoTableConstants.Error.ORDER_TYPE_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(NoTableConstants.Error.ORDER_TYPE_CANNOT_BE_EMPTY);
         }
         NoTable noTable = this.getOne(Wrappers.<NoTable>lambdaQuery().eq(NoTable::getNoType, orderType));
         if (ObjectUtil.isNull(noTable)) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    NoTableConstants.Error.NO_ORDER_NUMBER_OF_THIS_TYPE_WAS_FOUND);
+            throw new ServerErrorException(NoTableConstants.Error.NO_ORDER_NUMBER_OF_THIS_TYPE_WAS_FOUND);
         }
 
         //当前订单号序列值+1
@@ -55,8 +52,7 @@ public class NoTableServiceImpl extends ServiceImpl<NoTableMapper, NoTable> impl
                 .set(NoTable::getNoValue, nowValue)
                 .eq(NoTable::getNoType, orderType)
                 .eq(NoTable::getNoValue, noTable.getNoValue()))) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    NoTableConstants.Error.ORDER_NUMBER_GENERATION_FAILED);
+            throw new ServerErrorException(NoTableConstants.Error.ORDER_NUMBER_GENERATION_FAILED);
         }
 
         //返回唯一订单号

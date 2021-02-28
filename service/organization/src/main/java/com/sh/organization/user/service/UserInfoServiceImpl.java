@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sh.api.common.config.ServerErrorException;
 import com.sh.api.common.constant.DigitalConstants;
 import com.sh.api.common.constant.MinioConstants;
 import com.sh.api.common.constant.UserInfoConstants;
@@ -22,12 +23,10 @@ import com.sh.organization.config.MinIoUtils;
 import com.sh.organization.user.mapper.UserInfoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpServerErrorException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -153,13 +152,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //检查登入账号、用户信息是否为空
         if (StrUtil.isBlank(loginAccount)) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
         }
         UserInfo userInfo = this.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getLoginAccount, loginAccount));
         if (ObjectUtil.isNull(userInfo)) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    UserInfoConstants.ForegroundPrompt.USER_INFORMATION_NOT_FOUND);
+            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.USER_INFORMATION_NOT_FOUND);
         }
 
         //用户头像存在，通过头像文件名获取文件访问外链
@@ -181,12 +178,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //检查登入账号、密码是否为空
         if (StrUtil.isBlank(loginAccount)) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
         }
         if (StrUtil.isBlank(password)) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    UserInfoConstants.ForegroundPrompt.PASSWORD_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.PASSWORD_CANNOT_BE_EMPTY);
         }
 
         //登入结果
@@ -248,8 +243,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     public void checkUserExist(String loginAccount) {
         if (this.count(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getLoginAccount, loginAccount))
                 > DigitalConstants.ZERO) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_ALREADY_EXISTS);
+            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_ALREADY_EXISTS);
         }
     }
 
@@ -260,8 +254,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
      */
     private void checkUserId(Long userId) {
         if (userId == null) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    UserInfoConstants.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY);
         }
     }
 

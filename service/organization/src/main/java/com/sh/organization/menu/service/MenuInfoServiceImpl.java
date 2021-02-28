@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sh.api.common.config.ServerErrorException;
 import com.sh.api.common.constant.MenuInfoConstants;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.menu.dto.page.MenuPageDto;
@@ -15,10 +16,8 @@ import com.sh.api.organization.menu.vo.query.MenuQueryVo;
 import com.sh.organization.menu.mapper.MenuInfoMapper;
 import com.sh.organization.resource.service.ResourceInfoServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpServerErrorException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -115,8 +114,7 @@ public class MenuInfoServiceImpl extends ServiceImpl<MenuInfoMapper, MenuInfo> i
      */
     public void checkMenuId(Long menuId) {
         if (menuId == null) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    MenuInfoConstants.ForegroundPrompt.MENU_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(MenuInfoConstants.ForegroundPrompt.MENU_ID_CANNOT_BE_EMPTY);
         }
     }
 }

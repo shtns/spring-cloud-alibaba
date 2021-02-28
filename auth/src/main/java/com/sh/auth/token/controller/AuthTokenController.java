@@ -1,13 +1,12 @@
 package com.sh.auth.token.controller;
 
-import cn.hutool.core.util.ObjectUtil;
-import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.common.util.R;
 import com.sh.api.common.vo.Oauth2TokenVo;
 import com.sh.auth.token.service.AuthTokenServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
+
 import java.security.Principal;
 import java.util.Map;
 
@@ -36,13 +35,7 @@ public class AuthTokenController {
     @PostMapping(value = "/token")
     public R<Oauth2TokenVo> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
             throws HttpRequestMethodNotSupportedException {
-
-        Oauth2TokenVo oauth2TokenVo = this.authTokenService.postAccessToken(principal, parameters);
-        if (ObjectUtil.isNotNull(oauth2TokenVo)) {
-            return R.ok(oauth2TokenVo);
-        } else {
-            return R.failed(UserInfoConstants.ForegroundPrompt.INCORRECT_ACCOUNT_OR_PASSWORD);
-        }
+        return R.ok(this.authTokenService.postAccessToken(principal, parameters));
     }
 
     /**

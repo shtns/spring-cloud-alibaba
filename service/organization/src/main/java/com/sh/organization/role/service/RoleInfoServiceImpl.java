@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sh.api.common.config.ServerErrorException;
 import com.sh.api.common.constant.RoleInfoConstants;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.role.dto.page.RolePageDto;
@@ -18,10 +19,8 @@ import com.sh.api.organization.role.vo.query.RoleQueryVo;
 import com.sh.organization.role.mapper.RoleInfoMapper;
 import com.sh.organization.rolemenu.service.RoleMenuInfoServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.stream.Collectors;
 
@@ -151,8 +150,7 @@ public class RoleInfoServiceImpl extends ServiceImpl<RoleInfoMapper, RoleInfo> i
      */
     public void checkRoleId(Long roleId) {
         if (roleId == null) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    RoleInfoConstants.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(RoleInfoConstants.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY);
         }
     }
 }

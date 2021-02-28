@@ -8,11 +8,11 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sh.api.common.config.ServerErrorException;
 import com.sh.api.common.constant.CountryInfoConstants;
 import com.sh.api.common.constant.DigitalConstants;
 import com.sh.api.common.constant.RedisConstants;
 import com.sh.api.common.vo.PageRespVo;
-import com.sh.api.organization.city.entity.CityInfo;
 import com.sh.api.organization.city.vo.query.CityQueryVo;
 import com.sh.api.organization.country.dto.page.CountryPageDto;
 import com.sh.api.organization.country.dto.update.CountryUpdateDto;
@@ -24,9 +24,8 @@ import com.sh.organization.city.service.CityInfoServiceImpl;
 import com.sh.organization.country.mapper.CountryInfoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -203,8 +202,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
      */
     private void checkCountryId(Long countryId) {
         if (countryId == null) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    CountryInfoConstants.ForegroundPrompt.COUNTRY_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(CountryInfoConstants.ForegroundPrompt.COUNTRY_ID_CANNOT_BE_EMPTY);
         }
     }
 

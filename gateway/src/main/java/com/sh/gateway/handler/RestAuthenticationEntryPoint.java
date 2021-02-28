@@ -1,18 +1,12 @@
 package com.sh.gateway.handler;
 
-import com.sh.api.common.util.R;
-import net.sf.json.JSONObject;
-import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.server.reactive.ServerHttpResponse;
+import com.sh.api.common.config.ServerErrorException;
+import com.sh.api.common.constant.OauthTwoConstant;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-import java.nio.charset.StandardCharsets;
 
 /**
  * 处理未认证或token过期
@@ -26,10 +20,11 @@ public class RestAuthenticationEntryPoint implements ServerAuthenticationEntryPo
 
     @Override
     public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException e) {
-        ServerHttpResponse response = exchange.getResponse();
+        throw new ServerErrorException(OauthTwoConstant.ForegroundPrompt.MSG_NO_LOGIN_OR_TOKEN_HAS_EXPIRED);
+/*        ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.OK);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         DataBuffer buffer =  response.bufferFactory().wrap(JSONObject.fromObject(R.forbidden()).toString().getBytes(StandardCharsets.UTF_8));
-        return response.writeWith(Mono.just(buffer));
+        return response.writeWith(Mono.just(buffer));*/
     }
 }

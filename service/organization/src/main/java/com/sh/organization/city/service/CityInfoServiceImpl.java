@@ -6,22 +6,19 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sh.api.common.config.ServerErrorException;
 import com.sh.api.common.constant.CityInfoConstants;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.city.dto.page.CityPageDto;
 import com.sh.api.organization.city.dto.update.CityUpdateDto;
 import com.sh.api.organization.city.entity.CityInfo;
 import com.sh.api.organization.city.vo.query.CityQueryVo;
-import com.sh.api.organization.user.entity.UserInfo;
 import com.sh.organization.city.mapper.CityInfoMapper;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -106,8 +103,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfo> i
      */
     private void checkCityId(Long cityId) {
         if (cityId == null) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    CityInfoConstants.ForegroundPrompt.CITY_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(CityInfoConstants.ForegroundPrompt.CITY_ID_CANNOT_BE_EMPTY);
         }
     }
 

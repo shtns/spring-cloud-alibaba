@@ -3,7 +3,9 @@ package com.sh.auth.token.service;
 import cn.hutool.core.util.StrUtil;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
+import com.sh.api.common.config.ServerErrorException;
 import com.sh.api.common.constant.OauthTwoConstant;
+import com.sh.api.common.constant.UserInfoConstants;
 import com.sh.api.common.vo.Oauth2TokenVo;
 import com.sh.auth.feign.service.OrganizationService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.stereotype.Service;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+
 import java.security.KeyPair;
 import java.security.Principal;
 import java.security.interfaces.RSAPublicKey;
@@ -49,7 +52,7 @@ public class AuthTokenServiceImpl {
             //调用用户登入服务，返回true和false，false这里直接return，控制层判断给提示
             if (! this.organizationService.userLogin(parameters.get(OauthTwoConstant.User.USERNAME),
                     parameters.get(OauthTwoConstant.User.PASSWORD)).getData()) {
-                return null;
+                throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.INCORRECT_ACCOUNT_OR_PASSWORD);
             }
         }
 

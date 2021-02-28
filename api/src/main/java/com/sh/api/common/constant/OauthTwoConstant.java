@@ -95,4 +95,20 @@ public interface OauthTwoConstant {
          */
         String PASSWORD = "password";
     }
+
+    /**
+     * 前台提示语
+     */
+    interface ForegroundPrompt {
+
+        /**
+         * 暂未登录或token已过期
+         */
+        String MSG_NO_LOGIN_OR_TOKEN_HAS_EXPIRED = "暂未登录或token已过期";
+
+        /**
+         * 没有访问权限
+         */
+        String MSG_NO_ACCESS_RIGHTS = "没有访问权限";
+    }
 }
