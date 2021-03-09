@@ -1,7 +1,7 @@
 package com.sh.auth.test.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.sh.api.common.constant.CommonConstants;
+import com.sh.api.common.constant.CommonConstant;
 import com.sh.api.common.util.R;
 
 /**
@@ -15,6 +15,6 @@ import com.sh.api.common.util.R;
 public class CustomBlockHandler {
 
     public static R<String> handlerBackException(Long id, BlockException blockException) {
-        return R.failed(CommonConstants.ForegroundPrompt.THE_SERVER_IS_PROCESSING_PLEASE_TRY_AGAIN_LATER);
+        return R.failed(CommonConstant.ForegroundPrompt.THE_SERVER_IS_PROCESSING_PLEASE_TRY_AGAIN_LATER);
     }
 }

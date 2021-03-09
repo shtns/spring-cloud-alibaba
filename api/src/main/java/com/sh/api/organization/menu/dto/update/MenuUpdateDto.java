@@ -1,6 +1,6 @@
 package com.sh.api.organization.menu.dto.update;
 
-import com.sh.api.common.constant.MenuInfoConstants;
+import com.sh.api.common.constant.MenuInfoConstant;
 import com.sh.api.organization.menu.entity.MenuInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public class MenuUpdateDto {
     /**
      * 菜单id
      */
-    @NotNull(message = MenuInfoConstants.ForegroundPrompt.MENU_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = MenuInfoConstant.ForegroundPrompt.MENU_ID_CANNOT_BE_EMPTY)
     private Long menuId;
 
     /**

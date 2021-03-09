@@ -1,7 +1,7 @@
 package com.sh.inter.service;
 
 import cn.hutool.core.util.StrUtil;
-import com.sh.api.common.constant.RabbitmqConstants;
+import com.sh.api.common.constant.RabbitmqConstant;
 import com.sh.api.msg.MsgDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +36,11 @@ public class SendInterMsgService {
         String departureDate = LocalDate.now().toString();
 
         this.rabbitTemplate.convertAndSend(
-                RabbitmqConstants.Config.Exchange.RESERVATION_NAME,
-                RabbitmqConstants.Config.Routing.Inter.KEY_NAME,
+                RabbitmqConstant.Config.Exchange.RESERVATION_NAME,
+                RabbitmqConstant.Config.Routing.Inter.KEY_NAME,
                 new MsgDto("15555288543", "吉祥航空", "李四",
                         StrUtil.sub(departureDate, departureDate.indexOf("-"), departureDate.length()),
                         "HO1792", 7, 20, "testUrl"));
-        log.info("发送国际预定成功路由key：{}", RabbitmqConstants.Config.Routing.Inter.KEY_NAME);
+        log.info("发送国际预定成功路由key：{}", RabbitmqConstant.Config.Routing.Inter.KEY_NAME);
     }
 }

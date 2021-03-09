@@ -3,7 +3,7 @@ package com.sh.organization.resource.service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.sh.api.common.constant.DigitalConstants;
+import com.sh.api.common.constant.DigitalConstant;
 import com.sh.api.organization.resource.entity.ResourceInfo;
 import com.sh.organization.resource.mapper.ResourceInfoMapper;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ public class ResourceInfoServiceImpl extends ServiceImpl<ResourceInfoMapper, Res
      * @return 是否删除成功
      */
     public Boolean removeResourceInfo(Long menuId) {
-        if (this.count(Wrappers.<ResourceInfo>lambdaQuery().eq(ResourceInfo::getMenuId, menuId)) < DigitalConstants.ONE) {
+        if (this.count(Wrappers.<ResourceInfo>lambdaQuery().eq(ResourceInfo::getMenuId, menuId)) < DigitalConstant.ONE) {
             return Boolean.TRUE;
         }
         return this.remove(Wrappers.<ResourceInfo>lambdaQuery().eq(ResourceInfo::getMenuId, menuId));

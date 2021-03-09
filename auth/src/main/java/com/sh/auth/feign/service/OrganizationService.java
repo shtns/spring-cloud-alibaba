@@ -1,6 +1,6 @@
 package com.sh.auth.feign.service;
 
-import com.sh.api.common.constant.MicroServiceNameConstants;
+import com.sh.api.common.constant.MicroServiceNameConstant;
 import com.sh.api.common.util.R;
 import com.sh.api.organization.user.vo.login.UserLoginVo;
 import com.sh.auth.feign.service.impl.OrganizationFallbackImpl;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author 盛浩
  * @date 2021/1/16 2:14
  */
-@FeignClient(value = MicroServiceNameConstants.ORGANIZATION_SERVICE, fallback = OrganizationFallbackImpl.class)
+@FeignClient(value = MicroServiceNameConstant.ORGANIZATION_SERVICE, fallback = OrganizationFallbackImpl.class)
 public interface OrganizationService {
 
     /**

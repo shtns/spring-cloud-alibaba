@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sh.api.common.config.ServerErrorException;
-import com.sh.api.common.constant.CityInfoConstants;
+import com.sh.api.common.constant.CityInfoConstant;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.city.dto.page.CityPageDto;
 import com.sh.api.organization.city.dto.update.CityUpdateDto;
@@ -103,7 +103,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfo> i
      */
     private void checkCityId(Long cityId) {
         if (cityId == null) {
-            throw new ServerErrorException(CityInfoConstants.ForegroundPrompt.CITY_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(CityInfoConstant.ForegroundPrompt.CITY_ID_CANNOT_BE_EMPTY);
         }
     }
 

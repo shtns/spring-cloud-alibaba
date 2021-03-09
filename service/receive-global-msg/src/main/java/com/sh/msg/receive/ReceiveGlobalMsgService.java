@@ -3,7 +3,7 @@ package com.sh.msg.receive;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.nacos.common.utils.HttpMethod;
-import com.sh.api.common.constant.RabbitmqConstants;
+import com.sh.api.common.constant.RabbitmqConstant;
 import com.sh.api.msg.MsgDto;
 import com.sh.msg.util.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class ReceiveGlobalMsgService {
      * */
     @Scheduled(initialDelay = 1000, fixedRate = Long.MAX_VALUE)
     private void buildInfo() {
-        this.header.put("Authorization", "APPCODE " + RabbitmqConstants.Msg.APP_CODE);
+        this.header.put("Authorization", "APPCODE " + RabbitmqConstant.Msg.APP_CODE);
         this.query.put("tpl_id", "TP1710262");
     }
 
@@ -50,8 +50,8 @@ public class ReceiveGlobalMsgService {
     @RabbitListener(
             bindings = {
                     @QueueBinding(value = @Queue(autoDelete = "true"),
-                            exchange = @Exchange(value = RabbitmqConstants.Config.Exchange.RESERVATION_NAME),
-                            key = RabbitmqConstants.Config.Routing.Dom.KEY_NAME)
+                            exchange = @Exchange(value = RabbitmqConstant.Config.Exchange.RESERVATION_NAME),
+                            key = RabbitmqConstant.Config.Routing.Dom.KEY_NAME)
             })
     public void receiveMessageTms(MsgDto msgDto) {
 
@@ -67,7 +67,7 @@ public class ReceiveGlobalMsgService {
 
         try {
 
-            HttpResponse response = HttpUtil.doPost(RabbitmqConstants.Msg.HOST, RabbitmqConstants.Msg.REQUEST_PATH, HttpMethod.POST,
+            HttpResponse response = HttpUtil.doPost(RabbitmqConstant.Msg.HOST, RabbitmqConstant.Msg.REQUEST_PATH, HttpMethod.POST,
                     this.header, this.query, this.body);
 
 
@@ -87,8 +87,8 @@ public class ReceiveGlobalMsgService {
      */
     @RabbitListener(bindings = {
             @QueueBinding(value = @Queue(autoDelete = "true"),
-                    exchange = @Exchange(value = RabbitmqConstants.Config.Exchange.RESERVATION_NAME),
-                    key = RabbitmqConstants.Config.Routing.Inter.KEY_NAME)
+                    exchange = @Exchange(value = RabbitmqConstant.Config.Exchange.RESERVATION_NAME),
+                    key = RabbitmqConstant.Config.Routing.Inter.KEY_NAME)
     })
     public void receiveMessageCity(MsgDto msgDto) {
 
@@ -103,7 +103,7 @@ public class ReceiveGlobalMsgService {
 
         try {
 
-            HttpResponse response = HttpUtil.doPost(RabbitmqConstants.Msg.HOST, RabbitmqConstants.Msg.REQUEST_PATH, HttpMethod.POST,
+            HttpResponse response = HttpUtil.doPost(RabbitmqConstant.Msg.HOST, RabbitmqConstant.Msg.REQUEST_PATH, HttpMethod.POST,
                     this.header, this.query, this.body);
 
 

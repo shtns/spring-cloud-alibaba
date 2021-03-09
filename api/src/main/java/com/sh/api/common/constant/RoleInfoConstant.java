@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/2/3 16:05
  */
-public interface RoleInfoConstants {
+public interface RoleInfoConstant {
 
     /**
      * 前台提示语

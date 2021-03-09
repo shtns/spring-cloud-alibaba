@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sh.api.common.config.ServerErrorException;
-import com.sh.api.common.constant.RoleInfoConstants;
+import com.sh.api.common.constant.RoleInfoConstant;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.role.dto.page.RolePageDto;
 import com.sh.api.organization.role.dto.save.RoleSaveDto;
@@ -150,7 +150,7 @@ public class RoleInfoServiceImpl extends ServiceImpl<RoleInfoMapper, RoleInfo> i
      */
     public void checkRoleId(Long roleId) {
         if (roleId == null) {
-            throw new ServerErrorException(RoleInfoConstants.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(RoleInfoConstant.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY);
         }
     }
 }

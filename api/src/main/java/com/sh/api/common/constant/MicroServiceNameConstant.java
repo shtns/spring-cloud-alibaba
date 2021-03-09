@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/16 2:15
  */
-public interface MicroServiceNameConstants {
+public interface MicroServiceNameConstant {
 
     /**
      * 组织服务

@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/19 19:02
  */
-public interface CommonConstants {
+public interface CommonConstant {
 
     /**
      * 前台提示语

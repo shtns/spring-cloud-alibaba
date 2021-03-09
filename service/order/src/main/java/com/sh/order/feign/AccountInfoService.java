@@ -1,6 +1,6 @@
 package com.sh.order.feign;
 
-import com.sh.api.common.constant.MicroServiceNameConstants;
+import com.sh.api.common.constant.MicroServiceNameConstant;
 import com.sh.api.common.util.R;
 import com.sh.api.seata.account.dto.reduce.AccountReduceDto;
 import com.sh.api.seata.account.entity.AccountInfo;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author 盛浩
  * @date 2020/12/27 20:17
  */
-@FeignClient(value = MicroServiceNameConstants.ACCOUNT_SERVICE)
+@FeignClient(value = MicroServiceNameConstant.ACCOUNT_SERVICE)
 public interface AccountInfoService {
 
     /**

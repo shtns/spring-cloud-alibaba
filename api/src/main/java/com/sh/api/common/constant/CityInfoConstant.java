@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/19 21:38
  */
-public interface CityInfoConstants {
+public interface CityInfoConstant {
 
     /**
      * 前台提示语

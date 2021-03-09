@@ -1,7 +1,7 @@
 package com.sh.api.organization.role.dto.save;
 
-import com.sh.api.common.constant.MenuInfoConstants;
-import com.sh.api.common.constant.RoleInfoConstants;
+import com.sh.api.common.constant.MenuInfoConstant;
+import com.sh.api.common.constant.RoleInfoConstant;
 import com.sh.api.organization.role.entity.RoleInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +23,7 @@ public class RoleSaveDto {
     /**
      * 角色名称
      */
-    @NotBlank(message = RoleInfoConstants.ForegroundPrompt.ROLE_NAME_CANNOT_BE_EMPTY)
+    @NotBlank(message = RoleInfoConstant.ForegroundPrompt.ROLE_NAME_CANNOT_BE_EMPTY)
     private String roleName;
 
     /**
@@ -39,7 +39,7 @@ public class RoleSaveDto {
     /**
      * 菜单id列表
      */
-    @NotNull(message = MenuInfoConstants.ForegroundPrompt.MENU_IDS_CANNOT_BE_EMPTY)
+    @NotNull(message = MenuInfoConstant.ForegroundPrompt.MENU_IDS_CANNOT_BE_EMPTY)
     private List<Long> menuIds;
 
     /**

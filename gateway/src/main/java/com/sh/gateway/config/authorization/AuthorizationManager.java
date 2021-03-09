@@ -2,10 +2,10 @@ package com.sh.gateway.config.authorization;
 
 import cn.hutool.core.util.StrUtil;
 import com.sh.api.common.config.ServerErrorException;
-import com.sh.api.common.constant.CommonConstants;
+import com.sh.api.common.constant.CommonConstant;
 import com.sh.api.common.constant.OauthTwoConstant;
-import com.sh.api.common.constant.RedisConstants;
-import com.sh.api.common.constant.ResourceConstants;
+import com.sh.api.common.constant.RedisConstant;
+import com.sh.api.common.constant.ResourceConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -46,12 +46,12 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         //请求类型为空拒绝报错异常
         String requestType = request.getMethodValue();
         if (StrUtil.isBlank(requestType)) {
-            throw new ServerErrorException(CommonConstants.ForegroundPrompt.THE_REQUEST_TYPE_WAS_NOT_OBTAINED);
+            throw new ServerErrorException(CommonConstant.ForegroundPrompt.THE_REQUEST_TYPE_WAS_NOT_OBTAINED);
         }
 
         //请求地址不在资源地址列表中，报错404
-        if (! Objects.requireNonNull(this.redisTemplate.opsForValue().get(RedisConstants.ResourceCacheKey.RESOURCE_PATHS)).contains(requestPath)) {
-            throw new ServerErrorException(ResourceConstants.ForegroundPrompt.THE_REQUESTED_RESOURCE_DOES_NOT_EXIST);
+        if (! Objects.requireNonNull(this.redisTemplate.opsForValue().get(RedisConstant.ResourceCacheKey.RESOURCE_PATHS)).contains(requestPath)) {
+            throw new ServerErrorException(ResourceConstant.ForegroundPrompt.THE_REQUESTED_RESOURCE_DOES_NOT_EXIST);
         }
 
         //token为空拒绝访问
@@ -65,10 +65,10 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         //这时候写两个接口，保存、修改、按照restful规范这里不用再写路径名，而是不同接口采用不同类型注解，如：PostMapping、PutMapping
         //前提是项目中不用路径传值，这就导致了一个路径可能出现多个接口的问题，所以需要再判断请求类型确保唯一
         //获取此次访问的请求类型
-        String specificRequestType = this.restTemplate.getForObject(ResourceConstants.Url.RESOURCE_REQUEST_TYPE_PATH.concat(requestPath)
-                .concat(ResourceConstants.Url.PARAM).concat(requestType), String.class);
+        String specificRequestType = this.restTemplate.getForObject(ResourceConstant.Url.RESOURCE_REQUEST_TYPE_PATH.concat(requestPath)
+                .concat(ResourceConstant.Url.PARAM).concat(requestType), String.class);
         if (StrUtil.isBlank(specificRequestType)) {
-            throw new ServerErrorException(ResourceConstants.ForegroundPrompt.VERIFY_THAT_THE_REQUEST_TYPE_IS_CORRECT);
+            throw new ServerErrorException(ResourceConstant.ForegroundPrompt.VERIFY_THAT_THE_REQUEST_TYPE_IS_CORRECT);
         }
 
         //访问路径加上ROLE_前缀

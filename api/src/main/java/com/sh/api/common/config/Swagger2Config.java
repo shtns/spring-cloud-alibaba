@@ -1,6 +1,6 @@
 package com.sh.api.common.config;
 
-import com.sh.api.common.constant.CommonConstants;
+import com.sh.api.common.constant.CommonConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -48,11 +48,11 @@ public class Swagger2Config {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(CommonConstants.Swagger.TITLE)
-                .description(CommonConstants.Swagger.DESCRIPTION)
-                .contact(new Contact(CommonConstants.Swagger.NAME, CommonConstants.Swagger.URL,
-                        CommonConstants.Swagger.EMAIL))
-                .version(CommonConstants.Swagger.VERSION)
+                .title(CommonConstant.Swagger.TITLE)
+                .description(CommonConstant.Swagger.DESCRIPTION)
+                .contact(new Contact(CommonConstant.Swagger.NAME, CommonConstant.Swagger.URL,
+                        CommonConstant.Swagger.EMAIL))
+                .version(CommonConstant.Swagger.VERSION)
                 .build();
     }
 }

@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sh.api.common.config.ServerErrorException;
-import com.sh.api.common.constant.MenuInfoConstants;
+import com.sh.api.common.constant.MenuInfoConstant;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.menu.dto.page.MenuPageDto;
 import com.sh.api.organization.menu.entity.MenuInfo;
@@ -114,7 +114,7 @@ public class MenuInfoServiceImpl extends ServiceImpl<MenuInfoMapper, MenuInfo> i
      */
     public void checkMenuId(Long menuId) {
         if (menuId == null) {
-            throw new ServerErrorException(MenuInfoConstants.ForegroundPrompt.MENU_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(MenuInfoConstant.ForegroundPrompt.MENU_ID_CANNOT_BE_EMPTY);
         }
     }
 }

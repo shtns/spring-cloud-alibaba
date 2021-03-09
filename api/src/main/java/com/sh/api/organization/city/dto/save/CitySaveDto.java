@@ -1,7 +1,7 @@
 package com.sh.api.organization.city.dto.save;
 
-import com.sh.api.common.constant.CityInfoConstants;
-import com.sh.api.common.constant.CountryInfoConstants;
+import com.sh.api.common.constant.CityInfoConstant;
+import com.sh.api.common.constant.CountryInfoConstant;
 import com.sh.api.organization.city.entity.CityInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,19 +21,19 @@ public class CitySaveDto {
     /**
      * 城市三字码
      */
-    @NotBlank(message = CityInfoConstants.ForegroundPrompt.CITY_3_CODE_CANNOT_BE_EMPTY)
+    @NotBlank(message = CityInfoConstant.ForegroundPrompt.CITY_3_CODE_CANNOT_BE_EMPTY)
     private String city3Code;
 
     /**
      * 城市名称中文
      */
-    @NotBlank(message = CityInfoConstants.ForegroundPrompt.CITY_NAME_CN_CANNOT_BE_EMPTY)
+    @NotBlank(message = CityInfoConstant.ForegroundPrompt.CITY_NAME_CN_CANNOT_BE_EMPTY)
     private String cityNameCn;
 
     /**
      * 城市名称英文
      */
-    @NotBlank(message = CityInfoConstants.ForegroundPrompt.CITY_NAME_EN_CANNOT_BE_EMPTY)
+    @NotBlank(message = CityInfoConstant.ForegroundPrompt.CITY_NAME_EN_CANNOT_BE_EMPTY)
     private String cityNameEn;
 
     /**
@@ -54,13 +54,13 @@ public class CitySaveDto {
     /**
      * 热门城市（0不热门 1热门）
      */
-    @NotBlank(message = CityInfoConstants.ForegroundPrompt.CITY_POPULAR_CANNOT_BE_EMPTY)
+    @NotBlank(message = CityInfoConstant.ForegroundPrompt.CITY_POPULAR_CANNOT_BE_EMPTY)
     private String cityPopular;
 
     /**
      * 国家二字码
      */
-    @NotBlank(message = CountryInfoConstants.ForegroundPrompt.COUNTRY_2_CODE_CANNOT_BE_EMPTY)
+    @NotBlank(message = CountryInfoConstant.ForegroundPrompt.COUNTRY_2_CODE_CANNOT_BE_EMPTY)
     private String country2Code;
 
     /**

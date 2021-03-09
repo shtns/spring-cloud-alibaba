@@ -1,7 +1,7 @@
 package com.sh.api.organization.user.dto.update;
 
-import com.sh.api.common.constant.ResourceConstants;
-import com.sh.api.common.constant.UserInfoConstants;
+import com.sh.api.common.constant.ResourceConstant;
+import com.sh.api.common.constant.UserInfoConstant;
 import com.sh.api.organization.user.entity.UserInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class UserUpdateDto {
     /**
      * 用户id
      */
-    @NotNull(message = UserInfoConstants.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = UserInfoConstant.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY)
     private Long userId;
 
     /**
@@ -73,7 +73,7 @@ public class UserUpdateDto {
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(this.userId);
         userInfo.setRoleId(this.roleId);
-        userInfo.setHeadPortrait(ResourceConstants.Url.MINIO_UPDATE_UPLOAD_TEST);
+        userInfo.setHeadPortrait(ResourceConstant.Url.MINIO_UPDATE_UPLOAD_TEST);
         userInfo.setNameCn(this.nameCn);
         userInfo.setNameEn(this.nameEn);
         userInfo.setMobile(this.mobile);

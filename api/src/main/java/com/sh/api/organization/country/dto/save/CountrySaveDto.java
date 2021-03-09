@@ -1,6 +1,6 @@
 package com.sh.api.organization.country.dto.save;
 
-import com.sh.api.common.constant.CountryInfoConstants;
+import com.sh.api.common.constant.CountryInfoConstant;
 import com.sh.api.organization.country.entity.CountryInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,13 +20,13 @@ public class CountrySaveDto {
     /**
      * 国家2字码
      */
-    @NotBlank(message = CountryInfoConstants.ForegroundPrompt.COUNTRY_2_CODE_CANNOT_BE_EMPTY)
+    @NotBlank(message = CountryInfoConstant.ForegroundPrompt.COUNTRY_2_CODE_CANNOT_BE_EMPTY)
     private String country2Code;
 
     /**
      * 国家3字码
      */
-    @NotBlank(message = CountryInfoConstants.ForegroundPrompt.COUNTRY_3_CODE_CANNOT_BE_EMPTY)
+    @NotBlank(message = CountryInfoConstant.ForegroundPrompt.COUNTRY_3_CODE_CANNOT_BE_EMPTY)
     private String country3Code;
 
     /**
@@ -37,13 +37,13 @@ public class CountrySaveDto {
     /**
      * 国家中文名
      */
-    @NotBlank(message = CountryInfoConstants.ForegroundPrompt.COUNTRY_NAME_CN_CANNOT_BE_EMPTY)
+    @NotBlank(message = CountryInfoConstant.ForegroundPrompt.COUNTRY_NAME_CN_CANNOT_BE_EMPTY)
     private String countryNameCn;
 
     /**
      * 国家英文名
      */
-    @NotBlank(message = CountryInfoConstants.ForegroundPrompt.COUNTRY_NAME_EN_CANNOT_BE_EMPTY)
+    @NotBlank(message = CountryInfoConstant.ForegroundPrompt.COUNTRY_NAME_EN_CANNOT_BE_EMPTY)
     private String countryNameEn;
 
     /**

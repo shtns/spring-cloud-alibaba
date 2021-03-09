@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/19 20:51
  */
-public interface OrderInfoConstants {
+public interface OrderInfoConstant {
 
     /**
      * 前台提示语

@@ -7,10 +7,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sh.api.common.config.ServerErrorException;
-import com.sh.api.common.constant.DateTimeFormatConstants;
-import com.sh.api.common.constant.DigitalConstants;
-import com.sh.api.common.constant.NoTableConstants;
-import com.sh.api.common.constant.StringFormattingConstants;
+import com.sh.api.common.constant.DateTimeFormatConstant;
+import com.sh.api.common.constant.DigitalConstant;
+import com.sh.api.common.constant.NoTableConstant;
+import com.sh.api.common.constant.StringFormattingConstant;
 import com.sh.api.organization.notable.entity.NoTable;
 import com.sh.organization.notable.mapper.NoTableMapper;
 import org.springframework.stereotype.Service;
@@ -38,25 +38,25 @@ public class NoTableServiceImpl extends ServiceImpl<NoTableMapper, NoTable> impl
 
         //检查订单类型、类型订单号信息是否为空
         if (StrUtil.isBlank(orderType)) {
-            throw new ServerErrorException(NoTableConstants.Error.ORDER_TYPE_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(NoTableConstant.Error.ORDER_TYPE_CANNOT_BE_EMPTY);
         }
         NoTable noTable = this.getOne(Wrappers.<NoTable>lambdaQuery().eq(NoTable::getNoType, orderType));
         if (ObjectUtil.isNull(noTable)) {
-            throw new ServerErrorException(NoTableConstants.Error.NO_ORDER_NUMBER_OF_THIS_TYPE_WAS_FOUND);
+            throw new ServerErrorException(NoTableConstant.Error.NO_ORDER_NUMBER_OF_THIS_TYPE_WAS_FOUND);
         }
 
         //当前订单号序列值+1
-        int nowValue = noTable.getNoValue() + DigitalConstants.ONE;
+        int nowValue = noTable.getNoValue() + DigitalConstant.ONE;
         //通过原始序列值进行修改，失败报错
         if (! this.update(Wrappers.<NoTable>lambdaUpdate()
                 .set(NoTable::getNoValue, nowValue)
                 .eq(NoTable::getNoType, orderType)
                 .eq(NoTable::getNoValue, noTable.getNoValue()))) {
-            throw new ServerErrorException(NoTableConstants.Error.ORDER_NUMBER_GENERATION_FAILED);
+            throw new ServerErrorException(NoTableConstant.Error.ORDER_NUMBER_GENERATION_FAILED);
         }
 
         //返回唯一订单号
-        return StrUtil.concat(Boolean.TRUE, orderType, DateUtil.format(DateUtil.date(), DateTimeFormatConstants.TIME_FORMAT_SHORT),
-                String.format(StringFormattingConstants.FORMATTING_TYPE, nowValue));
+        return StrUtil.concat(Boolean.TRUE, orderType, DateUtil.format(DateUtil.date(), DateTimeFormatConstant.TIME_FORMAT_SHORT),
+                String.format(StringFormattingConstant.FORMATTING_TYPE, nowValue));
     }
 }

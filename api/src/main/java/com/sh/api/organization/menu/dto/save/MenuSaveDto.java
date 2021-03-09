@@ -1,6 +1,6 @@
 package com.sh.api.organization.menu.dto.save;
 
-import com.sh.api.common.constant.MenuInfoConstants;
+import com.sh.api.common.constant.MenuInfoConstant;
 import com.sh.api.organization.menu.entity.MenuInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,19 +21,19 @@ public class MenuSaveDto {
     /**
      * 父菜单id（默认为-1）
      */
-    @NotNull(message = MenuInfoConstants.ForegroundPrompt.PARENT_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = MenuInfoConstant.ForegroundPrompt.PARENT_ID_CANNOT_BE_EMPTY)
     private Long parentId;
 
     /**
      * 菜单名称
      */
-    @NotNull(message = MenuInfoConstants.ForegroundPrompt.NAME_CANNOT_BE_EMPTY)
+    @NotNull(message = MenuInfoConstant.ForegroundPrompt.NAME_CANNOT_BE_EMPTY)
     private String menuName;
 
     /**
      * 菜单路径
      */
-    @NotNull(message = MenuInfoConstants.ForegroundPrompt.ACCESS_PATH_CANNOT_BE_EMPTY)
+    @NotNull(message = MenuInfoConstant.ForegroundPrompt.ACCESS_PATH_CANNOT_BE_EMPTY)
     private String menuPath;
 
     /**
@@ -44,7 +44,7 @@ public class MenuSaveDto {
     /**
      * 排序值（默认为1）
      */
-    @NotNull(message = MenuInfoConstants.ForegroundPrompt.SORT_CANNOT_BE_EMPTY)
+    @NotNull(message = MenuInfoConstant.ForegroundPrompt.SORT_CANNOT_BE_EMPTY)
     private Integer sort;
 
     /**

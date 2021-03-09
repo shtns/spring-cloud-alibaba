@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/21 1:10
  */
-public interface SentinelConstants {
+public interface SentinelConstant {
 
     /**
      * 控制台异常

@@ -1,7 +1,7 @@
 package com.sh.dom.service;
 
 import cn.hutool.core.util.StrUtil;
-import com.sh.api.common.constant.RabbitmqConstants;
+import com.sh.api.common.constant.RabbitmqConstant;
 import com.sh.api.msg.MsgDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +36,11 @@ public class SendDomMsg {
         String departureDate = LocalDate.now().toString();
 
         this.rabbitTemplate.convertAndSend(
-                RabbitmqConstants.Config.Exchange.RESERVATION_NAME,
-                RabbitmqConstants.Config.Routing.Dom.KEY_NAME,
+                RabbitmqConstant.Config.Exchange.RESERVATION_NAME,
+                RabbitmqConstant.Config.Routing.Dom.KEY_NAME,
                 new MsgDto("15555288543", "山东航空", "张三",
                         StrUtil.sub(departureDate, departureDate.indexOf("-"), departureDate.length()),
                         "9C6659", 7, 0, "testUrl"));
-        log.info("发送国内预定成功路由key：{}", RabbitmqConstants.Config.Routing.Dom.KEY_NAME);
+        log.info("发送国内预定成功路由key：{}", RabbitmqConstant.Config.Routing.Dom.KEY_NAME);
     }
 }

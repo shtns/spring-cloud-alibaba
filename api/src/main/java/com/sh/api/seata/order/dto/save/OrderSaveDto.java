@@ -1,6 +1,6 @@
 package com.sh.api.seata.order.dto.save;
 
-import com.sh.api.common.constant.OrderInfoConstants;
+import com.sh.api.common.constant.OrderInfoConstant;
 import com.sh.api.seata.order.entity.OrderInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,25 +21,25 @@ public class OrderSaveDto {
     /**
      * 用户id
      */
-    @NotNull(message = OrderInfoConstants.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = OrderInfoConstant.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY)
     private Long userId;
 
     /**
      * 产品id
      */
-    @NotNull(message = OrderInfoConstants.ForegroundPrompt.PRODUCT_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = OrderInfoConstant.ForegroundPrompt.PRODUCT_ID_CANNOT_BE_EMPTY)
     private Long productId;
 
     /**
      * 数量
      */
-    @NotNull(message = OrderInfoConstants.ForegroundPrompt.ORDER_NUMBER_CANNOT_BE_EMPTY)
+    @NotNull(message = OrderInfoConstant.ForegroundPrompt.ORDER_NUMBER_CANNOT_BE_EMPTY)
     private Integer count;
 
     /**
      * 金额
      */
-    @NotNull(message = OrderInfoConstants.ForegroundPrompt.ORDER_MONEY_CANNOT_BE_EMPTY)
+    @NotNull(message = OrderInfoConstant.ForegroundPrompt.ORDER_MONEY_CANNOT_BE_EMPTY)
     private BigDecimal money;
 
     /**

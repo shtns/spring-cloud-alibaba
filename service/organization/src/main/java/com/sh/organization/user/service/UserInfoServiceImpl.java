@@ -9,9 +9,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sh.api.common.config.ServerErrorException;
-import com.sh.api.common.constant.DigitalConstants;
-import com.sh.api.common.constant.MinioConstants;
-import com.sh.api.common.constant.UserInfoConstants;
+import com.sh.api.common.constant.DigitalConstant;
+import com.sh.api.common.constant.MinioConstant;
+import com.sh.api.common.constant.UserInfoConstant;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.user.dto.page.UserPageDto;
 import com.sh.api.organization.user.dto.save.UserSaveDto;
@@ -65,7 +65,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         //生成唯一头像名
         String fileName = this.getFileName(userSaveDto.getLoginAccount(), userInfo.getHeadPortrait());
         //上传用户头像
-        MinIoUtils.fileUpload(MinioConstants.BucketName.HEAD_PORTRAIT, fileName, userInfo.getHeadPortrait());
+        MinIoUtils.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, userInfo.getHeadPortrait());
         //把唯一头像名保存到头像字段中
         userInfo.setHeadPortrait(fileName);
         return this.save(userInfo);
@@ -86,7 +86,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         UserInfo userInfo = this.getById(userId);
         if (ObjectUtil.isNotNull(userInfo)) {
             if (StrUtil.isNotBlank(userInfo.getHeadPortrait())) {
-                MinIoUtils.delFile(MinioConstants.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait());
+                MinIoUtils.delFile(MinioConstant.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait());
             }
         }
 
@@ -130,11 +130,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                 && StrUtil.isNotBlank(updateHeadPortrait)
                 && ! StrUtil.equals(headPortrait, updateHeadPortrait)) {
             //通过头像文件名删除原始文件
-            MinIoUtils.delFile(MinioConstants.BucketName.HEAD_PORTRAIT, headPortrait);
+            MinIoUtils.delFile(MinioConstant.BucketName.HEAD_PORTRAIT, headPortrait);
             //生成唯一头像名
             String fileName = this.getFileName(userUpdateDto.getLoginAccount(), updateHeadPortrait);
             //上传最新头像图片
-            MinIoUtils.fileUpload(MinioConstants.BucketName.HEAD_PORTRAIT, fileName, updateHeadPortrait);
+            MinIoUtils.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, updateHeadPortrait);
             //把唯一头像名更新到头像字段中
             userUpdateInfo.setHeadPortrait(fileName);
         }
@@ -152,16 +152,16 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //检查登入账号、用户信息是否为空
         if (StrUtil.isBlank(loginAccount)) {
-            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstant.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
         }
         UserInfo userInfo = this.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getLoginAccount, loginAccount));
         if (ObjectUtil.isNull(userInfo)) {
-            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.USER_INFORMATION_NOT_FOUND);
+            throw new ServerErrorException(UserInfoConstant.ForegroundPrompt.USER_INFORMATION_NOT_FOUND);
         }
 
         //用户头像存在，通过头像文件名获取文件访问外链
         if (StrUtil.isNotBlank(userInfo.getHeadPortrait())) {
-            userInfo.setHeadPortrait(MinIoUtils.getFileAccessPath(MinioConstants.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait()));
+            userInfo.setHeadPortrait(MinIoUtils.getFileAccessPath(MinioConstant.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait()));
         }
 
         return new UserLoginVo(userInfo);
@@ -178,10 +178,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //检查登入账号、密码是否为空
         if (StrUtil.isBlank(loginAccount)) {
-            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstant.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY);
         }
         if (StrUtil.isBlank(password)) {
-            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.PASSWORD_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstant.ForegroundPrompt.PASSWORD_CANNOT_BE_EMPTY);
         }
 
         //登入结果
@@ -218,7 +218,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         List<UserPageVo> userPageVos = userPageInfo.getRecords().stream().map(UserPageVo::new).collect(Collectors.toList());
         userPageVos.forEach(userPageVo -> {
             if (StrUtil.isNotBlank(userPageVo.getHeadPortrait())) {
-                userPageVo.setHeadPortrait(MinIoUtils.getFileAccessPath(MinioConstants.BucketName.HEAD_PORTRAIT, userPageVo.getHeadPortrait()));
+                userPageVo.setHeadPortrait(MinIoUtils.getFileAccessPath(MinioConstant.BucketName.HEAD_PORTRAIT, userPageVo.getHeadPortrait()));
             }
         });
 
@@ -242,8 +242,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
      */
     public void checkUserExist(String loginAccount) {
         if (this.count(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getLoginAccount, loginAccount))
-                > DigitalConstants.ZERO) {
-            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_ALREADY_EXISTS);
+                > DigitalConstant.ZERO) {
+            throw new ServerErrorException(UserInfoConstant.ForegroundPrompt.LOGIN_ACCOUNT_ALREADY_EXISTS);
         }
     }
 
@@ -254,7 +254,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
      */
     private void checkUserId(Long userId) {
         if (userId == null) {
-            throw new ServerErrorException(UserInfoConstants.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(UserInfoConstant.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY);
         }
     }
 
@@ -267,6 +267,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
      */
     private String getFileName(String loginAccount, String filePath) {
         return StrUtil.concat(Boolean.TRUE, loginAccount, StringPool.COLON, IdUtil.randomUUID(), StrUtil.DASHED,
-                StrUtil.sub(filePath, filePath.lastIndexOf(StringPool.BACK_SLASH), filePath.length()).substring(DigitalConstants.ONE));
+                StrUtil.sub(filePath, filePath.lastIndexOf(StringPool.BACK_SLASH), filePath.length()).substring(DigitalConstant.ONE));
     }
 }

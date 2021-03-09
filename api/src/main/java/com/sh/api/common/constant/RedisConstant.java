@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/17 22:32
  */
-public interface RedisConstants {
+public interface RedisConstant {
 
     /**
      * 权限缓存key

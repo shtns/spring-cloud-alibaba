@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/18 7:29
  */
-public interface MenuInfoConstants {
+public interface MenuInfoConstant {
 
     /**
      * 前台提示语

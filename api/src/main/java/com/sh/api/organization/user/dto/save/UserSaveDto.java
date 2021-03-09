@@ -1,8 +1,8 @@
 package com.sh.api.organization.user.dto.save;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.sh.api.common.constant.ResourceConstants;
-import com.sh.api.common.constant.UserInfoConstants;
+import com.sh.api.common.constant.ResourceConstant;
+import com.sh.api.common.constant.UserInfoConstant;
 import com.sh.api.organization.user.entity.UserInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,19 +23,19 @@ public class UserSaveDto {
     /**
      * 角色id
      */
-    @NotNull(message = UserInfoConstants.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = UserInfoConstant.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY)
     private Long roleId;
 
     /**
      * 登入账号
      */
-    @NotBlank(message = UserInfoConstants.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY)
+    @NotBlank(message = UserInfoConstant.ForegroundPrompt.LOGIN_ACCOUNT_CANNOT_BE_EMPTY)
     private String loginAccount;
 
     /**
      * 密码
      */
-    @NotBlank(message = UserInfoConstants.ForegroundPrompt.PASSWORD_CANNOT_BE_EMPTY)
+    @NotBlank(message = UserInfoConstant.ForegroundPrompt.PASSWORD_CANNOT_BE_EMPTY)
     private String password;
 
     /**
@@ -72,7 +72,7 @@ public class UserSaveDto {
         UserInfo userInfo = new UserInfo();
         userInfo.setRoleId(this.roleId);
         userInfo.setLoginAccount(this.loginAccount);
-        userInfo.setHeadPortrait(ResourceConstants.Url.MINIO_SAVE_UPLOAD_TEST);
+        userInfo.setHeadPortrait(ResourceConstant.Url.MINIO_SAVE_UPLOAD_TEST);
         userInfo.setStatus(StringPool.ZERO);
         userInfo.setNameCn(this.nameCn);
         userInfo.setNameEn(this.nameEn);

@@ -3,7 +3,7 @@ package com.sh.order.service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.sh.api.common.constant.DigitalConstants;
+import com.sh.api.common.constant.DigitalConstant;
 import com.sh.api.seata.account.dto.reduce.AccountReduceDto;
 import com.sh.api.seata.order.dto.save.OrderSaveDto;
 import com.sh.api.seata.order.dto.details.OrderDetailsDto;
@@ -67,7 +67,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
      * @param orderId 订单id
      */
     private void updateOrderStatus(Long orderId) {
-        this.update(Wrappers.<OrderInfo>lambdaUpdate().set(OrderInfo::getStatus, DigitalConstants.ONE).eq(OrderInfo::getOrderId, orderId));
+        this.update(Wrappers.<OrderInfo>lambdaUpdate().set(OrderInfo::getStatus, DigitalConstant.ONE).eq(OrderInfo::getOrderId, orderId));
     }
 
     /**

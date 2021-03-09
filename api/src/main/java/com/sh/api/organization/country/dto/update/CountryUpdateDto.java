@@ -1,6 +1,6 @@
 package com.sh.api.organization.country.dto.update;
 
-import com.sh.api.common.constant.CountryInfoConstants;
+import com.sh.api.common.constant.CountryInfoConstant;
 import com.sh.api.organization.country.entity.CountryInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public class CountryUpdateDto {
     /**
      * 国家id
      */
-    @NotNull(message = CountryInfoConstants.ForegroundPrompt.COUNTRY_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = CountryInfoConstant.ForegroundPrompt.COUNTRY_ID_CANNOT_BE_EMPTY)
     private Long countryId;
 
     /**

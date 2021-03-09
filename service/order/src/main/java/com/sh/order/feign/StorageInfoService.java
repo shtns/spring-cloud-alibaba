@@ -1,6 +1,6 @@
 package com.sh.order.feign;
 
-import com.sh.api.common.constant.MicroServiceNameConstants;
+import com.sh.api.common.constant.MicroServiceNameConstant;
 import com.sh.api.common.util.R;
 import com.sh.api.seata.storage.dto.reduce.StorageReduceDto;
 import com.sh.api.seata.storage.entity.StorageInfo;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author 盛浩
  * @date 2020/12/27 20:21
  */
-@FeignClient(value = MicroServiceNameConstants.STORAGE_SERVICE)
+@FeignClient(value = MicroServiceNameConstant.STORAGE_SERVICE)
 public interface StorageInfoService {
 
     /**

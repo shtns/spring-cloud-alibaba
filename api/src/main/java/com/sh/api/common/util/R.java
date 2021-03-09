@@ -1,7 +1,7 @@
 package com.sh.api.common.util;
 
 import com.sh.api.common.constant.OauthTwoConstant;
-import com.sh.api.common.constant.ResponseInfoBodyConstants;
+import com.sh.api.common.constant.ResponseInfoBodyConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -42,35 +42,35 @@ public class R<T> {
     private String msg;
 
     public static <T> R<T> ok() {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_SUCCESS, null,
-                ResponseInfoBodyConstants.ForegroundPrompt.MSG_SUCCESS);
+        return restResult(ResponseInfoBodyConstant.ForegroundPrompt.CODE_SUCCESS, null,
+                ResponseInfoBodyConstant.ForegroundPrompt.MSG_SUCCESS);
     }
 
     public static <T> R<T> ok(T data) {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_SUCCESS, data,
-                ResponseInfoBodyConstants.ForegroundPrompt.MSG_SUCCESS);
+        return restResult(ResponseInfoBodyConstant.ForegroundPrompt.CODE_SUCCESS, data,
+                ResponseInfoBodyConstant.ForegroundPrompt.MSG_SUCCESS);
     }
 
     public static <T> R<T> ok(String msg, T data) {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_SUCCESS, data, msg);
+        return restResult(ResponseInfoBodyConstant.ForegroundPrompt.CODE_SUCCESS, data, msg);
     }
 
     public static <T> R<T> failed() {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, null,
-                ResponseInfoBodyConstants.ForegroundPrompt.MSG_FAILURE);
+        return restResult(ResponseInfoBodyConstant.ForegroundPrompt.CODE_FAIL, null,
+                ResponseInfoBodyConstant.ForegroundPrompt.MSG_FAILURE);
     }
 
     public static <T> R<T> failed(String msg) {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL,null, msg);
+        return restResult(ResponseInfoBodyConstant.ForegroundPrompt.CODE_FAIL,null, msg);
     }
 
     public static <T> R<T> forbidden() {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, null,
+        return restResult(ResponseInfoBodyConstant.ForegroundPrompt.CODE_FAIL, null,
                 OauthTwoConstant.ForegroundPrompt.MSG_NO_LOGIN_OR_TOKEN_HAS_EXPIRED);
     }
 
     public static <T> R<T> unauthorized() {
-        return restResult(ResponseInfoBodyConstants.ForegroundPrompt.CODE_FAIL, null,
+        return restResult(ResponseInfoBodyConstant.ForegroundPrompt.CODE_FAIL, null,
                 OauthTwoConstant.ForegroundPrompt.MSG_NO_ACCESS_RIGHTS);
     }
 

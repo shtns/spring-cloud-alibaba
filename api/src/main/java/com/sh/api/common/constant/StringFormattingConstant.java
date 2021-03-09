@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/22 20:39
  */
-public interface StringFormattingConstants {
+public interface StringFormattingConstant {
 
     /**
      * 格式化类型

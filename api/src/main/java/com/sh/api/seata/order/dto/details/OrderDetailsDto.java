@@ -1,6 +1,6 @@
 package com.sh.api.seata.order.dto.details;
 
-import com.sh.api.common.constant.OrderInfoConstants;
+import com.sh.api.common.constant.OrderInfoConstant;
 import lombok.Getter;
 import lombok.Setter;
 import javax.validation.constraints.NotNull;
@@ -19,18 +19,18 @@ public class OrderDetailsDto {
     /**
      * 订单id
      */
-    @NotNull(message = OrderInfoConstants.ForegroundPrompt.ORDER_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = OrderInfoConstant.ForegroundPrompt.ORDER_ID_CANNOT_BE_EMPTY)
     private Long orderId;
 
     /**
      * 用户id
      */
-    @NotNull(message = OrderInfoConstants.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = OrderInfoConstant.ForegroundPrompt.USER_ID_CANNOT_BE_EMPTY)
     private Long userId;
 
     /**
      * 产品id
      */
-    @NotNull(message = OrderInfoConstants.ForegroundPrompt.PRODUCT_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = OrderInfoConstant.ForegroundPrompt.PRODUCT_ID_CANNOT_BE_EMPTY)
     private Long productId;
 }

@@ -1,6 +1,6 @@
 package com.sh.auth.config;
 
-import com.sh.api.common.constant.ResourceConstants;
+import com.sh.api.common.constant.ResourceConstant;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
-                .antMatchers(ResourceConstants.Url.RSA_KEY,
-                        ResourceConstants.Url.SENTINEL_TEST)
+                .antMatchers(ResourceConstant.Url.RSA_KEY,
+                        ResourceConstant.Url.SENTINEL_TEST)
                 .permitAll()
                 .anyRequest().authenticated();
     }

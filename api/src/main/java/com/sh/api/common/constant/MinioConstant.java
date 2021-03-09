@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/24 18:29
  */
-public interface MinioConstants {
+public interface MinioConstant {
 
     /**
      * 配置

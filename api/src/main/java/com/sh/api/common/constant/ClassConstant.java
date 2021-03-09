@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/2/5 20:05
  */
-public interface ClassConstants {
+public interface ClassConstant {
 
     /**
      * 系统运行时

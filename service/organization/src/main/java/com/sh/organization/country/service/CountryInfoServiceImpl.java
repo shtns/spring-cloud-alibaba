@@ -9,9 +9,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sh.api.common.config.ServerErrorException;
-import com.sh.api.common.constant.CountryInfoConstants;
-import com.sh.api.common.constant.DigitalConstants;
-import com.sh.api.common.constant.RedisConstants;
+import com.sh.api.common.constant.CountryInfoConstant;
+import com.sh.api.common.constant.DigitalConstant;
+import com.sh.api.common.constant.RedisConstant;
 import com.sh.api.common.vo.PageRespVo;
 import com.sh.api.organization.city.vo.query.CityQueryVo;
 import com.sh.api.organization.country.dto.page.CountryPageDto;
@@ -62,7 +62,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
         }
 
         //通过缓存key删除国家信息缓存
-        String countryCacheKey = this.genderCountryCacheKey(DigitalConstants.ZERO, countryId);
+        String countryCacheKey = this.genderCountryCacheKey(DigitalConstant.ZERO, countryId);
         if (this.checkCountryCacheKeyExist(countryCacheKey)) {
             this.redisTemplate.delete(countryCacheKey);
         }
@@ -70,7 +70,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
         //国家下面存在城市，通过国家城市缓存key，删除国家城市信息缓存
         List<CityQueryVo> cityQueryVos = cityInfoService.queryCityInfos(countryInfo.getCountry2Code());
         if (CollUtil.isNotEmpty(cityQueryVos)) {
-            String countryCityCacheKey = this.genderCountryCacheKey(DigitalConstants.ONE, countryId);
+            String countryCityCacheKey = this.genderCountryCacheKey(DigitalConstant.ONE, countryId);
             if (this.checkCountryCacheKeyExist(countryCityCacheKey)) {
                 this.redisTemplate.delete(countryCityCacheKey);
             }
@@ -87,7 +87,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
      */
     public Boolean updateCountryInfo(CountryUpdateDto countryUpdateDto) {
 
-        String countryCacheKey = this.genderCountryCacheKey(DigitalConstants.ZERO, countryUpdateDto.getCountryId());
+        String countryCacheKey = this.genderCountryCacheKey(DigitalConstant.ZERO, countryUpdateDto.getCountryId());
         if (this.checkCountryCacheKeyExist(countryCacheKey)) {
             this.redisTemplate.opsForValue().set(countryCacheKey, new CountryQueryVo(this.getById(countryUpdateDto.getCountryId())));
         }
@@ -108,7 +108,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
         CountryQueryVo countryQueryVo = null;
 
         //通过国家缓存key查询缓存，有直接取，没有查询数据库放入缓存
-        String countryCacheKey = this.genderCountryCacheKey(DigitalConstants.ZERO, countryId);
+        String countryCacheKey = this.genderCountryCacheKey(DigitalConstant.ZERO, countryId);
         if (this.checkCountryCacheKeyExist(countryCacheKey)) {
             countryQueryVo = this.redisTemplate.opsForValue().get(countryCacheKey);
         } else {
@@ -136,7 +136,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
         CountryCityQueryVo countryCityQueryVo = null;
 
         //通过国家城市缓存key查询缓存，有直接取，没有再查询国家城市信息放入缓存
-        String countryCityCacheKey = this.genderCountryCacheKey(DigitalConstants.ONE, countryId);
+        String countryCityCacheKey = this.genderCountryCacheKey(DigitalConstant.ONE, countryId);
         if (this.checkCountryCacheKeyExist(countryCityCacheKey)) {
             countryCityQueryVo = this.cityRedisTemplate.opsForValue().get(countryCityCacheKey);
         } else {
@@ -149,7 +149,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
                     this.cityRedisTemplate.opsForValue().set(countryCityCacheKey, countryCityQueryVo);
                 } else {
                     //不存在，重新生成国家缓存key，先通过缓存key查询，存在则取出来，没有则加入到国家城市缓存中
-                    String countryCacheKey = this.genderCountryCacheKey(DigitalConstants.ZERO, countryId);
+                    String countryCacheKey = this.genderCountryCacheKey(DigitalConstant.ZERO, countryId);
                     if (this.checkCountryCacheKeyExist(countryCacheKey)) {
                         countryCityQueryVo = new CountryCityQueryVo(this.redisTemplate.opsForValue().get(countryCacheKey), CollUtil.newArrayList());
                     } else {
@@ -202,7 +202,7 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
      */
     private void checkCountryId(Long countryId) {
         if (countryId == null) {
-            throw new ServerErrorException(CountryInfoConstants.ForegroundPrompt.COUNTRY_ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(CountryInfoConstant.ForegroundPrompt.COUNTRY_ID_CANNOT_BE_EMPTY);
         }
     }
 
@@ -218,10 +218,10 @@ public class CountryInfoServiceImpl extends ServiceImpl<CountryInfoMapper, Count
         String cachePrefix;
 
         //tag0生成国家缓存key，tag1生成国家城市缓存key
-        if (tag.equals(DigitalConstants.ZERO)) {
-            cachePrefix = RedisConstants.CountryCacheKey.COUNTRY;
+        if (tag.equals(DigitalConstant.ZERO)) {
+            cachePrefix = RedisConstant.CountryCacheKey.COUNTRY;
         } else {
-            cachePrefix = RedisConstants.CountryCacheKey.COUNTRY_CITY;
+            cachePrefix = RedisConstant.CountryCacheKey.COUNTRY_CITY;
         }
 
         return StrUtil.concat(Boolean.TRUE, cachePrefix, StringPool.COLON, countryId.toString());

@@ -3,10 +3,10 @@ package com.sh.organization.config;
 import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.sh.api.common.constant.ClassConstants;
-import com.sh.api.common.constant.MenuInfoConstants;
-import com.sh.api.common.constant.RedisConstants;
-import com.sh.api.common.constant.ResourceConstants;
+import com.sh.api.common.constant.ClassConstant;
+import com.sh.api.common.constant.MenuInfoConstant;
+import com.sh.api.common.constant.RedisConstant;
+import com.sh.api.common.constant.ResourceConstant;
 import com.sh.api.organization.resource.dto.ResourceSaveDto;
 import com.sh.api.organization.resource.entity.ResourceInfo;
 import com.sh.organization.city.controller.CityInfoController;
@@ -81,29 +81,29 @@ public class ScanningInterfaceInfo {
             ResourceInfo resourceInfo = new ResourceSaveDto(
                     null,
                     this.removeRedundantSymbol(StrUtil.concat(Boolean.TRUE,
-                            ResourceConstants.Url.ORGANIZATION,
+                            ResourceConstant.Url.ORGANIZATION,
                             m.getKey().getPatternsCondition().getPatterns().toString())),
                     this.removeRedundantSymbol(m.getKey().getMethodsCondition().getMethods().toString()))
                     .changeSaveResourceInfo();
 
             if (StrUtil.equals(classAbsolutePath, UserInfoController.class.getName())) {
-                resourceInfo.setMenuId(MenuInfoConstants.Id.USER);
+                resourceInfo.setMenuId(MenuInfoConstant.Id.USER);
                 resourceInfo.insert();
             } else if (StrUtil.equals(classAbsolutePath, RoleInfoController.class.getName())) {
-                resourceInfo.setMenuId(MenuInfoConstants.Id.ROLE);
+                resourceInfo.setMenuId(MenuInfoConstant.Id.ROLE);
                 resourceInfo.insert();
             } else if (StrUtil.equals(classAbsolutePath, MenuInfoController.class.getName())) {
-                resourceInfo.setMenuId(MenuInfoConstants.Id.MENU);
+                resourceInfo.setMenuId(MenuInfoConstant.Id.MENU);
                 resourceInfo.insert();
             } else if (StrUtil.equals(classAbsolutePath, CountryInfoController.class.getName())) {
-                resourceInfo.setMenuId(MenuInfoConstants.Id.COUNTRY);
+                resourceInfo.setMenuId(MenuInfoConstant.Id.COUNTRY);
                 resourceInfo.insert();
             } else if (StrUtil.equals(classAbsolutePath, CityInfoController.class.getName())) {
-                resourceInfo.setMenuId(MenuInfoConstants.Id.CITY);
+                resourceInfo.setMenuId(MenuInfoConstant.Id.CITY);
                 resourceInfo.insert();
             } else {
                 //都不匹配的情况下，可能是新加的某信息管理这里需要配置，直接报错提示
-                throw new RuntimeException(ClassConstants.SystemRuntime.NO_MATCHING_CLASSPATH_INFORMATION_WAS_FOUND);
+                throw new RuntimeException(ClassConstant.SystemRuntime.NO_MATCHING_CLASSPATH_INFORMATION_WAS_FOUND);
             }
         }
 
@@ -113,12 +113,12 @@ public class ScanningInterfaceInfo {
                 .stream().map(ResourceInfo::getResourcePath).collect(Collectors.toList());
 
         //key不存在直接把数据放入redis，存在就先删后增
-        if (! this.redisTemplate.hasKey(RedisConstants.ResourceCacheKey.RESOURCE_PATHS)) {
-            this.redisTemplate.opsForValue().set(RedisConstants.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
+        if (! this.redisTemplate.hasKey(RedisConstant.ResourceCacheKey.RESOURCE_PATHS)) {
+            this.redisTemplate.opsForValue().set(RedisConstant.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
         }
 
-        this.redisTemplate.delete(RedisConstants.ResourceCacheKey.RESOURCE_PATHS);
-        this.redisTemplate.opsForValue().set(RedisConstants.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
+        this.redisTemplate.delete(RedisConstant.ResourceCacheKey.RESOURCE_PATHS);
+        this.redisTemplate.opsForValue().set(RedisConstant.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
     }
 
     /**

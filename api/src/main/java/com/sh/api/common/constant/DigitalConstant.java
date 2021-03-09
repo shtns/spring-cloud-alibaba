@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/16 2:32
  */
-public interface DigitalConstants {
+public interface DigitalConstant {
 
     /**
      * 零

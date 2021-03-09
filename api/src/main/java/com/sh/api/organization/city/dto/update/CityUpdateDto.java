@@ -1,6 +1,6 @@
 package com.sh.api.organization.city.dto.update;
 
-import com.sh.api.common.constant.CityInfoConstants;
+import com.sh.api.common.constant.CityInfoConstant;
 import com.sh.api.organization.city.entity.CityInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public class CityUpdateDto  {
     /**
      * 城市id
      */
-    @NotNull(message = CityInfoConstants.ForegroundPrompt.CITY_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = CityInfoConstant.ForegroundPrompt.CITY_ID_CANNOT_BE_EMPTY)
     private Long cityId;
 
     /**

@@ -1,6 +1,6 @@
 package com.sh.api.organization.role.dto.update;
 
-import com.sh.api.common.constant.RoleInfoConstants;
+import com.sh.api.common.constant.RoleInfoConstant;
 import com.sh.api.organization.role.entity.RoleInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class RoleUpdateDto {
     /**
      * 角色id
      */
-    @NotNull(message = RoleInfoConstants.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY)
+    @NotNull(message = RoleInfoConstant.ForegroundPrompt.ROLE_ID_CANNOT_BE_EMPTY)
     private Long roleId;
 
     /**

@@ -3,8 +3,8 @@ package com.shencrypt;
 import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.sh.api.common.constant.DigitalConstants;
-import com.sh.api.common.constant.ResourceConstants;
+import com.sh.api.common.constant.DigitalConstant;
+import com.sh.api.common.constant.ResourceConstant;
 import com.sh.auth.AuthApplication;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
@@ -46,10 +46,10 @@ public class EncryptApplicationTests {
 
     @Test
     public void pathTest() {
-        String filePath = ResourceConstants.Url.MINIO_SAVE_UPLOAD_TEST;
+        String filePath = ResourceConstant.Url.MINIO_SAVE_UPLOAD_TEST;
         String fileName = StrUtil.sub(filePath, filePath.lastIndexOf(StringPool.BACK_SLASH), filePath.length());
         System.out.println("filePath："+ filePath);
-        System.out.println("fileName：" + fileName.substring(DigitalConstants.ONE));
+        System.out.println("fileName：" + fileName.substring(DigitalConstant.ONE));
     }
 
     @Test
@@ -71,10 +71,10 @@ public class EncryptApplicationTests {
                 break;
             }
         }
-        queryPath = StrUtil.sub(requestPath, DigitalConstants.ZERO, slashTwoIndex);
+        queryPath = StrUtil.sub(requestPath, DigitalConstant.ZERO, slashTwoIndex);
         System.out.println("1：".concat(queryPath));
 
-        queryPath = StrUtil.sub(requestPath, DigitalConstants.ZERO, requestPath.lastIndexOf(StringPool.SLASH));
+        queryPath = StrUtil.sub(requestPath, DigitalConstant.ZERO, requestPath.lastIndexOf(StringPool.SLASH));
         System.out.println("2：".concat(queryPath));
     }
 }

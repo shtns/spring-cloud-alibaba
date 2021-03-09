@@ -7,7 +7,7 @@ package com.sh.api.common.constant;
  * @author 盛浩
  * @date 2021/1/22 18:03
  */
-public interface DateTimeFormatConstants {
+public interface DateTimeFormatConstant {
 
     /**
      * 年月日（不带时分秒）
