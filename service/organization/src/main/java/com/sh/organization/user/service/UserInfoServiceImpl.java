@@ -19,7 +19,7 @@ import com.sh.api.organization.user.dto.update.UserUpdateDto;
 import com.sh.api.organization.user.entity.UserInfo;
 import com.sh.api.organization.user.vo.login.UserLoginVo;
 import com.sh.api.organization.user.vo.page.UserPageVo;
-import com.sh.organization.config.MinIoUtils;
+import com.sh.organization.tool.MinIoTool;
 import com.sh.organization.user.mapper.UserInfoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -65,7 +65,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         //生成唯一头像名
         String fileName = this.getFileName(userSaveDto.getLoginAccount(), userInfo.getHeadPortrait());
         //上传用户头像
-        MinIoUtils.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, userInfo.getHeadPortrait());
+        MinIoTool.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, userInfo.getHeadPortrait());
         //把唯一头像名保存到头像字段中
         userInfo.setHeadPortrait(fileName);
         return this.save(userInfo);
@@ -86,7 +86,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         UserInfo userInfo = this.getById(userId);
         if (ObjectUtil.isNotNull(userInfo)) {
             if (StrUtil.isNotBlank(userInfo.getHeadPortrait())) {
-                MinIoUtils.delFile(MinioConstant.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait());
+                MinIoTool.delFile(MinioConstant.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait());
             }
         }
 
@@ -130,11 +130,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                 && StrUtil.isNotBlank(updateHeadPortrait)
                 && ! StrUtil.equals(headPortrait, updateHeadPortrait)) {
             //通过头像文件名删除原始文件
-            MinIoUtils.delFile(MinioConstant.BucketName.HEAD_PORTRAIT, headPortrait);
+            MinIoTool.delFile(MinioConstant.BucketName.HEAD_PORTRAIT, headPortrait);
             //生成唯一头像名
             String fileName = this.getFileName(userUpdateDto.getLoginAccount(), updateHeadPortrait);
             //上传最新头像图片
-            MinIoUtils.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, updateHeadPortrait);
+            MinIoTool.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, updateHeadPortrait);
             //把唯一头像名更新到头像字段中
             userUpdateInfo.setHeadPortrait(fileName);
         }
@@ -161,7 +161,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //用户头像存在，通过头像文件名获取文件访问外链
         if (StrUtil.isNotBlank(userInfo.getHeadPortrait())) {
-            userInfo.setHeadPortrait(MinIoUtils.getFileAccessPath(MinioConstant.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait()));
+            userInfo.setHeadPortrait(MinIoTool.getFileAccessPath(MinioConstant.BucketName.HEAD_PORTRAIT, userInfo.getHeadPortrait()));
         }
 
         return new UserLoginVo(userInfo);
@@ -218,7 +218,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         List<UserPageVo> userPageVos = userPageInfo.getRecords().stream().map(UserPageVo::new).collect(Collectors.toList());
         userPageVos.forEach(userPageVo -> {
             if (StrUtil.isNotBlank(userPageVo.getHeadPortrait())) {
-                userPageVo.setHeadPortrait(MinIoUtils.getFileAccessPath(MinioConstant.BucketName.HEAD_PORTRAIT, userPageVo.getHeadPortrait()));
+                userPageVo.setHeadPortrait(MinIoTool.getFileAccessPath(MinioConstant.BucketName.HEAD_PORTRAIT, userPageVo.getHeadPortrait()));
             }
         });
 

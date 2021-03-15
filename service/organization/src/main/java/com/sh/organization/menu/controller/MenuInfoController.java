@@ -30,7 +30,7 @@ public class MenuInfoController {
     private final MenuInfoServiceImpl menuInfoService;
 
     /**
-     * 新增菜单信息
+     * 保存菜单信息
      *
      * @param menuSaveDto 菜单新增dto
      * @return 是否新增成功

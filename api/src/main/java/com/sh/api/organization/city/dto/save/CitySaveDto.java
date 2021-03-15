@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 
 /**
- * 城市添加dto
+ * 城市保存dto
  *
  *
  * @author 盛浩

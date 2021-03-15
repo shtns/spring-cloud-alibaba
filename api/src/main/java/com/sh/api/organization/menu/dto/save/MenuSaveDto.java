@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 
 /**
- * 菜单新增dto
+ * 菜单保存dto
  *
  *
  * @author 盛浩

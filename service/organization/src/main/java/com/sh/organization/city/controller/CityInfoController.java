@@ -34,7 +34,9 @@ public class CityInfoController {
      * @return 是否保存成功
      */
     @PostMapping
-    public R<Boolean> saveCityInfo(@RequestBody @Valid CitySaveDto citySaveDto) { return R.ok(this.cityInfoService.save(citySaveDto.toCityInfo())); }
+    public R<Boolean> saveCityInfo(@RequestBody @Valid CitySaveDto citySaveDto) {
+        return R.ok(this.cityInfoService.save(citySaveDto.toCityInfo()));
+    }
 
     /**
      * 删除城市信息

@@ -1,7 +1,8 @@
-package com.sh.organization.config;
+package com.sh.organization.tool;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.google.api.client.util.IOUtils;
+import com.sh.organization.config.MinioProperties;
 import io.minio.MinioClient;
 import io.minio.ObjectStat;
 import io.minio.messages.Bucket;
@@ -27,7 +28,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @EnableConfigurationProperties({MinioProperties.class})
-public class MinIoUtils {
+public class MinIoTool {
 
     private final MinioProperties minioProperties;
 
@@ -39,11 +40,13 @@ public class MinIoUtils {
     @PostConstruct
     public void init() {
         try {
-            minioClient = new MinioClient(this.minioProperties.getEndpoint(), this.minioProperties.getAccessKey(), this.minioProperties.getSecretKey());
+            minioClient = new MinioClient(this.minioProperties.getEndpoint(),
+                    this.minioProperties.getAccessKey(),
+                    this.minioProperties.getSecretKey());
             createBucket(this.minioProperties.getBucketName());
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("初始化minio配置异常:：{}", e.fillInStackTrace());
+            log.error("初始化minio配置异常：{}", e.getMessage());
         }
     }
 

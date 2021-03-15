@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 
 /**
- * 国家添加dto
+ * 国家保存dto
  *
  *
  * @author 盛浩

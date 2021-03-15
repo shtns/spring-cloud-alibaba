@@ -36,7 +36,7 @@ public class CountryInfoController {
      * @return 是否保存成功
      */
     @PostMapping
-    public R<Boolean> addCountryInfo(@RequestBody @Valid CountrySaveDto countrySaveDto) {
+    public R<Boolean> saveCountryInfo(@RequestBody @Valid CountrySaveDto countrySaveDto) {
         return R.ok(this.countryInfoService.save(countrySaveDto.toCountryInfo()));
     }
 
