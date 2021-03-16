@@ -55,10 +55,10 @@ public class EncryptApplicationTests {
     @Test
     public void test() {
 
+        String queryPath = null;
         String requestPath = "/resource/check/path_value/123";
         System.out.println("原始：".concat(requestPath));
 
-        String queryPath = null;
         int slashTwoIndex = 0;
         int start = 0;
         for (int i = 0; i < requestPath.length(); i++) {
@@ -71,6 +71,7 @@ public class EncryptApplicationTests {
                 break;
             }
         }
+
         queryPath = StrUtil.sub(requestPath, DigitalConstant.ZERO, slashTwoIndex);
         System.out.println("1：".concat(queryPath));
 
