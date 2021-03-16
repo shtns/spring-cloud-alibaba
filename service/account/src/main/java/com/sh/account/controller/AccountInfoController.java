@@ -29,7 +29,7 @@ public class AccountInfoController {
      */
     @PostMapping(value = "/lose_balance")
     public R<Boolean> loseBalance(@RequestBody AccountReduceDto accountReduceDto) {
-        return R.ok(this.accountInfoService.loseBalance(accountReduceDto));
+        return R.ok(accountInfoService.loseBalance(accountReduceDto));
     }
 
     /**
@@ -39,5 +39,5 @@ public class AccountInfoController {
      * @return 账户信息
      */
     @GetMapping
-    public R<AccountInfo> queryAccountInfo(Long userId) { return R.ok(this.accountInfoService.queryAccountInfo(userId)); }
+    public R<AccountInfo> queryAccountInfo(Long userId) { return R.ok(accountInfoService.queryAccountInfo(userId)); }
 }

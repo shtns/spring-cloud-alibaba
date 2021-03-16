@@ -37,7 +37,7 @@ public class CountryInfoController {
      */
     @PostMapping
     public R<Boolean> saveCountryInfo(@RequestBody @Valid CountrySaveDto countrySaveDto) {
-        return R.ok(this.countryInfoService.save(countrySaveDto.toCountryInfo()));
+        return R.ok(countryInfoService.save(countrySaveDto.toCountryInfo()));
     }
 
     /**
@@ -48,7 +48,7 @@ public class CountryInfoController {
      */
     @DeleteMapping
     public R<Boolean> removeCountryInfo(Long countryId) {
-        return R.ok(this.countryInfoService.removeCountryInfo(countryId));
+        return R.ok(countryInfoService.removeCountryInfo(countryId));
     }
 
     /**
@@ -59,7 +59,7 @@ public class CountryInfoController {
      */
     @PutMapping
     public R<Boolean> updateCountryInfo(@RequestBody @Valid CountryUpdateDto countryUpdateDto) {
-        return R.ok(this.countryInfoService.updateCountryInfo(countryUpdateDto));
+        return R.ok(countryInfoService.updateCountryInfo(countryUpdateDto));
     }
 
     /**
@@ -70,7 +70,7 @@ public class CountryInfoController {
      */
     @GetMapping
     public R<CountryQueryVo> queryCountryInfo(Long countryId) {
-        return R.ok(this.countryInfoService.queryCountryInfo(countryId));
+        return R.ok(countryInfoService.queryCountryInfo(countryId));
     }
 
     /**
@@ -81,7 +81,7 @@ public class CountryInfoController {
      */
     @GetMapping(value = "/city")
     public R<CountryCityQueryVo> queryCountryCityInfo(Long countryId) {
-        return R.ok(this.countryInfoService.queryCountryCityInfo(countryId));
+        return R.ok(countryInfoService.queryCountryCityInfo(countryId));
     }
 
     /**
@@ -94,7 +94,7 @@ public class CountryInfoController {
     @GetMapping(value = "/page")
     public R<PageRespVo<CountryQueryVo>> pageQueryCountryInfo(PageReqDto<CountryInfo> pageReqDto,
                                                               CountryPageDto countryPageDto) {
-        return R.ok(this.countryInfoService.pageQueryCountryInfo(pageReqDto.toPlusPage(), countryPageDto));
+        return R.ok(countryInfoService.pageQueryCountryInfo(pageReqDto.toPlusPage(), countryPageDto));
     }
 
     /**
@@ -107,6 +107,6 @@ public class CountryInfoController {
     @GetMapping(value = "/details")
     public R<PageRespVo<CountryDetailsVo>> queryCountryDetails(PageReqDto<CountryInfo> pageReqDto,
                                                                CountryPageDto countryPageDto) {
-        return R.ok(this.countryInfoService.queryCountryDetails(pageReqDto.toPlusPage(), countryPageDto));
+        return R.ok(countryInfoService.queryCountryDetails(pageReqDto.toPlusPage(), countryPageDto));
     }
 }

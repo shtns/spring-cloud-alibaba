@@ -32,8 +32,8 @@ public class UserInfoServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String loginAccount) throws UsernameNotFoundException {
-        UserLoginVo userLoginVo = this.organizationService.queryUserInfo(loginAccount).getData();
-        List<String> resourcePaths = this.organizationService.queryResourcePaths(userLoginVo.getRoleId()).getData();
+        UserLoginVo userLoginVo = organizationService.queryUserInfo(loginAccount).getData();
+        List<String> resourcePaths = organizationService.queryResourcePaths(userLoginVo.getRoleId()).getData();
         String[] resourceArray = new String[resourcePaths.size()];
         return User.withUsername(userLoginVo.getLoginAccount()).password(userLoginVo.getPassword())
                 .authorities(resourcePaths.toArray(resourceArray)).build();

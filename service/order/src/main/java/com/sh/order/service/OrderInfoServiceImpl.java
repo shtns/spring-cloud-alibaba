@@ -35,10 +35,10 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     private final AccountInfoService accountInfoService;
 
     /**
-     * 新增订单
+     * 保存订单信息
      *
      * @param orderSaveDto 订单添加dto
-     * @return 是否新增成功
+     * @return 是否保存成功
      */
     @GlobalTransactional(name = "create_order", rollbackFor = Exception.class)
     public Boolean saveOrderInfo(OrderSaveDto orderSaveDto) {
@@ -48,13 +48,13 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         this.save(orderInfo);
 
         log.info("------>订单微服务开始调用库存");
-        this.storageInfoService.inventoryReduction(new StorageReduceDto(orderInfo.getProductId(), orderSaveDto.getCount()));
+        storageInfoService.inventoryReduction(new StorageReduceDto(orderInfo.getProductId(), orderSaveDto.getCount()));
 
         log.info("------>订单微服务开始调用账户");
-        this.accountInfoService.loseBalance(new AccountReduceDto(orderInfo.getUserId(), orderInfo.getMoney()));
+        accountInfoService.loseBalance(new AccountReduceDto(orderInfo.getUserId(), orderInfo.getMoney()));
 
         log.info("------>开始修改订单状态");
-        this.updateOrderStatus(orderInfo.getOrderId());
+        updateOrderStatus(orderInfo.getOrderId());
 
         log.info("订单创建完成！");
 
@@ -77,8 +77,8 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
      * @return 订单详情vo
      */
     public OrderDetailsVo getOrderDetails(OrderDetailsDto orderDetailsDto) {
-        return new OrderDetailsVo(this.getById(orderDetailsDto.getOrderId()),
-                this.accountInfoService.queryAccountInfo(orderDetailsDto.getUserId()).getData(),
-                this.storageInfoService.queryStorageInfo(orderDetailsDto.getProductId()).getData());
+        return new OrderDetailsVo(getById(orderDetailsDto.getOrderId()),
+                accountInfoService.queryAccountInfo(orderDetailsDto.getUserId()).getData(),
+                storageInfoService.queryStorageInfo(orderDetailsDto.getProductId()).getData());
     }
 }

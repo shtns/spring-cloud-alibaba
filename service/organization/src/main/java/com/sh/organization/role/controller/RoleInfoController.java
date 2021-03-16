@@ -36,7 +36,7 @@ public class RoleInfoController {
      */
     @PostMapping
     public R<Boolean> saveRoleInfo(@RequestBody @Valid RoleSaveDto roleSaveDto) {
-        return R.ok(this.roleInfoService.saveRoleInfo(roleSaveDto));
+        return R.ok(roleInfoService.saveRoleInfo(roleSaveDto));
     }
 
     /**
@@ -47,7 +47,7 @@ public class RoleInfoController {
      */
     @DeleteMapping
     public R<Boolean> removeRoleInfo(Long roleId) {
-        return R.ok(this.roleInfoService.removeRoleInfo(roleId));
+        return R.ok(roleInfoService.removeRoleInfo(roleId));
     }
 
     /**
@@ -58,7 +58,7 @@ public class RoleInfoController {
      */
     @PutMapping
     public R<Boolean> updateRoleInfo(@RequestBody @Valid RoleUpdateDto roleUpdateDto) {
-        return R.ok(this.roleInfoService.updateRoleInfo(roleUpdateDto));
+        return R.ok(roleInfoService.updateRoleInfo(roleUpdateDto));
     }
 
     /**
@@ -69,7 +69,7 @@ public class RoleInfoController {
      */
     @GetMapping
     public R<RoleQueryVo> queryRoleInfo(Long roleId) {
-        return R.ok(this.roleInfoService.queryRoleInfo(roleId));
+        return R.ok(roleInfoService.queryRoleInfo(roleId));
     }
 
     /**
@@ -81,7 +81,7 @@ public class RoleInfoController {
      */
     @GetMapping(value = "/page")
     public R<PageRespVo<RoleQueryVo>> pageQueryRoleInfo(PageReqDto<RoleInfo> pageReqDto, RolePageDto rolePageDto) {
-        return R.ok(this.roleInfoService.pageQueryRoleInfo(pageReqDto.toPlusPage(), rolePageDto));
+        return R.ok(roleInfoService.pageQueryRoleInfo(pageReqDto.toPlusPage(), rolePageDto));
     }
 
     /**
@@ -93,6 +93,6 @@ public class RoleInfoController {
      */
     @GetMapping(value = "/details")
     public R<PageRespVo<RoleDetailsVo>> pageQueryRoleDetails(PageReqDto<RoleInfo> pageReqDto, RolePageDto rolePageDto) {
-        return R.ok(this.roleInfoService.pageQueryRoleDetails(pageReqDto.toPlusPage(), rolePageDto));
+        return R.ok(roleInfoService.pageQueryRoleDetails(pageReqDto.toPlusPage(), rolePageDto));
     }
 }

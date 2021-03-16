@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
- * 订单添加dto
+ * 订单保存dto
  *
  *
  * @author 盛浩

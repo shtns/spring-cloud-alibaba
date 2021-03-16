@@ -41,7 +41,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfo> i
      */
     @CacheEvict(key = "#cityId")
     public Boolean removeCityInfo(Long cityId) {
-        this.checkCityId(cityId);
+        checkCityId(cityId);
         return this.removeById(cityId);
     }
 
@@ -54,7 +54,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfo> i
     @CachePut(key = "#cityUpdateDto.cityId", unless = "#result == null")
     public CityQueryVo updateCityInfo(CityUpdateDto cityUpdateDto) {
         this.updateById(cityUpdateDto.toCityInfo());
-        return new CityQueryVo(this.getById(cityUpdateDto.getCityId()));
+        return new CityQueryVo(getById(cityUpdateDto.getCityId()));
     }
 
     /**
@@ -66,7 +66,7 @@ public class CityInfoServiceImpl extends ServiceImpl<CityInfoMapper, CityInfo> i
     @Cacheable(key = "#cityId", unless = "#result == null")
     public CityQueryVo queryCityInfo(Long cityId) {
 
-        this.checkCityId(cityId);
+        checkCityId(cityId);
 
         CityInfo cityInfo = this.getById(cityId);
         if (ObjectUtil.isNull(cityInfo)) {

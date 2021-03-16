@@ -60,10 +60,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //用户密码加密
         UserInfo userInfo = userSaveDto.changeSaveUserInfo();
-        userInfo.setPassword(this.encrypt.encode(userSaveDto.getPassword()));
+        userInfo.setPassword(encrypt.encode(userSaveDto.getPassword()));
 
         //生成唯一头像名
-        String fileName = this.getFileName(userSaveDto.getLoginAccount(), userInfo.getHeadPortrait());
+        String fileName = getFileName(userSaveDto.getLoginAccount(), userInfo.getHeadPortrait());
         //上传用户头像
         MinIoTool.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, userInfo.getHeadPortrait());
         //把唯一头像名保存到头像字段中
@@ -118,9 +118,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         //更新密码和原始密码是否不一致
         String updatePassword = userUpdateDto.getPassword();
-        if (StrUtil.isNotBlank(updatePassword) && ! this.encrypt.matches(updatePassword, userInfo.getPassword())) {
+        if (StrUtil.isNotBlank(updatePassword) && ! encrypt.matches(updatePassword, userInfo.getPassword())) {
             //更新密码
-            userUpdateInfo.setPassword(this.encrypt.encode(updatePassword));
+            userUpdateInfo.setPassword(encrypt.encode(updatePassword));
         }
 
         //原始和更新头像是否不相等
@@ -132,7 +132,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
             //通过头像文件名删除原始文件
             MinIoTool.delFile(MinioConstant.BucketName.HEAD_PORTRAIT, headPortrait);
             //生成唯一头像名
-            String fileName = this.getFileName(userUpdateDto.getLoginAccount(), updateHeadPortrait);
+            String fileName = getFileName(userUpdateDto.getLoginAccount(), updateHeadPortrait);
             //上传最新头像图片
             MinIoTool.fileUpload(MinioConstant.BucketName.HEAD_PORTRAIT, fileName, updateHeadPortrait);
             //把唯一头像名更新到头像字段中

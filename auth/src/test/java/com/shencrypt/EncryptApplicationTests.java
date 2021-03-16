@@ -36,7 +36,7 @@ public class EncryptApplicationTests {
 
     @Test
     public void encodeEncryptTest() {
-        System.out.println("encodePwd："+ this.encrypt.encode("test"));
+        System.out.println("encodePwd："+ encrypt.encode("test"));
     }
 
     @Test

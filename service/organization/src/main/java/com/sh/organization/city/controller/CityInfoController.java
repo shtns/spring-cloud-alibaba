@@ -35,7 +35,7 @@ public class CityInfoController {
      */
     @PostMapping
     public R<Boolean> saveCityInfo(@RequestBody @Valid CitySaveDto citySaveDto) {
-        return R.ok(this.cityInfoService.save(citySaveDto.toCityInfo()));
+        return R.ok(cityInfoService.save(citySaveDto.toCityInfo()));
     }
 
     /**
@@ -45,7 +45,7 @@ public class CityInfoController {
      * @return 是否删除成功
      */
     @DeleteMapping
-    public R<Boolean> removeCityInfo(Long cityId) { return R.ok(this.cityInfoService.removeCityInfo(cityId)); }
+    public R<Boolean> removeCityInfo(Long cityId) { return R.ok(cityInfoService.removeCityInfo(cityId)); }
 
     /**
      * 更新城市信息
@@ -55,7 +55,7 @@ public class CityInfoController {
      */
     @PutMapping
     public R<CityQueryVo> updateCityInfo(@RequestBody @Valid CityUpdateDto cityUpdateDto) {
-        return R.ok(this.cityInfoService.updateCityInfo(cityUpdateDto));
+        return R.ok(cityInfoService.updateCityInfo(cityUpdateDto));
     }
 
     /**
@@ -65,7 +65,7 @@ public class CityInfoController {
      * @return 城市查询vo
      */
     @GetMapping
-    public R<CityQueryVo> queryCityInfo(Long cityId) { return R.ok(this.cityInfoService.queryCityInfo(cityId)); }
+    public R<CityQueryVo> queryCityInfo(Long cityId) { return R.ok(cityInfoService.queryCityInfo(cityId)); }
 
     /**
      * 分页查询城市信息
@@ -76,6 +76,6 @@ public class CityInfoController {
      */
     @GetMapping(value = "/page")
     public R<PageRespVo<CityQueryVo>> pageQueryCityInfo(PageReqDto<CityInfo> pageReqDto, CityPageDto cityPageDto) {
-        return R.ok(this.cityInfoService.pageQueryCityInfo(pageReqDto.toPlusPage(), cityPageDto));
+        return R.ok(cityInfoService.pageQueryCityInfo(pageReqDto.toPlusPage(), cityPageDto));
     }
 }

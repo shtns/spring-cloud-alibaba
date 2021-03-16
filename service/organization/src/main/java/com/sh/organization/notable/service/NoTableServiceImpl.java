@@ -40,7 +40,7 @@ public class NoTableServiceImpl extends ServiceImpl<NoTableMapper, NoTable> impl
         if (StrUtil.isBlank(orderType)) {
             throw new ServerErrorException(NoTableConstant.Error.ORDER_TYPE_CANNOT_BE_EMPTY);
         }
-        NoTable noTable = this.getOne(Wrappers.<NoTable>lambdaQuery().eq(NoTable::getNoType, orderType));
+        NoTable noTable = getOne(Wrappers.<NoTable>lambdaQuery().eq(NoTable::getNoType, orderType));
         if (ObjectUtil.isNull(noTable)) {
             throw new ServerErrorException(NoTableConstant.Error.NO_ORDER_NUMBER_OF_THIS_TYPE_WAS_FOUND);
         }

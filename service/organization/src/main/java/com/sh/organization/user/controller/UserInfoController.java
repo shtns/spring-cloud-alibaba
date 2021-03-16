@@ -36,7 +36,7 @@ public class UserInfoController {
      */
     @PostMapping
     public R<Boolean> saveUserInfo(@RequestBody @Valid UserSaveDto userSaveDto) {
-        return R.ok(this.userInfoService.saveUserInfo(userSaveDto));
+        return R.ok(userInfoService.saveUserInfo(userSaveDto));
     }
 
     /**
@@ -47,7 +47,7 @@ public class UserInfoController {
      */
     @DeleteMapping
     public R<Boolean> removeUserInfo(Long userId) {
-        return R.ok(this.userInfoService.removeUserInfo(userId));
+        return R.ok(userInfoService.removeUserInfo(userId));
     }
 
     /**
@@ -58,7 +58,7 @@ public class UserInfoController {
      */
     @PutMapping
     public R<Boolean> updateUserInfo(@RequestBody @Valid UserUpdateDto userUpdateDto) {
-        return R.ok(this.userInfoService.updateUserInfo(userUpdateDto));
+        return R.ok(userInfoService.updateUserInfo(userUpdateDto));
     }
 
     /**
@@ -69,7 +69,7 @@ public class UserInfoController {
      */
     @GetMapping(value = "/account")
     public R<UserLoginVo> queryUserInfo(String loginAccount) {
-        return R.ok(this.userInfoService.queryUserInfo(loginAccount));
+        return R.ok(userInfoService.queryUserInfo(loginAccount));
     }
 
     /**
@@ -81,7 +81,7 @@ public class UserInfoController {
      */
     @GetMapping(value = "/login")
     public R<Boolean> userLogin(String loginAccount, String password) {
-        return R.ok(this.userInfoService.userLogin(loginAccount, password));
+        return R.ok(userInfoService.userLogin(loginAccount, password));
     }
 
     /**
@@ -93,7 +93,7 @@ public class UserInfoController {
      */
     @GetMapping(value = "/page")
     public R<PageRespVo<UserPageVo>> pageQueryUserInfo(PageReqDto<UserInfo> pageReqDto, UserPageDto userPageDto) {
-        return R.ok(this.userInfoService.pageQueryUserInfo(pageReqDto.toPlusPage(), userPageDto));
+        return R.ok(userInfoService.pageQueryUserInfo(pageReqDto.toPlusPage(), userPageDto));
     }
 
     /**
@@ -104,6 +104,6 @@ public class UserInfoController {
      */
     @GetMapping(value = "/sentinel_test")
     public R<String> sentinelTest(Long id) {
-        return R.ok(this.userInfoService.sentinelTest(id));
+        return R.ok(userInfoService.sentinelTest(id));
     }
 }

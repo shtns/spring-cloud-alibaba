@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.stereotype.Service;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-
 import java.security.KeyPair;
 import java.security.Principal;
 import java.security.interfaces.RSAPublicKey;
@@ -50,14 +49,14 @@ public class AuthTokenServiceImpl {
         //当授权类型不为刷新token时才进行用户登入操作
         if (! StrUtil.equals(parameters.get(OauthTwoConstant.Token.GRANT_TYPE), OauthTwoConstant.Token.REFRESH_TOKEN)) {
             //调用用户登入服务，返回true和false，false这里直接return，控制层判断给提示
-            if (! this.organizationService.userLogin(parameters.get(OauthTwoConstant.User.USERNAME),
+            if (! organizationService.userLogin(parameters.get(OauthTwoConstant.User.USERNAME),
                     parameters.get(OauthTwoConstant.User.PASSWORD)).getData()) {
                 throw new ServerErrorException(UserInfoConstant.ForegroundPrompt.INCORRECT_ACCOUNT_OR_PASSWORD);
             }
         }
 
         //传入相关参数，调用底层获取令牌接口
-        OAuth2AccessToken oAuth2AccessToken = this.tokenEndpoint.postAccessToken(principal, parameters).getBody();
+        OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
 
         //返回令牌信息
         return Oauth2TokenVo.builder()
@@ -77,7 +76,7 @@ public class AuthTokenServiceImpl {
      * @return 公钥
      */
     public Map<String, Object> getKey() {
-        RSAPublicKey publicKey = (RSAPublicKey) this.keyPair.getPublic();
+        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         return new JWKSet(new RSAKey.Builder(publicKey).build()).toJSONObject();
     }
 }

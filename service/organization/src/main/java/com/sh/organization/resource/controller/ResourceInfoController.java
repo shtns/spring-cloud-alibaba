@@ -28,7 +28,7 @@ public class ResourceInfoController {
      */
     @GetMapping(value = "/user_all")
     public R<List<String>> queryResourcePaths(Long roleId) {
-        return R.ok(this.resourceInfoService.queryResourcePaths(roleId));
+        return R.ok(resourceInfoService.queryResourcePaths(roleId));
     }
 
     /**
@@ -40,6 +40,6 @@ public class ResourceInfoController {
      */
     @GetMapping(value = "/request_type")
     public String returnRequestType(String requestPath, String requestType) {
-        return this.resourceInfoService.returnRequestType(requestPath, requestType);
+        return resourceInfoService.returnRequestType(requestPath, requestType);
     }
 }

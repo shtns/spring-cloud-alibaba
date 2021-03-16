@@ -43,10 +43,10 @@ public class MenuInfoServiceImpl extends ServiceImpl<MenuInfoMapper, MenuInfo> i
     @Transactional(rollbackFor = Exception.class)
     public Boolean removeMenuInfo(Long menuId) {
 
-        this.checkMenuId(menuId);
+        checkMenuId(menuId);
 
         boolean removeFlag = Boolean.FALSE;
-        if (this.removeById(menuId) && this.resourceInfoService.removeResourceInfo(menuId)) {
+        if (this.removeById(menuId) && resourceInfoService.removeResourceInfo(menuId)) {
             removeFlag = Boolean.TRUE;
         }
 
@@ -61,7 +61,7 @@ public class MenuInfoServiceImpl extends ServiceImpl<MenuInfoMapper, MenuInfo> i
      */
     public MenuQueryVo queryMenuInfo(Long menuId) {
 
-        this.checkMenuId(menuId);
+        checkMenuId(menuId);
 
         MenuInfo menuInfo = this.getById(menuId);
         if (ObjectUtil.isNull(menuInfo)) {
@@ -104,7 +104,7 @@ public class MenuInfoServiceImpl extends ServiceImpl<MenuInfoMapper, MenuInfo> i
      * @return 菜单详情分页vo
      */
     public PageRespVo<MenuDetailsVo> pageQueryMenuDetails(IPage<MenuInfo> iPage, MenuPageDto menuPageDto) {
-        return new PageRespVo<>(this.baseMapper.pageQueryMenuDetails(iPage, menuPageDto));
+        return new PageRespVo<>(baseMapper.pageQueryMenuDetails(iPage, menuPageDto));
     }
 
     /**

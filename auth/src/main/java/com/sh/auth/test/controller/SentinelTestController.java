@@ -29,6 +29,6 @@ public class SentinelTestController {
      */
     @GetMapping(value = "/test")
     public R<String> sentinelTest(Long id) {
-        return this.sentinelTestService.sentinelTest(id);
+        return sentinelTestService.sentinelTest(id);
     }
 }

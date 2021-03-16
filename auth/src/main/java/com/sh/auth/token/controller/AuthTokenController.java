@@ -35,7 +35,7 @@ public class AuthTokenController {
     @PostMapping(value = "/token")
     public R<Oauth2TokenVo> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
             throws HttpRequestMethodNotSupportedException {
-        return R.ok(this.authTokenService.postAccessToken(principal, parameters));
+        return R.ok(authTokenService.postAccessToken(principal, parameters));
     }
 
     /**
@@ -45,6 +45,6 @@ public class AuthTokenController {
      */
     @GetMapping("/rsa_key")
     public Map<String, Object> getKey() {
-        return this.authTokenService.getKey();
+        return authTokenService.getKey();
     }
 }

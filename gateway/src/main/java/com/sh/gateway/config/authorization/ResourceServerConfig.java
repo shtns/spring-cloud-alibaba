@@ -41,13 +41,13 @@ public class ResourceServerConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http.oauth2ResourceServer().jwt()
-                .jwtAuthenticationConverter(this.jwtAuthenticationConverter());
+                .jwtAuthenticationConverter(jwtAuthenticationConverter());
         http.authorizeExchange()
-                .pathMatchers(ArrayUtil.toArray(this.ignoreUrlsConfig.getUrls(), String.class)).permitAll()
-                .anyExchange().access(this.authorizationManager)
+                .pathMatchers(ArrayUtil.toArray(ignoreUrlsConfig.getUrls(), String.class)).permitAll()
+                .anyExchange().access(authorizationManager)
                 .and().exceptionHandling()
-                .accessDeniedHandler(this.restfulAccessDeniedHandler)
-                //.authenticationEntryPoint(this.restAuthenticationEntryPoint)
+                .accessDeniedHandler(restfulAccessDeniedHandler)
+                //.authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and().csrf().disable();
         return http.build();
     }

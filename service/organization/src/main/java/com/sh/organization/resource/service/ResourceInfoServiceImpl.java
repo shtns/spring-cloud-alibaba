@@ -26,7 +26,7 @@ public class ResourceInfoServiceImpl extends ServiceImpl<ResourceInfoMapper, Res
      * @return 资源地址列表
      */
     public List<String> queryResourcePaths(Long roleId) {
-        return this.baseMapper.queryResourcePaths(roleId);
+        return baseMapper.queryResourcePaths(roleId);
     }
 
     /**
@@ -36,7 +36,7 @@ public class ResourceInfoServiceImpl extends ServiceImpl<ResourceInfoMapper, Res
      * @return 是否删除成功
      */
     public Boolean removeResourceInfo(Long menuId) {
-        if (this.count(Wrappers.<ResourceInfo>lambdaQuery().eq(ResourceInfo::getMenuId, menuId)) < DigitalConstant.ONE) {
+        if (count(Wrappers.<ResourceInfo>lambdaQuery().eq(ResourceInfo::getMenuId, menuId)) < DigitalConstant.ONE) {
             return Boolean.TRUE;
         }
         return this.remove(Wrappers.<ResourceInfo>lambdaQuery().eq(ResourceInfo::getMenuId, menuId));

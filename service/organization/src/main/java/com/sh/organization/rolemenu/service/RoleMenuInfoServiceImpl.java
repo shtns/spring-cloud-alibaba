@@ -57,7 +57,7 @@ public class RoleMenuInfoServiceImpl extends ServiceImpl<RoleMenuInfoMapper, Rol
         boolean updateFlag = Boolean.TRUE;
         if (this.remove(Wrappers.<RoleMenuInfo>lambdaQuery().eq(RoleMenuInfo::getRoleId, roleId))) {
             for (Long menuId : menuIds) {
-                if (! this.save(new RoleMenuInfo(roleId, menuId))) {
+                if (! save(new RoleMenuInfo(roleId, menuId))) {
                     updateFlag = Boolean.FALSE;
                     break;
                 }

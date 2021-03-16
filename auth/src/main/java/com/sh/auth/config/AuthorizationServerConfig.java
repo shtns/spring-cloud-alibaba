@@ -55,8 +55,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        JdbcClientDetailsService clientDetailsService = new JdbcClientDetailsService(this.dataSource);
-        clientDetailsService.setPasswordEncoder(this.passwordEncoder);
+        JdbcClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
+        clientDetailsService.setPasswordEncoder(passwordEncoder);
         clients.withClientDetails(clientDetailsService);
     }
 
@@ -69,12 +69,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         List<TokenEnhancer> delegates = new ArrayList<>();
         TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-        delegates.add(this.tokenEnhancer());
-        delegates.add(this.accessTokenConverter());
+        delegates.add(tokenEnhancer());
+        delegates.add(accessTokenConverter());
         enhancerChain.setTokenEnhancers(delegates);
-        endpoints.authenticationManager(this.authenticationManager)
-                .userDetailsService(this.userInfoService)
-                .accessTokenConverter(this.accessTokenConverter())
+        endpoints.authenticationManager(authenticationManager)
+                .userDetailsService(userInfoService)
+                .accessTokenConverter(accessTokenConverter())
                 .tokenEnhancer(enhancerChain);
     }
 
@@ -96,7 +96,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setKeyPair(this.keyPair());
+        jwtAccessTokenConverter.setKeyPair(keyPair());
         return jwtAccessTokenConverter;
     }
 

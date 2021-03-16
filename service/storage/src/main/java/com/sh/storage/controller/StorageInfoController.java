@@ -29,7 +29,7 @@ public class StorageInfoController {
      */
     @PostMapping(value = "/inventory_reduction")
     public R<Boolean> inventoryReduction(@RequestBody StorageReduceDto storageReduceDto) {
-        return R.ok(this.storageInfoService.inventoryReduction(storageReduceDto));
+        return R.ok(storageInfoService.inventoryReduction(storageReduceDto));
     }
 
     /**
@@ -39,5 +39,5 @@ public class StorageInfoController {
      * @return 库存信息
      */
     @GetMapping
-    public R<StorageInfo> queryStorageInfo(Long productId) { return R.ok(this.storageInfoService.queryStorageInfo(productId)); }
+    public R<StorageInfo> queryStorageInfo(Long productId) { return R.ok(storageInfoService.queryStorageInfo(productId)); }
 }

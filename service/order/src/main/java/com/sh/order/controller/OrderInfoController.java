@@ -24,14 +24,14 @@ public class OrderInfoController {
     private final OrderInfoServiceImpl orderInfoService;
 
     /**
-     * 添加订单信息
+     * 保存订单信息
      *
      * @param orderSaveDto 订单添加dto
-     * @return 是否新增成功
+     * @return 是否保存成功
      */
     @PostMapping
     public R<Boolean> saveOrderInfo(@RequestBody @Valid OrderSaveDto orderSaveDto) {
-        return R.ok(this.orderInfoService.saveOrderInfo(orderSaveDto));
+        return R.ok(orderInfoService.saveOrderInfo(orderSaveDto));
     }
 
     /**
@@ -42,6 +42,6 @@ public class OrderInfoController {
      */
     @GetMapping(value = "/details")
     public R<OrderDetailsVo> getOrderDetails(@Valid OrderDetailsDto orderDetailsDto) {
-        return R.ok(this.orderInfoService.getOrderDetails(orderDetailsDto));
+        return R.ok(orderInfoService.getOrderDetails(orderDetailsDto));
     }
 }

@@ -37,7 +37,7 @@ public class MenuInfoController {
      */
     @PostMapping
     public R<Boolean> saveMenuInfo(@RequestBody @Valid MenuSaveDto menuSaveDto) {
-        return R.ok(this.menuInfoService.save(menuSaveDto.changeSaveMenuInfo()));
+        return R.ok(menuInfoService.save(menuSaveDto.changeSaveMenuInfo()));
     }
 
     /**
@@ -48,7 +48,7 @@ public class MenuInfoController {
      */
     @DeleteMapping
     public R<Boolean> removeMenuInfo(Long menuId) {
-        return R.ok(this.menuInfoService.removeMenuInfo(menuId));
+        return R.ok(menuInfoService.removeMenuInfo(menuId));
     }
 
     /**
@@ -59,7 +59,7 @@ public class MenuInfoController {
      */
     @PutMapping
     public R<Boolean> updateMenuInfo(@RequestBody @Valid MenuUpdateDto menuUpdateDto) {
-        return R.ok(this.menuInfoService.updateById(menuUpdateDto.changeUpdateMenuInfo()));
+        return R.ok(menuInfoService.updateById(menuUpdateDto.changeUpdateMenuInfo()));
     }
 
     /**
@@ -70,7 +70,7 @@ public class MenuInfoController {
      */
     @GetMapping
     public R<MenuQueryVo> queryMenuInfo(Long menuId) {
-        return R.ok(this.menuInfoService.queryMenuInfo(menuId));
+        return R.ok(menuInfoService.queryMenuInfo(menuId));
     }
 
     /**
@@ -80,7 +80,7 @@ public class MenuInfoController {
      */
     @GetMapping(value = "/all")
     public R<List<MenuQueryVo>> queryMenuInfos() {
-        return R.ok(this.menuInfoService.queryMenuInfos());
+        return R.ok(menuInfoService.queryMenuInfos());
     }
 
     /**
@@ -92,7 +92,7 @@ public class MenuInfoController {
      */
     @GetMapping(value = "/page")
     public R<PageRespVo<MenuQueryVo>> pageQueryMenuInfo(PageReqDto<MenuInfo> pageReqDto, MenuPageDto menuPageDto) {
-        return R.ok(this.menuInfoService.pageQueryMenuInfo(pageReqDto.toPlusPage(), menuPageDto));
+        return R.ok(menuInfoService.pageQueryMenuInfo(pageReqDto.toPlusPage(), menuPageDto));
     }
 
     /**
@@ -104,6 +104,6 @@ public class MenuInfoController {
      */
     @GetMapping(value = "/details")
     public R<PageRespVo<MenuDetailsVo>> pageQueryMenuDetails(PageReqDto<MenuInfo> pageReqDto, MenuPageDto menuPageDto) {
-        return R.ok(this.menuInfoService.pageQueryMenuDetails(pageReqDto.toPlusPage(), menuPageDto));
+        return R.ok(menuInfoService.pageQueryMenuDetails(pageReqDto.toPlusPage(), menuPageDto));
     }
 }

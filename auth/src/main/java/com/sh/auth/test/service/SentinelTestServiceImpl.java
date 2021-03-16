@@ -1,6 +1,7 @@
 package com.sh.auth.test.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.sh.api.common.config.ServerErrorException;
 import com.sh.api.common.constant.DigitalConstant;
 import com.sh.api.common.constant.SentinelConstant;
 import com.sh.api.common.util.R;
@@ -10,7 +11,6 @@ import com.sh.auth.test.handler.CustomFallbackHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 
 /**
  * sentinel测试业务
@@ -37,11 +37,11 @@ public class SentinelTestServiceImpl {
     public R<String> sentinelTest(Long id) {
 
         if (id == null) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, SentinelConstant.ForegroundPrompt.ID_CANNOT_BE_EMPTY);
+            throw new ServerErrorException(SentinelConstant.ForegroundPrompt.ID_CANNOT_BE_EMPTY);
         }
         if (id.equals(Long.valueOf(DigitalConstant.ZERO))) {
-            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, SentinelConstant.ForegroundPrompt.ID_CANNOT_BE_ZERO);
+            throw new ServerErrorException(SentinelConstant.ForegroundPrompt.ID_CANNOT_BE_ZERO);
         }
-        return this.organizationService.sentinelTest(id);
+        return organizationService.sentinelTest(id);
     }
 }

@@ -49,7 +49,7 @@ public class RoleInfoServiceImpl extends ServiceImpl<RoleInfoMapper, RoleInfo> i
         boolean saveFlag = Boolean.FALSE;
 
         Long roleId = roleSaveDto.changeSaveRoleInfo();
-        if (roleId != null && this.roleMenuInfoService.saveRoleMenuInfo(roleId, roleSaveDto.getMenuIds())) {
+        if (roleId != null && roleMenuInfoService.saveRoleMenuInfo(roleId, roleSaveDto.getMenuIds())) {
             saveFlag = Boolean.TRUE;
         }
 
@@ -65,10 +65,10 @@ public class RoleInfoServiceImpl extends ServiceImpl<RoleInfoMapper, RoleInfo> i
     @Transactional(rollbackFor = Exception.class)
     public Boolean removeRoleInfo(Long roleId) {
 
-        this.checkRoleId(roleId);
+        checkRoleId(roleId);
 
         boolean removeFlag = Boolean.FALSE;
-        if (this.removeById(roleId) && this.roleMenuInfoService.removeRoleMenuInfo(roleId)) {
+        if (this.removeById(roleId) && roleMenuInfoService.removeRoleMenuInfo(roleId)) {
             removeFlag = Boolean.TRUE;
         }
 
@@ -88,7 +88,7 @@ public class RoleInfoServiceImpl extends ServiceImpl<RoleInfoMapper, RoleInfo> i
 
         if (this.updateById(roleUpdateDto.changeUpdateRoleInfo())) {
             if (CollUtil.isNotEmpty(roleUpdateDto.getMenuIds()) &&
-                    this.roleMenuInfoService.updateRoleMenuInfo(roleUpdateDto.getRoleId(), roleUpdateDto.getMenuIds())) {
+                    roleMenuInfoService.updateRoleMenuInfo(roleUpdateDto.getRoleId(), roleUpdateDto.getMenuIds())) {
                 updateFlag = Boolean.TRUE;
             }
         }
@@ -104,7 +104,7 @@ public class RoleInfoServiceImpl extends ServiceImpl<RoleInfoMapper, RoleInfo> i
      */
     public RoleQueryVo queryRoleInfo(Long roleId) {
 
-        this.checkRoleId(roleId);
+        checkRoleId(roleId);
 
         RoleInfo roleInfo = this.getById(roleId);
         if (ObjectUtil.isNull(roleInfo)) {
@@ -140,7 +140,7 @@ public class RoleInfoServiceImpl extends ServiceImpl<RoleInfoMapper, RoleInfo> i
      * @return 角色详情分页vo
      */
     public PageRespVo<RoleDetailsVo> pageQueryRoleDetails(IPage<RoleInfo> iPage, RolePageDto rolePageDto) {
-        return new PageRespVo<>(this.baseMapper.pageQueryRoleDetails(iPage, rolePageDto));
+        return new PageRespVo<>(baseMapper.pageQueryRoleDetails(iPage, rolePageDto));
     }
 
     /**

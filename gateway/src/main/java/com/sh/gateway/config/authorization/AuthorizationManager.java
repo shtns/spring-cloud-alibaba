@@ -50,7 +50,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         }
 
         //请求地址不在资源地址列表中，报错404
-        if (! Objects.requireNonNull(this.redisTemplate.opsForValue().get(RedisConstant.ResourceCacheKey.RESOURCE_PATHS)).contains(requestPath)) {
+        if (! Objects.requireNonNull(redisTemplate.opsForValue().get(RedisConstant.ResourceCacheKey.RESOURCE_PATHS)).contains(requestPath)) {
             throw new ServerErrorException(ResourceConstant.ForegroundPrompt.THE_REQUESTED_RESOURCE_DOES_NOT_EXIST);
         }
 
@@ -65,7 +65,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         //这时候写两个接口，保存、修改、按照restful规范这里不用再写路径名，而是不同接口采用不同类型注解，如：PostMapping、PutMapping
         //前提是项目中不用路径传值，这就导致了一个路径可能出现多个接口的问题，所以需要再判断请求类型确保唯一
         //获取此次访问的请求类型
-        String specificRequestType = this.restTemplate.getForObject(ResourceConstant.Url.RESOURCE_REQUEST_TYPE_PATH.concat(requestPath)
+        String specificRequestType = restTemplate.getForObject(ResourceConstant.Url.RESOURCE_REQUEST_TYPE_PATH.concat(requestPath)
                 .concat(ResourceConstant.Url.PARAM).concat(requestType), String.class);
         if (StrUtil.isBlank(specificRequestType)) {
             throw new ServerErrorException(ResourceConstant.ForegroundPrompt.VERIFY_THAT_THE_REQUEST_TYPE_IS_CORRECT);

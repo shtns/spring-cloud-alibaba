@@ -55,7 +55,7 @@ public class ScanningInterfaceInfo {
     @PostConstruct
     public void removeAllResourceInfo() {
         //删除所有资源信息
-        this.resourceInfoMapper.removeAllResourceInfo();
+        resourceInfoMapper.removeAllResourceInfo();
     }
 
     /**
@@ -66,7 +66,7 @@ public class ScanningInterfaceInfo {
     public void addResourceInfo() {
 
         //遍历扫描到的请求路径
-        for (Map.Entry<RequestMappingInfo, HandlerMethod> m : this.requestMappingHandlerMapping.getHandlerMethods().entrySet()) {
+        for (Map.Entry<RequestMappingInfo, HandlerMethod> m : requestMappingHandlerMapping.getHandlerMethods().entrySet()) {
 
             //获取当前类绝对路径，如果为spring自带、资源信息管理接口，只在项目中进行调用不对外开放、不进行保存
             String classAbsolutePath = m.getValue().getBeanType().getName();
@@ -80,10 +80,10 @@ public class ScanningInterfaceInfo {
             //资源信息保存对象
             ResourceInfo resourceInfo = new ResourceSaveDto(
                     null,
-                    this.removeRedundantSymbol(StrUtil.concat(Boolean.TRUE,
+                    removeRedundantSymbol(StrUtil.concat(Boolean.TRUE,
                             ResourceConstant.Url.ORGANIZATION,
                             m.getKey().getPatternsCondition().getPatterns().toString())),
-                    this.removeRedundantSymbol(m.getKey().getMethodsCondition().getMethods().toString()))
+                    removeRedundantSymbol(m.getKey().getMethodsCondition().getMethods().toString()))
                     .changeSaveResourceInfo();
 
             if (StrUtil.equals(classAbsolutePath, UserInfoController.class.getName())) {
@@ -108,17 +108,17 @@ public class ScanningInterfaceInfo {
         }
 
         //获取项目中所有访问路径放入redis
-        List<String> resourcePaths = this.resourceInfoMapper.selectList(Wrappers.<ResourceInfo>lambdaQuery()
+        List<String> resourcePaths = resourceInfoMapper.selectList(Wrappers.<ResourceInfo>lambdaQuery()
                 .select(ResourceInfo::getResourcePath))
                 .stream().map(ResourceInfo::getResourcePath).collect(Collectors.toList());
 
         //key不存在直接把数据放入redis，存在就先删后增
-        if (! this.redisTemplate.hasKey(RedisConstant.ResourceCacheKey.RESOURCE_PATHS)) {
-            this.redisTemplate.opsForValue().set(RedisConstant.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
+        if (! redisTemplate.hasKey(RedisConstant.ResourceCacheKey.RESOURCE_PATHS)) {
+            redisTemplate.opsForValue().set(RedisConstant.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
         }
 
-        this.redisTemplate.delete(RedisConstant.ResourceCacheKey.RESOURCE_PATHS);
-        this.redisTemplate.opsForValue().set(RedisConstant.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
+        redisTemplate.delete(RedisConstant.ResourceCacheKey.RESOURCE_PATHS);
+        redisTemplate.opsForValue().set(RedisConstant.ResourceCacheKey.RESOURCE_PATHS, resourcePaths);
     }
 
     /**

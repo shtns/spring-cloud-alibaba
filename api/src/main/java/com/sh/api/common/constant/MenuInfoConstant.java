@@ -51,11 +51,6 @@ public interface MenuInfoConstant {
     interface Id {
 
         /**
-         * 不存在
-         */
-        Long NONENTITY = -1L;
-
-        /**
          * 用户信息管理
          */
         Long USER = 1L;
